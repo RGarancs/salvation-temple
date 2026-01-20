@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Cormorant Garamond"', 'serif'],
-        body: ['Inter', 'sans-serif'],
+        display: ['Montserrat', 'sans-serif'],
+        body: ['Montserrat', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -61,7 +61,7 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Extended earthy palette
+        // Extended earthy palette - Enhanced
         sage: {
           DEFAULT: "hsl(var(--sage))",
           light: "hsl(var(--sage-light))",
@@ -74,6 +74,7 @@ export default {
         teal: {
           DEFAULT: "hsl(var(--teal))",
           light: "hsl(var(--teal-light))",
+          dark: "hsl(var(--teal-dark))",
         },
         amber: {
           DEFAULT: "hsl(var(--amber))",
@@ -83,6 +84,7 @@ export default {
         chocolate: {
           DEFAULT: "hsl(var(--chocolate))",
           light: "hsl(var(--chocolate-light))",
+          dark: "hsl(var(--chocolate-dark))",
         },
         peach: {
           DEFAULT: "hsl(var(--peach))",
@@ -95,6 +97,10 @@ export default {
         cream: {
           DEFAULT: "hsl(var(--cream))",
           dark: "hsl(var(--cream-dark))",
+        },
+        coral: {
+          DEFAULT: "hsl(var(--coral))",
+          light: "hsl(var(--coral-light))",
         },
       },
       borderRadius: {
@@ -128,12 +134,21 @@ export default {
           "50%": { transform: "translateY(-20px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(35 85% 55% / 0.3)" },
-          "50%": { boxShadow: "0 0 40px hsl(35 85% 55% / 0.5)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(35 90% 55% / 0.3), 0 0 40px hsl(35 90% 55% / 0.15)" },
+          "50%": { boxShadow: "0 0 40px hsl(35 90% 55% / 0.5), 0 0 80px hsl(35 90% 55% / 0.25)" },
         },
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
+        },
+        "spin-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        "wave-flow": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
         },
       },
       animation: {
@@ -144,8 +159,10 @@ export default {
         "scale-in": "scale-in 0.3s ease-out",
         float: "float 6s ease-in-out infinite",
         "float-slow": "float 8s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 2.5s ease-in-out infinite",
         shimmer: "shimmer 2s linear infinite",
+        "spin-slow": "spin-slow 20s linear infinite",
+        "wave-flow": "wave-flow 15s ease infinite",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

@@ -1,11 +1,11 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Compass, Shield, Lightbulb, Users } from 'lucide-react';
+import { Compass, Shield, Lightbulb, Users, Sparkles } from 'lucide-react';
 
 const benefits = [
-  { key: 'clarity', icon: Compass, color: 'sage' },
-  { key: 'core', icon: Shield, color: 'teal' },
-  { key: 'wisdom', icon: Lightbulb, color: 'amber' },
-  { key: 'connections', icon: Users, color: 'olive' },
+  { key: 'clarity', icon: Compass, color: 'sage', gradient: 'from-sage to-sage-dark' },
+  { key: 'core', icon: Shield, color: 'teal', gradient: 'from-teal to-teal-dark' },
+  { key: 'wisdom', icon: Lightbulb, color: 'amber', gradient: 'from-amber to-amber-dark' },
+  { key: 'connections', icon: Users, color: 'olive', gradient: 'from-olive to-sage-dark' },
 ];
 
 export const BenefitsSection = () => {
@@ -13,32 +13,33 @@ export const BenefitsSection = () => {
 
   return (
     <section className="py-24 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-4">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16 text-gradient-earth">
-          {t('benefits.title')}
-        </h2>
+      {/* Decorative */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 right-20 w-64 h-64 bg-amber/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-48 h-48 bg-teal/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 glass-amber px-4 py-2 rounded-full mb-6">
+            <Sparkles className="w-4 h-4 text-amber" />
+            <span className="text-sm font-semibold text-amber">Преимущества</span>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth">
+            {t('benefits.title')}
+          </h2>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((benefit, index) => {
             const Icon = benefit.icon;
-            const colorClasses: Record<string, { bg: string; icon: string; border: string }> = {
-              sage: { bg: 'bg-sage/10', icon: 'text-sage', border: 'border-sage/20' },
-              teal: { bg: 'bg-teal/10', icon: 'text-teal', border: 'border-teal/20' },
-              amber: { bg: 'bg-amber/10', icon: 'text-amber', border: 'border-amber/20' },
-              olive: { bg: 'bg-olive/10', icon: 'text-olive', border: 'border-olive/20' },
-            };
-            const colors = colorClasses[benefit.color];
-
             return (
               <div
                 key={benefit.key}
-                className="group card-warm p-6 hover:border-sage/30 transition-all duration-500"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="group card-glass p-6 hover:border-sage/30 transition-all duration-500"
               >
-                <div
-                  className={`w-14 h-14 rounded-2xl ${colors.bg} ${colors.border} border flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110`}
-                >
-                  <Icon className={`w-7 h-7 ${colors.icon}`} />
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 shadow-lg`}>
+                  <Icon className="w-8 h-8 text-primary-foreground" />
                 </div>
                 
                 <h3 className="font-display text-2xl font-bold mb-3 text-foreground">
