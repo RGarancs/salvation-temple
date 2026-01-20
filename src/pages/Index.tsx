@@ -1,13 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import { Header } from '@/components/Header';
+import { HeroSection } from '@/components/sections/HeroSection';
+import { PhilosophySection } from '@/components/sections/PhilosophySection';
+import { BenefitsSection } from '@/components/sections/BenefitsSection';
+import { TargetSection } from '@/components/sections/TargetSection';
+import { MethodSection } from '@/components/sections/MethodSection';
+import { ApproachSection } from '@/components/sections/ApproachSection';
+import { WheelSection } from '@/components/sections/WheelSection';
+import { SessionsSection } from '@/components/sections/SessionsSection';
+import { OrganizationSection } from '@/components/sections/OrganizationSection';
+import { TeamSection } from '@/components/sections/TeamSection';
+import { Footer } from '@/components/sections/Footer';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <LanguageProvider>
+      <div className="min-h-screen bg-background font-body">
+        <Header />
+        <HeroSection />
+        <PhilosophySection />
+        <BenefitsSection />
+        <TargetSection />
+        <MethodSection />
+        <ApproachSection />
+        <WheelSection />
+        <SessionsSection />
+        <OrganizationSection />
+        <TeamSection />
+        <Footer />
       </div>
-    </div>
+    </LanguageProvider>
   );
 };
 
