@@ -2,11 +2,18 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { BookOpen, Wrench, Users2, GraduationCap } from 'lucide-react';
 
 const methods = [
-  { key: 'theory', icon: BookOpen, color: 'sage' },
+  { key: 'theory', icon: BookOpen, color: 'sunset' },
   { key: 'apply', icon: Wrench, color: 'amber' },
-  { key: 'groups', icon: Users2, color: 'teal' },
-  { key: 'mentor', icon: GraduationCap, color: 'chocolate' },
+  { key: 'groups', icon: Users2, color: 'terracotta' },
+  { key: 'mentor', icon: GraduationCap, color: 'coral' },
 ];
+
+const colorMap: Record<string, string> = {
+  sunset: 'bg-sunset',
+  amber: 'bg-amber',
+  terracotta: 'bg-terracotta',
+  coral: 'bg-coral',
+};
 
 export const MethodSection = () => {
   const { t } = useLanguage();
@@ -23,34 +30,24 @@ export const MethodSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
           {methods.map((method, index) => {
             const Icon = method.icon;
-            const colorClasses: Record<string, { bg: string; icon: string }> = {
-              sage: { bg: 'bg-sage', icon: 'text-primary-foreground' },
-              amber: { bg: 'bg-amber', icon: 'text-amber-foreground' },
-              teal: { bg: 'bg-teal', icon: 'text-primary-foreground' },
-              chocolate: { bg: 'bg-chocolate', icon: 'text-primary-foreground' },
-            };
-            const colors = colorClasses[method.color];
-
             return (
               <div
                 key={method.key}
-                className="group relative bg-background rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-500 border border-border hover:border-sage/30"
+                className="group relative bg-background rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-border"
               >
                 {/* Number indicator */}
-                <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-amber text-amber-foreground flex items-center justify-center text-sm font-bold shadow-md">
+                <div className="absolute -top-3 -left-3 w-7 h-7 rounded-full bg-amber text-white flex items-center justify-center text-sm font-bold shadow-md">
                   {index + 1}
                 </div>
 
-                <div
-                  className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110`}
-                >
-                  <Icon className={`w-6 h-6 ${colors.icon}`} />
+                <div className={`w-12 h-12 rounded-xl ${colorMap[method.color]} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-105`}>
+                  <Icon className="w-6 h-6 text-white" />
                 </div>
 
-                <h3 className="font-display text-xl font-bold mb-3 text-foreground">
+                <h3 className="font-display text-lg font-bold mb-3 text-foreground">
                   {t(`method.${method.key}.title`)}
                 </h3>
 

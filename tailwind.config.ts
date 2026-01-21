@@ -61,20 +61,21 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Extended earthy palette - Enhanced
-        sage: {
-          DEFAULT: "hsl(var(--sage))",
-          light: "hsl(var(--sage-light))",
-          dark: "hsl(var(--sage-dark))",
+        // Warm sunset palette
+        cashmere: {
+          DEFAULT: "hsl(var(--cashmere))",
+          light: "hsl(var(--cashmere-light))",
+          dark: "hsl(var(--cashmere-dark))",
         },
-        olive: {
-          DEFAULT: "hsl(var(--olive))",
-          light: "hsl(var(--olive-light))",
+        sunset: {
+          DEFAULT: "hsl(var(--sunset))",
+          light: "hsl(var(--sunset-light))",
+          dark: "hsl(var(--sunset-dark))",
         },
-        teal: {
-          DEFAULT: "hsl(var(--teal))",
-          light: "hsl(var(--teal-light))",
-          dark: "hsl(var(--teal-dark))",
+        terracotta: {
+          DEFAULT: "hsl(var(--terracotta))",
+          light: "hsl(var(--terracotta-light))",
+          dark: "hsl(var(--terracotta-dark))",
         },
         amber: {
           DEFAULT: "hsl(var(--amber))",
@@ -90,17 +91,18 @@ export default {
           DEFAULT: "hsl(var(--peach))",
           dark: "hsl(var(--peach-dark))",
         },
-        orange: {
-          DEFAULT: "hsl(var(--orange))",
-          light: "hsl(var(--orange-light))",
+        coral: {
+          DEFAULT: "hsl(var(--coral))",
+          light: "hsl(var(--coral-light))",
+          dark: "hsl(var(--coral-dark))",
         },
         cream: {
           DEFAULT: "hsl(var(--cream))",
           dark: "hsl(var(--cream-dark))",
         },
-        coral: {
-          DEFAULT: "hsl(var(--coral))",
-          light: "hsl(var(--coral-light))",
+        burnt: {
+          DEFAULT: "hsl(var(--burnt))",
+          light: "hsl(var(--burnt-light))",
         },
       },
       borderRadius: {
@@ -125,30 +127,17 @@ export default {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        "scale-in": {
-          "0%": { opacity: "0", transform: "scale(0.95)" },
-          "100%": { opacity: "1", transform: "scale(1)" },
-        },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(35 90% 55% / 0.3), 0 0 40px hsl(35 90% 55% / 0.15)" },
-          "50%": { boxShadow: "0 0 40px hsl(35 90% 55% / 0.5), 0 0 80px hsl(35 90% 55% / 0.25)" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(32 90% 55% / 0.3), 0 0 40px hsl(32 90% 55% / 0.15)" },
+          "50%": { boxShadow: "0 0 40px hsl(32 90% 55% / 0.5), 0 0 80px hsl(32 90% 55% / 0.25)" },
         },
         "spin-slow": {
           from: { transform: "rotate(0deg)" },
           to: { transform: "rotate(360deg)" },
-        },
-        "wave-flow": {
-          "0%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-          "100%": { backgroundPosition: "0% 50%" },
         },
       },
       animation: {
@@ -156,13 +145,10 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
         "fade-in-up": "fade-in-up 0.6s ease-out",
-        "scale-in": "scale-in 0.3s ease-out",
         float: "float 6s ease-in-out infinite",
         "float-slow": "float 8s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2.5s ease-in-out infinite",
-        shimmer: "shimmer 2s linear infinite",
         "spin-slow": "spin-slow 20s linear infinite",
-        "wave-flow": "wave-flow 15s ease infinite",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

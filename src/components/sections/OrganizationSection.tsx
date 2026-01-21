@@ -5,11 +5,18 @@ export const OrganizationSection = () => {
   const { t } = useLanguage();
 
   const orgItems = [
-    { key: 'location', icon: MapPin, color: 'sage' },
+    { key: 'location', icon: MapPin, color: 'sunset' },
     { key: 'cost', icon: Gift, color: 'amber' },
-    { key: 'commitment', icon: Heart, color: 'teal' },
-    { key: 'details', icon: Info, color: 'chocolate' },
+    { key: 'commitment', icon: Heart, color: 'terracotta' },
+    { key: 'details', icon: Info, color: 'coral' },
   ];
+
+  const colorMap: Record<string, { bg: string; icon: string }> = {
+    sunset: { bg: 'bg-sunset/10', icon: 'text-sunset' },
+    amber: { bg: 'bg-amber/10', icon: 'text-amber' },
+    terracotta: { bg: 'bg-terracotta/10', icon: 'text-terracotta' },
+    coral: { bg: 'bg-coral/10', icon: 'text-coral' },
+  };
 
   const schedule = [
     { time: '09:50 - 10:00', key: 'welcome', icon: Coffee },
@@ -28,15 +35,16 @@ export const OrganizationSection = () => {
           {t('org.title')}
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 max-w-5xl mx-auto">
           {orgItems.map((item) => {
             const Icon = item.icon;
+            const colors = colorMap[item.color];
             return (
               <div key={item.key} className="card-warm p-6 text-center">
-                <div className={`w-12 h-12 rounded-full bg-${item.color}/10 flex items-center justify-center mx-auto mb-4`}>
-                  <Icon className={`w-6 h-6 text-${item.color}`} />
+                <div className={`w-12 h-12 rounded-full ${colors.bg} flex items-center justify-center mx-auto mb-4`}>
+                  <Icon className={`w-6 h-6 ${colors.icon}`} />
                 </div>
-                <h3 className="font-display text-xl font-bold mb-2">{t(`org.${item.key}`)}</h3>
+                <h3 className="font-display text-lg font-bold mb-2 text-foreground">{t(`org.${item.key}`)}</h3>
                 <p className="text-muted-foreground text-sm whitespace-pre-line">{t(`org.${item.key}.value`)}</p>
               </div>
             );
@@ -44,14 +52,14 @@ export const OrganizationSection = () => {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <h3 className="font-display text-2xl font-bold text-center mb-8">{t('schedule.title')}</h3>
-          <div className="space-y-3">
+          <h3 className="font-display text-2xl font-bold text-center mb-8 text-foreground">{t('schedule.title')}</h3>
+          <div className="space-y-2">
             {schedule.map((item) => (
               <div key={item.key} className="flex items-start gap-4 p-4 bg-background rounded-xl border border-border">
-                <span className="text-sm font-mono text-sage font-semibold whitespace-nowrap">{item.time}</span>
+                <span className="text-sm font-mono text-sunset font-semibold whitespace-nowrap">{item.time}</span>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-foreground">{t(`schedule.${item.key}`)}</h4>
-                  <p className="text-sm text-muted-foreground whitespace-pre-line">{t(`schedule.${item.key}.desc`)}</p>
+                  <h4 className="font-semibold text-foreground text-sm">{t(`schedule.${item.key}`)}</h4>
+                  <p className="text-xs text-muted-foreground whitespace-pre-line">{t(`schedule.${item.key}.desc`)}</p>
                 </div>
               </div>
             ))}
