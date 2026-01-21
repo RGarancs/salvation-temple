@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import churchLogo from '@/assets/church-logo.png';
 
 export const Header = () => {
@@ -35,7 +35,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Church Logo and Name */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-12 h-12 rounded-xl overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:glow-coral">
+          <div className="w-10 h-10 rounded-xl overflow-hidden transition-all duration-300 group-hover:scale-105">
             <img 
               src={churchLogo} 
               alt="Храм Спасения" 
@@ -43,10 +43,10 @@ export const Header = () => {
             />
           </div>
           <div className="hidden sm:flex flex-col">
-            <span className="font-display text-sm font-bold text-foreground/90 tracking-wide">
+            <span className="font-display text-sm font-bold text-foreground tracking-wide">
               Храм Спасения
             </span>
-            <span className="text-xs text-muted-foreground font-medium">
+            <span className="text-xs text-muted-foreground">
               ЦЖ 2026
             </span>
           </div>
@@ -58,7 +58,7 @@ export const Header = () => {
             <a
               key={item.key}
               href={item.href}
-              className="link-underline text-foreground/80 hover:text-foreground transition-colors font-medium text-sm uppercase tracking-wider"
+              className="text-foreground/70 hover:text-foreground transition-colors font-medium text-sm"
             >
               {t(item.key)}
             </a>
@@ -72,9 +72,8 @@ export const Header = () => {
             href="https://forms.gle/2GkmmrRmaKdAxdaV7"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-sage to-teal text-primary-foreground px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 glow-sage"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
-            <Sparkles className="w-4 h-4 group-hover:animate-pulse" />
             {t('nav.register')}
           </a>
         </div>
@@ -103,7 +102,7 @@ export const Header = () => {
               key={item.key}
               href={item.href}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="text-foreground/80 hover:text-foreground transition-colors font-medium py-2 text-sm uppercase tracking-wider"
+              className="text-foreground/80 hover:text-foreground transition-colors font-medium py-2 text-sm"
             >
               {t(item.key)}
             </a>
@@ -115,9 +114,8 @@ export const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-sage to-teal text-primary-foreground px-5 py-2.5 rounded-full font-semibold text-sm transition-all"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all"
             >
-              <Sparkles className="w-4 h-4" />
               {t('nav.register')}
             </a>
           </div>
