@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Quote } from 'lucide-react';
+import { Quote, BookOpen } from 'lucide-react';
 
 export const PhilosophySection = () => {
   const { t } = useLanguage();
@@ -14,8 +14,8 @@ export const PhilosophySection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-sunset to-coral mb-8">
-            <Quote className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-sunset/20 to-coral/20 mb-6">
+            <BookOpen className="w-7 h-7 text-sunset" />
           </div>
           
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-8 text-gradient-earth">

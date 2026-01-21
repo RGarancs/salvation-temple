@@ -1,4 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Users } from 'lucide-react';
 
 const team = [
   { key: 'elya', color: 'sunset' },
@@ -24,9 +25,14 @@ export const TeamSection = () => {
   return (
     <section id="team" className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16 text-gradient-earth">
-          {t('team.title')}
-        </h2>
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-terracotta/20 to-coral/20 mb-6">
+            <Users className="w-7 h-7 text-terracotta" />
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth">
+            {t('team.title')}
+          </h2>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {team.map((member) => {

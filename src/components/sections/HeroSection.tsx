@@ -28,19 +28,19 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* Info tags - simplified */}
+          {/* Info tags - reordered: dates, time, age */}
           <div className="flex flex-wrap justify-center gap-3 mb-10 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             <span className="px-4 py-2 rounded-full text-sm font-medium bg-card border border-border text-foreground flex items-center gap-2">
               <Calendar className="w-4 h-4 text-sunset" />
               {t('hero.dates')}
             </span>
             <span className="px-4 py-2 rounded-full text-sm font-medium bg-card border border-border text-foreground flex items-center gap-2">
-              <Users className="w-4 h-4 text-amber" />
-              {t('hero.age')}
+              <Clock className="w-4 h-4 text-amber" />
+              {t('hero.time')}
             </span>
             <span className="px-4 py-2 rounded-full text-sm font-medium bg-card border border-border text-foreground flex items-center gap-2">
-              <Clock className="w-4 h-4 text-coral" />
-              {t('hero.rhythm')}
+              <Users className="w-4 h-4 text-coral" />
+              {t('hero.age')}
             </span>
           </div>
 
@@ -64,43 +64,6 @@ export const HeroSection = () => {
             >
               {t('hero.cta')}
             </a>
-          </div>
-
-          {/* Decorative Wheel Preview - simplified */}
-          <div className="mt-20 relative animate-fade-in" style={{ animationDelay: '0.6s' }}>
-            <div className="w-48 h-48 mx-auto relative">
-              {/* Outer ring */}
-              <div className="absolute inset-0 rounded-full border-2 border-cashmere/30 animate-spin-slow" style={{ animationDuration: '40s' }} />
-              <div className="absolute inset-4 rounded-full border border-amber/20" />
-              
-              {/* Center - Shalom */}
-              <div className="absolute inset-8 rounded-full bg-gradient-to-br from-sunset/15 to-amber/15 backdrop-blur-sm flex items-center justify-center border border-amber/20">
-                <span className="font-display text-xl font-bold text-gradient-amber">שָׁלוֹם</span>
-              </div>
-              
-              {/* Wheel segments indicators */}
-              {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                <div
-                  key={angle}
-                  className="absolute w-3 h-3 rounded-full transition-all duration-300"
-                  style={{
-                    top: `${50 - 42 * Math.cos((angle * Math.PI) / 180)}%`,
-                    left: `${50 + 42 * Math.sin((angle * Math.PI) / 180)}%`,
-                    transform: 'translate(-50%, -50%)',
-                    background: [
-                      'hsl(12 80% 55%)',   // sunset
-                      'hsl(18 70% 48%)',   // terracotta
-                      'hsl(32 90% 55%)',   // amber
-                      'hsl(25 30% 72%)',   // cashmere
-                      'hsl(15 65% 40%)',   // burnt
-                      'hsl(20 40% 42%)',   // chocolate-light
-                      'hsl(8 75% 55%)',    // coral
-                      'hsl(8 85% 45%)',    // sunset-dark
-                    ][i],
-                  }}
-                />
-              ))}
-            </div>
           </div>
         </div>
       </div>

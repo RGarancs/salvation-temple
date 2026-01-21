@@ -8,8 +8,8 @@ import { MethodSection } from '@/components/sections/MethodSection';
 import { ApproachSection } from '@/components/sections/ApproachSection';
 import { WheelSection } from '@/components/sections/WheelSection';
 import { SessionsSection } from '@/components/sections/SessionsSection';
-import { OrganizationSection } from '@/components/sections/OrganizationSection';
 import { TeamSection } from '@/components/sections/TeamSection';
+import { OrganizationSection } from '@/components/sections/OrganizationSection';
 import { Footer } from '@/components/sections/Footer';
 
 const Index = () => {
@@ -25,8 +25,8 @@ const Index = () => {
         <ApproachSection />
         <WheelSection />
         <SessionsSection />
-        <OrganizationSection />
         <TeamSection />
+        <OrganizationSection />
         <Footer />
       </div>
     </LanguageProvider>
