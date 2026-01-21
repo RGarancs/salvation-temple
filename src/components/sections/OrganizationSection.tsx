@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MapPin, Gift, Heart, Info, Clock, Coffee } from 'lucide-react';
+import { MapPin, Gift, Heart, Info, Clock, Coffee, Settings, ChevronDown } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 export const OrganizationSection = () => {
   const { t } = useLanguage();
+  const [isScheduleOpen, setIsScheduleOpen] = useState(false);
 
   const orgItems = [
     { key: 'location', icon: MapPin, color: 'sunset' },
@@ -31,9 +34,14 @@ export const OrganizationSection = () => {
   return (
     <section className="py-24 bg-cream-dark">
       <div className="container mx-auto px-4">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16 text-gradient-earth">
-          {t('org.title')}
-        </h2>
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-sunset/20 to-amber/20 mb-6">
+            <Settings className="w-7 h-7 text-sunset" />
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth">
+            {t('org.title')}
+          </h2>
+        </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 max-w-5xl mx-auto">
           {orgItems.map((item) => {
@@ -51,19 +59,33 @@ export const OrganizationSection = () => {
           })}
         </div>
 
+        {/* Saturday Schedule - Collapsible */}
         <div className="max-w-3xl mx-auto">
-          <h3 className="font-display text-2xl font-bold text-center mb-8 text-foreground">{t('schedule.title')}</h3>
-          <div className="space-y-2">
-            {schedule.map((item) => (
-              <div key={item.key} className="flex items-start gap-4 p-4 bg-background rounded-xl border border-border">
-                <span className="text-sm font-mono text-sunset font-semibold whitespace-nowrap">{item.time}</span>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-foreground text-sm">{t(`schedule.${item.key}`)}</h4>
-                  <p className="text-xs text-muted-foreground whitespace-pre-line">{t(`schedule.${item.key}.desc`)}</p>
+          <Collapsible open={isScheduleOpen} onOpenChange={setIsScheduleOpen}>
+            <CollapsibleTrigger className="w-full">
+              <div className="flex items-center justify-center gap-3 cursor-pointer group mb-4">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-amber/20 to-coral/20">
+                  <Clock className="w-5 h-5 text-amber" />
                 </div>
+                <h3 className="font-display text-2xl font-bold text-gradient-earth">{t('schedule.title')}</h3>
+                <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${isScheduleOpen ? 'rotate-180' : ''}`} />
               </div>
-            ))}
-          </div>
+            </CollapsibleTrigger>
+
+            <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+              <div className="space-y-2 mt-4">
+                {schedule.map((item) => (
+                  <div key={item.key} className="flex items-start gap-4 p-4 bg-background rounded-xl border border-border">
+                    <span className="text-sm font-mono text-sunset font-semibold whitespace-nowrap">{item.time}</span>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-foreground text-sm">{t(`schedule.${item.key}`)}</h4>
+                      <p className="text-xs text-muted-foreground whitespace-pre-line">{t(`schedule.${item.key}.desc`)}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
         </div>
       </div>
     </section>

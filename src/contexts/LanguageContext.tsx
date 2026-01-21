@@ -18,11 +18,12 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     'hero.year': '2026',
-    'hero.dates': '14.02 — 12.12',
+    'hero.dates': '15.03 — 13.01',
+    'hero.time': '10:00 — 14:00',
     'hero.age': '18 - 50 ЛЕТ',
     'hero.rhythm': '1 СУББОТА В МЕСЯЦ',
     'hero.title': 'ЦЕЛОСТНАЯ ЖИЗНЬ',
-    'hero.subtitle': 'Практический курс для тех, кто хочет построить прочный фундамент в эпоху перемен.',
+    'hero.subtitle': 'Практический курс для тех, кто хочет построить прочный фундамент в эпоху перемен, основанный на библейских принципах и практическом фундаменте.',
     'hero.cta': 'Регистрация Открыта',
     
     // Philosophy
@@ -42,7 +43,16 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Target
     'target.title': 'Для Кого Это?',
-    'target.text': 'Этот курс для лидеров, активных прихожан и всех, кто стремится к осознанной жизни и хочет обрести баланс (18-65 лет).',
+    'target.text': 'Этот курс для лидеров, активных прихожан и всех, кто стремится к осознанной жизни и хочет обрести баланс (18-50 лет).',
+    'target.checklist.title': 'Это для тебя, если:',
+    'target.persona.1': 'У меня есть видение, но я не знаю, как его достичь',
+    'target.persona.2': 'Я ставлю одни и те же цели, но терплю неудачу',
+    'target.persona.3': 'Я знаю, чего хочу и как это сделать, но мне нужна поддержка',
+    'target.persona.4': 'Я разный человек в церкви, на работе и дома',
+    'target.persona.5': 'Я вроде бы успешен, но не знаю, ради чего',
+    'target.persona.6': 'Я успешен в карьере, но разбит дома (или счастлив дома, но испытываю финансовые трудности)',
+    'target.persona.7': 'У меня не расставлены приоритеты или я борюсь с одним из аспектов колеса баланса',
+    'target.persona.8': 'Я не хочу расти, но внутренний голос / Бог говорит, что мне нужно измениться, и я откладываю это, я не в мире',
     
     // Method
     'method.title': 'Как мы учимся',
@@ -97,42 +107,42 @@ const translations: Record<Language, Record<string, string>> = {
     'sessions.tools': 'ИНСТРУМЕНТЫ',
     'sessions.break': 'Летний Перерыв (Июль - Август) — Время Практики',
     
-    // Session details
-    'session.1.month': 'ФЕВРАЛЬ',
-    'session.1.date': '15 ФЕВ',
+    // Session details - Updated dates (+1 month)
+    'session.1.month': 'МАРТ',
+    'session.1.date': '15 МАР',
     'session.1.title': '1. Предназначение',
     'session.1.about': 'Старт программы. Мы проведем глубокий аудит вашей жизни и определим разрыв между тем, где вы есть, и где Бог хочет вас видеть.',
     'session.1.tools': 'Колесо Баланса (Библейская версия)\nФреймворк Икигай для поиска призвания\nНаписание "Письма из Будущего"',
     
-    'session.2.month': 'МАРТ',
-    'session.2.date': '15 МАР',
+    'session.2.month': 'АПРЕЛЬ',
+    'session.2.date': '18 АПР',
     'session.2.title': '2. Люди и Отношения',
     'session.2.about': 'Мы научимся говорить о сложных вещах без агрессии и устанавливать границы, которые сохраняют любовь и уважение.',
     'session.2.tools': 'Ненасильственное Общение (ННО)\nАудит Отношений\nСкрипты для установки границ',
     
-    'session.3.month': 'АПРЕЛЬ',
-    'session.3.date': '18 АПР',
+    'session.3.month': 'МАЙ',
+    'session.3.date': '16 МАЯ',
     'session.3.title': '3. Тело и Энергия',
     'session.3.about': 'Ваше тело — Храм. Мы разберем физиологию энергии, сна и питания.',
     'session.3.tools': 'Протокол гигиены сна\nСоздание "Меню Радостного Движения"\nАнализ энергетических пиков дня',
     
-    'session.4.month': 'МАЙ',
-    'session.4.date': '16 МАЯ',
+    'session.4.month': 'ИЮНЬ',
+    'session.4.date': '20 ИЮН',
     'session.4.title': '4. Личностный Рост и Карьера',
     'session.4.about': 'Работа с мышлением. Как наши убеждения саботируют нас? Мы научимся "обновлять ум" (Рим 12:2).',
     'session.4.tools': 'Техника "Fear Setting" (Тим Феррис)\nКогнитивный рефрейминг убеждений',
     
-    'session.5.month': 'ИЮНЬ',
-    'session.5.date': '20 ИЮН',
-    'session.5.title': '5. Финансы и Управление',
-    'session.5.about': 'Мы перейдем от стресса выживания к радости управления ресурсами Царства.',
-    'session.5.tools': 'Аудит "черных дыр" бюджета\nМетод конвертов (цифровой)\nПлан щедрости',
+    'session.5.month': 'ИЮЛЬ',
+    'session.5.date': '18 ИЮЛ',
+    'session.5.title': '5. Характер и Привычки',
+    'session.5.about': 'Характер — это сумма ваших привычек. Мы внедрим науку формирования привычек.',
+    'session.5.tools': 'Петля Привычки (Atomic Habits)\nHabit Stacking\nSMART-цели',
     
     'session.6.month': 'СЕНТЯБРЬ',
     'session.6.date': '19 СЕН',
-    'session.6.title': '6. Характер и Привычки',
-    'session.6.about': 'Характер — это сумма ваших привычек. Мы внедрим науку формирования привычек.',
-    'session.6.tools': 'Петля Привычки (Atomic Habits)\nHabit Stacking\nSMART-цели на осень',
+    'session.6.title': '6. Финансы и Управление',
+    'session.6.about': 'Мы перейдем от стресса выживания к радости управления ресурсами Царства.',
+    'session.6.tools': 'Аудит "черных дыр" бюджета\nМетод конвертов (цифровой)\nПлан щедрости',
     
     'session.7.month': 'ОКТЯБРЬ',
     'session.7.date': '17 ОКТ',
@@ -147,21 +157,27 @@ const translations: Record<Language, Record<string, string>> = {
     'session.8.tools': 'Lectio Divina (Молитвенное чтение)\nПрактика Шаббата\nReview года',
     
     'session.9.month': 'ДЕКАБРЬ',
-    'session.9.date': '12 ДЕК',
-    'session.9.title': 'ФИНАЛ: Рефлексия и Выпускной',
-    'session.9.about': 'Финальная сессия года. Время глубокой рефлексии пройденного пути, закрепления полезных привычек и празднования побед.',
-    'session.9.tools': 'Годовой обзор (Year Compass)\nЗакрепление ключевых привычек\nПраздничный ужин',
+    'session.9.date': '19 ДЕК',
+    'session.9.title': '9. Разум и Эмоции',
+    'session.9.about': 'Работа с эмоциональным интеллектом и внутренней гармонией.',
+    'session.9.tools': 'Эмоциональный аудит\nТехники осознанности\nПланирование на год',
+    
+    'session.10.month': 'ЯНВАРЬ 2027',
+    'session.10.date': '13 ЯНВ',
+    'session.10.title': 'ФИНАЛ: Рефлексия и Вечер Лидеров',
+    'session.10.about': 'Финальная сессия. Время глубокой рефлексии пройденного пути, закрепления полезных привычек и празднования побед вместе с Вечером Лидеров.',
+    'session.10.tools': 'Годовой обзор (Year Compass)\nЗакрепление ключевых привычек\nПраздничный ужин с лидерами',
     
     // Organization
     'org.title': 'Организация и Тайминг',
     'org.location': 'Локация',
     'org.location.value': 'Зал Рыба\nLāčplēša 117, Riga\n2 этаж.',
     'org.cost': 'Стоимость',
-    'org.cost.value': 'Покрывается церковью «Храм Спасения»',
+    'org.cost.value': 'Покрывается церковью «Храм Спасения»\n+ 10 EUR за сессию (кофе и закуски)',
     'org.commitment': 'Посвящение',
     'org.commitment.value': 'Мы ожидаем участия в каждой сессии.',
     'org.details': 'Детали',
-    'org.details.value': 'Возраст: 18 - 65 лет\nДаты: 15.02.2026 — 12.12.2026\nРитм: 1 Суббота в месяц',
+    'org.details.value': 'Возраст: 18 - 50 лет\nДаты: 15.03.2026 — 13.01.2027\nРитм: 1 Суббота в месяц',
     
     // Schedule
     'schedule.title': 'Расписание Субботы',
@@ -203,7 +219,8 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Footer
     'footer.church': 'Церковь "Храм Спасения"',
-    'footer.copyright': '© 2026 Целостная Жизнь. Все права защищены.',
+    'footer.copyright': '© 2026-2027 Целостная Жизнь. Все права защищены.',
+    'footer.scanQR': 'Сканируйте для регистрации',
   },
   en: {
     // Header
@@ -214,11 +231,12 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     'hero.year': '2026',
-    'hero.dates': '14.02 — 12.12',
+    'hero.dates': '15.03 — 13.01',
+    'hero.time': '10:00 — 14:00',
     'hero.age': '18 - 50 YEARS',
     'hero.rhythm': '1 SATURDAY PER MONTH',
     'hero.title': 'WHOLESOME LIFE',
-    'hero.subtitle': 'A practical course for those who want to build a solid foundation in an era of change.',
+    'hero.subtitle': 'A practical course for those who want to build a solid foundation in an era of change, based on biblical principles and practical foundation.',
     'hero.cta': 'Registration Open',
     
     // Philosophy
@@ -238,7 +256,16 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Target
     'target.title': 'Who Is This For?',
-    'target.text': 'This course is for leaders, active parishioners, and everyone who strives for a conscious life and wants to find balance (ages 18-65).',
+    'target.text': 'This course is for leaders, active parishioners, and everyone who strives for a conscious life and wants to find balance (ages 18-50).',
+    'target.checklist.title': 'This is for you if:',
+    'target.persona.1': 'I have a vision but don\'t know how to achieve it',
+    'target.persona.2': 'I set the same goals but keep failing',
+    'target.persona.3': 'I know what I want and how to do it, but I need support',
+    'target.persona.4': 'I am a different person at church, work, and home',
+    'target.persona.5': 'I seem successful but don\'t know what for',
+    'target.persona.6': 'I\'m successful in career but broken at home (or happy at home but struggling financially)',
+    'target.persona.7': 'I don\'t have my priorities straight or I\'m struggling with one aspect of the balance wheel',
+    'target.persona.8': 'I don\'t want to grow but my inner voice / God says I need to change, and I postpone it, I\'m not at peace',
     
     // Method
     'method.title': 'How We Learn',
@@ -293,42 +320,42 @@ const translations: Record<Language, Record<string, string>> = {
     'sessions.tools': 'TOOLS',
     'sessions.break': 'Summer Break (July - August) — Practice Time',
     
-    // Session details
-    'session.1.month': 'FEBRUARY',
-    'session.1.date': 'FEB 15',
+    // Session details - Updated dates
+    'session.1.month': 'MARCH',
+    'session.1.date': 'MAR 15',
     'session.1.title': '1. Purpose',
     'session.1.about': 'Program start. We will conduct a deep audit of your life and determine the gap between where you are and where God wants to see you.',
     'session.1.tools': 'Balance Wheel (Biblical version)\nIkigai Framework for finding calling\nWriting "Letter from the Future"',
     
-    'session.2.month': 'MARCH',
-    'session.2.date': 'MAR 15',
+    'session.2.month': 'APRIL',
+    'session.2.date': 'APR 18',
     'session.2.title': '2. People & Relationships',
     'session.2.about': 'We will learn to talk about difficult things without aggression and set boundaries that preserve love and respect.',
     'session.2.tools': 'Non-Violent Communication (NVC)\nRelationship Audit\nScripts for setting boundaries',
     
-    'session.3.month': 'APRIL',
-    'session.3.date': 'APR 18',
+    'session.3.month': 'MAY',
+    'session.3.date': 'MAY 16',
     'session.3.title': '3. Body & Energy',
     'session.3.about': 'Your body is a Temple. We will explore the physiology of energy, sleep, and nutrition.',
     'session.3.tools': 'Sleep hygiene protocol\nCreating "Joyful Movement Menu"\nAnalysis of daily energy peaks',
     
-    'session.4.month': 'MAY',
-    'session.4.date': 'MAY 16',
+    'session.4.month': 'JUNE',
+    'session.4.date': 'JUN 20',
     'session.4.title': '4. Personal Growth & Career',
     'session.4.about': 'Working with mindset. How do our beliefs sabotage us? We will learn to "renew the mind" (Rom 12:2).',
     'session.4.tools': 'Fear Setting technique (Tim Ferriss)\nCognitive reframing of beliefs',
     
-    'session.5.month': 'JUNE',
-    'session.5.date': 'JUN 20',
-    'session.5.title': '5. Finances & Management',
-    'session.5.about': 'We will move from survival stress to the joy of managing Kingdom resources.',
-    'session.5.tools': 'Budget "black holes" audit\nEnvelope method (digital)\nGenerosity plan',
+    'session.5.month': 'JULY',
+    'session.5.date': 'JUL 18',
+    'session.5.title': '5. Character & Habits',
+    'session.5.about': 'Character is the sum of your habits. We will implement the science of habit formation.',
+    'session.5.tools': 'Habit Loop (Atomic Habits)\nHabit Stacking\nSMART goals',
     
     'session.6.month': 'SEPTEMBER',
     'session.6.date': 'SEP 19',
-    'session.6.title': '6. Character & Habits',
-    'session.6.about': 'Character is the sum of your habits. We will implement the science of habit formation.',
-    'session.6.tools': 'Habit Loop (Atomic Habits)\nHabit Stacking\nSMART goals for autumn',
+    'session.6.title': '6. Finances & Management',
+    'session.6.about': 'We will move from survival stress to the joy of managing Kingdom resources.',
+    'session.6.tools': 'Budget "black holes" audit\nEnvelope method (digital)\nGenerosity plan',
     
     'session.7.month': 'OCTOBER',
     'session.7.date': 'OCT 17',
@@ -343,21 +370,27 @@ const translations: Record<Language, Record<string, string>> = {
     'session.8.tools': 'Lectio Divina (Prayerful reading)\nSabbath practice\nYear review',
     
     'session.9.month': 'DECEMBER',
-    'session.9.date': 'DEC 12',
-    'session.9.title': 'FINALE: Reflection & Graduation',
-    'session.9.about': 'Final session of the year. Time for deep reflection on the journey, reinforcing useful habits, and celebrating victories.',
-    'session.9.tools': 'Year Compass annual review\nReinforcing key habits\nCelebration dinner',
+    'session.9.date': 'DEC 19',
+    'session.9.title': '9. Mind & Emotions',
+    'session.9.about': 'Working with emotional intelligence and inner harmony.',
+    'session.9.tools': 'Emotional audit\nMindfulness techniques\nYear planning',
+    
+    'session.10.month': 'JANUARY 2027',
+    'session.10.date': 'JAN 13',
+    'session.10.title': 'FINALE: Reflection & Leaders Evening',
+    'session.10.about': 'Final session. Time for deep reflection on the journey, reinforcing useful habits, and celebrating victories together with Leaders Evening.',
+    'session.10.tools': 'Year Compass annual review\nReinforcing key habits\nCelebration dinner with leaders',
     
     // Organization
     'org.title': 'Organization & Timing',
     'org.location': 'Location',
     'org.location.value': 'Fish Hall\nLāčplēša 117, Riga\n2nd floor.',
     'org.cost': 'Cost',
-    'org.cost.value': 'Covered by "Temple of Salvation" church',
+    'org.cost.value': 'Covered by "Temple of Salvation" church\n+ 10 EUR per session (coffee and snacks)',
     'org.commitment': 'Commitment',
     'org.commitment.value': 'We expect participation in every session.',
     'org.details': 'Details',
-    'org.details.value': 'Age: 18 - 65 years\nDates: 15.02.2026 — 12.12.2026\nRhythm: 1 Saturday per month',
+    'org.details.value': 'Age: 18 - 50 years\nDates: 15.03.2026 — 13.01.2027\nRhythm: 1 Saturday per month',
     
     // Schedule
     'schedule.title': 'Saturday Schedule',
@@ -399,7 +432,8 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Footer
     'footer.church': '"Temple of Salvation" Church',
-    'footer.copyright': '© 2026 Wholesome Life. All rights reserved.',
+    'footer.copyright': '© 2026-2027 Wholesome Life. All rights reserved.',
+    'footer.scanQR': 'Scan to register',
   },
   lv: {
     // Header
@@ -410,11 +444,12 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     'hero.year': '2026',
-    'hero.dates': '14.02 — 12.12',
+    'hero.dates': '15.03 — 13.01',
+    'hero.time': '10:00 — 14:00',
     'hero.age': '18 - 50 GADI',
     'hero.rhythm': '1 SESTDIENA MĒNESĪ',
     'hero.title': 'PILNVĒRTĪGA DZĪVE',
-    'hero.subtitle': 'Praktisks kurss tiem, kuri vēlas veidot stabilu pamatu pārmaiņu laikmetā.',
+    'hero.subtitle': 'Praktisks kurss tiem, kuri vēlas veidot stabilu pamatu pārmaiņu laikmetā, balstoties uz Bībeles principiem un praktisku pamatu.',
     'hero.cta': 'Reģistrācija atvērta',
     
     // Philosophy
@@ -434,7 +469,16 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Target
     'target.title': 'Kam tas ir domāts?',
-    'target.text': 'Šis kurss ir līderiem, aktīviem draudzes locekļiem un visiem, kas tiecas pēc apzinātas dzīves un vēlas atrast līdzsvaru (18-65 gadi).',
+    'target.text': 'Šis kurss ir līderiem, aktīviem draudzes locekļiem un visiem, kas tiecas pēc apzinātas dzīves un vēlas atrast līdzsvaru (18-50 gadi).',
+    'target.checklist.title': 'Tas ir tev, ja:',
+    'target.persona.1': 'Man ir vīzija, bet es nezinu, kā to sasniegt',
+    'target.persona.2': 'Es izvirzu vienus un tos pašus mērķus, bet cieš neveiksmi',
+    'target.persona.3': 'Es zinu, ko gribu un kā to izdarīt, bet man vajag atbalstu',
+    'target.persona.4': 'Es esmu atšķirīgs cilvēks draudzē, darbā un mājās',
+    'target.persona.5': 'Es šķietami esmu veiksmīgs, bet nezinu, kāpēc',
+    'target.persona.6': 'Es esmu veiksmīgs karjerā, bet salauzts mājās (vai laimīgs mājās, bet finansiāli grūtības)',
+    'target.persona.7': 'Man nav sakārtotas prioritātes vai es cīnos ar kādu līdzsvara rata aspektu',
+    'target.persona.8': 'Es negribu augt, bet iekšējā balss / Dievs saka, ka man jāmainās, un es to atliek, es neesmu mierā',
     
     // Method
     'method.title': 'Kā mēs mācāmies',
@@ -487,44 +531,44 @@ const translations: Record<Language, Record<string, string>> = {
     'sessions.title': 'Sesiju programma',
     'sessions.about': 'PAR SESIJU',
     'sessions.tools': 'RĪKI',
-    'sessions.break': 'Vasaras pārtraukums (jūlijs - augusts) — Prakses laiks',
+    'sessions.break': 'Vasaras pārtraukums (augusts) — Prakses laiks',
     
-    // Session details
-    'session.1.month': 'FEBRUĀRIS',
-    'session.1.date': '15 FEB',
+    // Session details - Updated dates
+    'session.1.month': 'MARTS',
+    'session.1.date': '15 MAR',
     'session.1.title': '1. Mērķis',
     'session.1.about': 'Programmas sākums. Mēs veiksim dziļu tavas dzīves auditu un noteiktsim plaisu starp to, kur tu esi, un kur Dievs vēlas tevi redzēt.',
     'session.1.tools': 'Līdzsvara rats (Bībeles versija)\nIkigai ietvars aicinājuma atrašanai\n"Vēstules no nākotnes" rakstīšana',
     
-    'session.2.month': 'MARTS',
-    'session.2.date': '15 MAR',
+    'session.2.month': 'APRĪLIS',
+    'session.2.date': '18 APR',
     'session.2.title': '2. Cilvēki un attiecības',
     'session.2.about': 'Mēs mācīsimies runāt par grūtām lietām bez agresijas un noteikt robežas, kas saglabā mīlestību un cieņu.',
     'session.2.tools': 'Nevardarbīga komunikācija (NVC)\nAttiecību audits\nSkripti robežu noteikšanai',
     
-    'session.3.month': 'APRĪLIS',
-    'session.3.date': '18 APR',
+    'session.3.month': 'MAIJS',
+    'session.3.date': '16 MAI',
     'session.3.title': '3. Ķermenis un enerģija',
     'session.3.about': 'Tavs ķermenis ir Templis. Mēs izpētīsim enerģijas, miega un uztura fizioloģiju.',
     'session.3.tools': 'Miega higiēnas protokols\n"Priecīgas kustības ēdienkartes" izveide\nDienas enerģijas pīķu analīze',
     
-    'session.4.month': 'MAIJS',
-    'session.4.date': '16 MAI',
+    'session.4.month': 'JŪNIJS',
+    'session.4.date': '20 JŪN',
     'session.4.title': '4. Personīgā izaugsme un karjera',
     'session.4.about': 'Darbs ar domāšanu. Kā mūsu pārliecības mūs sabotē? Mēs mācīsimies "atjaunot prātu" (Rom 12:2).',
     'session.4.tools': 'Fear Setting tehnika (Tims Feriss)\nKognitīvā pārliecību pārveidošana',
     
-    'session.5.month': 'JŪNIJS',
-    'session.5.date': '20 JŪN',
-    'session.5.title': '5. Finanses un pārvaldība',
-    'session.5.about': 'Mēs pāriešim no izdzīvošanas stresa uz Valstības resursu pārvaldīšanas prieku.',
-    'session.5.tools': 'Budžeta "melno caurumu" audits\nAplokšņu metode (digitālā)\nDāsnuma plāns',
+    'session.5.month': 'JŪLIJS',
+    'session.5.date': '18 JŪL',
+    'session.5.title': '5. Raksturs un paradumi',
+    'session.5.about': 'Raksturs ir tavu paradumu summa. Mēs ieviesīsim paradumu veidošanas zinātni.',
+    'session.5.tools': 'Paradumu cilpa (Atomic Habits)\nHabit Stacking\nSMART mērķi',
     
     'session.6.month': 'SEPTEMBRIS',
     'session.6.date': '19 SEP',
-    'session.6.title': '6. Raksturs un paradumi',
-    'session.6.about': 'Raksturs ir tavu paradumu summa. Mēs ieviesīsim paradumu veidošanas zinātni.',
-    'session.6.tools': 'Paradumu cilpa (Atomic Habits)\nHabit Stacking\nSMART mērķi rudenī',
+    'session.6.title': '6. Finanses un pārvaldība',
+    'session.6.about': 'Mēs pāriešim no izdzīvošanas stresa uz Valstības resursu pārvaldīšanas prieku.',
+    'session.6.tools': 'Budžeta "melno caurumu" audits\nAplokšņu metode (digitālā)\nDāsnuma plāns',
     
     'session.7.month': 'OKTOBRIS',
     'session.7.date': '17 OKT',
@@ -539,21 +583,27 @@ const translations: Record<Language, Record<string, string>> = {
     'session.8.tools': 'Lectio Divina (Lūgšanu lasīšana)\nŠabata prakse\nGada apskats',
     
     'session.9.month': 'DECEMBRIS',
-    'session.9.date': '12 DEC',
-    'session.9.title': 'FINĀLS: Refleksija un izlaidums',
-    'session.9.about': 'Gada pēdējā sesija. Laiks dziļai refleksijai par noieto ceļu, noderīgo paradumu nostiprināšanai un uzvaru svinēšanai.',
-    'session.9.tools': 'Gada apskats (Year Compass)\nGalveno paradumu nostiprināšana\nSvinību vakariņas',
+    'session.9.date': '19 DEC',
+    'session.9.title': '9. Prāts un emocijas',
+    'session.9.about': 'Darbs ar emocionālo inteliģenci un iekšējo harmoniju.',
+    'session.9.tools': 'Emocionālais audits\nApzinātības tehnikas\nGada plānošana',
+    
+    'session.10.month': 'JANVĀRIS 2027',
+    'session.10.date': '13 JAN',
+    'session.10.title': 'FINĀLS: Refleksija un Līderu vakars',
+    'session.10.about': 'Pēdējā sesija. Laiks dziļai refleksijai par noieto ceļu, noderīgo paradumu nostiprināšanai un uzvaru svinēšanai kopā ar Līderu vakaru.',
+    'session.10.tools': 'Gada apskats (Year Compass)\nGalveno paradumu nostiprināšana\nSvinību vakariņas ar līderiem',
     
     // Organization
     'org.title': 'Organizācija un laiks',
     'org.location': 'Vieta',
     'org.location.value': 'Zivs zāle\nLāčplēša 117, Rīga\n2. stāvs.',
     'org.cost': 'Izmaksas',
-    'org.cost.value': 'Sedz "Pestīšanas tempļa" draudze',
+    'org.cost.value': 'Sedz "Pestīšanas tempļa" draudze\n+ 10 EUR par sesiju (kafija un uzkodas)',
     'org.commitment': 'Apņemšanās',
     'org.commitment.value': 'Mēs sagaidām dalību katrā sesijā.',
     'org.details': 'Detaļas',
-    'org.details.value': 'Vecums: 18 - 65 gadi\nDatumi: 15.02.2026 — 12.12.2026\nRitms: 1 Sestdiena mēnesī',
+    'org.details.value': 'Vecums: 18 - 50 gadi\nDatumi: 15.03.2026 — 13.01.2027\nRitms: 1 Sestdiena mēnesī',
     
     // Schedule
     'schedule.title': 'Sestdienas grafiks',
@@ -594,8 +644,9 @@ const translations: Record<Language, Record<string, string>> = {
     'team.victoria.desc': 'Iemācīs pārvarēt bailes un ierobežojošus uzskatus.',
     
     // Footer
-    'footer.church': '"Pestīšanas tempļa" draudze',
-    'footer.copyright': '© 2026 Pilnvērtīga dzīve. Visas tiesības aizsargātas.',
+    'footer.church': '"Pestīšanas Tempļa" draudze',
+    'footer.copyright': '© 2026-2027 Pilnvērtīga Dzīve. Visas tiesības aizsargātas.',
+    'footer.scanQR': 'Skenējiet, lai reģistrētos',
   },
 };
 
@@ -617,7 +668,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;

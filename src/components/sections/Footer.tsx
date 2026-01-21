@@ -58,7 +58,7 @@ export const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
-                <span>info@temple.lv</span>
+                <span>salvtemp117@gmail.com</span>
               </div>
             </div>
           </div>
@@ -77,7 +77,7 @@ export const Footer = () => {
                 />
               </div>
               <p className="text-xs text-white/40">
-                Сканируйте для регистрации
+                {t('footer.scanQR')}
               </p>
             </div>
           </div>

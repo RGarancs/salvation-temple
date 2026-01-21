@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { ChevronDown, ChevronUp, Wrench, Calendar, SunMedium } from 'lucide-react';
+import { ChevronDown, ChevronUp, Wrench, Calendar, SunMedium, CalendarDays } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const sessions = [
@@ -13,6 +13,7 @@ const sessions = [
   { num: 7, month: 'session.7.month', date: 'session.7.date', color: 'sunset' },
   { num: 8, month: 'session.8.month', date: 'session.8.date', color: 'terracotta' },
   { num: 9, month: 'session.9.month', date: 'session.9.date', color: 'amber' },
+  { num: 10, month: 'session.10.month', date: 'session.10.date', color: 'coral' },
 ];
 
 const colorClasses: Record<string, { bg: string; border: string; text: string }> = {
@@ -31,9 +32,14 @@ export const SessionsSection = () => {
   return (
     <section id="program" className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-16 text-gradient-earth">
-          {t('sessions.title')}
-        </h2>
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-sunset/20 to-coral/20 mb-6">
+            <CalendarDays className="w-7 h-7 text-sunset" />
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth">
+            {t('sessions.title')}
+          </h2>
+        </div>
 
         <div className="max-w-3xl mx-auto space-y-3">
           {sessions.map((session) => {

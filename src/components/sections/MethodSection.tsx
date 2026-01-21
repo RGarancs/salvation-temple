@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { BookOpen, Wrench, Users2, GraduationCap } from 'lucide-react';
+import { BookOpen, Wrench, Users2, GraduationCap, Brain, ChevronDown } from 'lucide-react';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const methods = [
   { key: 'theory', icon: BookOpen, color: 'sunset' },
@@ -17,47 +19,60 @@ const colorMap: Record<string, string> = {
 
 export const MethodSection = () => {
   const { t } = useLanguage();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <section className="py-24 bg-cream-dark relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-6 text-gradient-earth">
-            {t('method.title')}
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            {t('method.subtitle')}
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          {methods.map((method, index) => {
-            const Icon = method.icon;
-            return (
-              <div
-                key={method.key}
-                className="group relative bg-background rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-border"
-              >
-                {/* Number indicator */}
-                <div className="absolute -top-3 -left-3 w-7 h-7 rounded-full bg-amber text-white flex items-center justify-center text-sm font-bold shadow-md">
-                  {index + 1}
-                </div>
-
-                <div className={`w-12 h-12 rounded-xl ${colorMap[method.color]} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-105`}>
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-
-                <h3 className="font-display text-lg font-bold mb-3 text-foreground">
-                  {t(`method.${method.key}.title`)}
-                </h3>
-
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {t(`method.${method.key}.text`)}
-                </p>
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          <CollapsibleTrigger className="w-full">
+            <div className="text-center mb-8 cursor-pointer group">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-amber/20 to-coral/20 mb-6">
+                <Brain className="w-7 h-7 text-amber" />
               </div>
-            );
-          })}
-        </div>
+              <div className="flex items-center justify-center gap-3">
+                <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth">
+                  {t('method.title')}
+                </h2>
+                <ChevronDown className={`w-6 h-6 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+              </div>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed mt-4">
+                {t('method.subtitle')}
+              </p>
+            </div>
+          </CollapsibleTrigger>
+
+          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mt-8">
+              {methods.map((method, index) => {
+                const Icon = method.icon;
+                return (
+                  <div
+                    key={method.key}
+                    className="group relative bg-background rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-border"
+                  >
+                    {/* Number indicator */}
+                    <div className="absolute -top-3 -left-3 w-7 h-7 rounded-full bg-amber text-white flex items-center justify-center text-sm font-bold shadow-md">
+                      {index + 1}
+                    </div>
+
+                    <div className={`w-12 h-12 rounded-xl ${colorMap[method.color]} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-105`}>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+
+                    <h3 className="font-display text-lg font-bold mb-3 text-foreground">
+                      {t(`method.${method.key}.title`)}
+                    </h3>
+
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {t(`method.${method.key}.text`)}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
     </section>
   );
