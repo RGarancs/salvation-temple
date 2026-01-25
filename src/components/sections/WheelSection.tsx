@@ -5,14 +5,14 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import { Compass, Users, Heart, Brain, Wallet, Fingerprint, Church, Star, CircleDot, ChevronDown } from 'lucide-react';
 
 const wheelSegments = [
-  { key: 'purpose', icon: Compass, angle: 0, color: 'bg-sunset' },
-  { key: 'people', icon: Users, angle: 45, color: 'bg-terracotta' },
-  { key: 'body', icon: Heart, angle: 90, color: 'bg-amber' },
-  { key: 'mind', icon: Brain, angle: 135, color: 'bg-cashmere' },
-  { key: 'finance', icon: Wallet, angle: 180, color: 'bg-burnt' },
-  { key: 'character', icon: Fingerprint, angle: 225, color: 'bg-chocolate-light' },
-  { key: 'church', icon: Church, angle: 270, color: 'bg-coral' },
-  { key: 'piety', icon: Star, angle: 315, color: 'bg-sunset-dark' },
+  { key: 'purpose', icon: Compass, angle: 0, color: 'bg-sunset', quote: 'wheel.purpose.quote' },
+  { key: 'people', icon: Users, angle: 45, color: 'bg-terracotta', quote: 'wheel.people.quote' },
+  { key: 'body', icon: Heart, angle: 90, color: 'bg-amber', quote: 'wheel.body.quote' },
+  { key: 'mind', icon: Brain, angle: 135, color: 'bg-cashmere', quote: 'wheel.mind.quote' },
+  { key: 'finance', icon: Wallet, angle: 180, color: 'bg-burnt', quote: 'wheel.finance.quote' },
+  { key: 'character', icon: Fingerprint, angle: 225, color: 'bg-chocolate-light', quote: 'wheel.character.quote' },
+  { key: 'church', icon: Church, angle: 270, color: 'bg-coral', quote: 'wheel.church.quote' },
+  { key: 'piety', icon: Star, angle: 315, color: 'bg-sunset-dark', quote: 'wheel.piety.quote' },
 ];
 
 export const WheelSection = () => {
@@ -96,7 +96,10 @@ export const WheelSection = () => {
                           className="bg-chocolate-dark border-amber/20 max-w-xs text-white"
                         >
                           <p className="font-bold mb-1 text-amber">{t(`wheel.${segment.key}`)}</p>
-                          <p className="text-sm text-white/80">{t(`wheel.${segment.key}.desc`)}</p>
+                          <p className="text-sm text-white/80 mb-2">{t(`wheel.${segment.key}.desc`)}</p>
+                          <p className="text-xs italic text-amber/80 border-t border-amber/20 pt-2">
+                            {t(segment.quote)}
+                          </p>
                         </TooltipContent>
                       </Tooltip>
                     );

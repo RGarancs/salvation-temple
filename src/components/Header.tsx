@@ -21,6 +21,7 @@ export const Header = () => {
   const navItems = [
     { key: 'nav.about', href: '#about' },
     { key: 'nav.program', href: '#program' },
+    { key: 'nav.calendar', href: '#calendar' },
     { key: 'nav.team', href: '#team' },
   ];
 

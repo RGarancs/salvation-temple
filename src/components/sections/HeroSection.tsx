@@ -1,6 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronDown, Calendar, Users, Clock } from 'lucide-react';
-import churchLogo from '@/assets/church-logo.png';
+import trainingLogo from '@/assets/training-logo.png';
 
 export const HeroSection = () => {
   const { t } = useLanguage();
@@ -19,13 +19,9 @@ export const HeroSection = () => {
 
       <div className="container mx-auto px-4 pt-28 pb-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Church Logo */}
-          <div className="inline-flex items-center gap-3 mb-8 animate-fade-in">
-            <img src={churchLogo} alt="Храм Спасения" className="w-12 h-12 rounded-xl shadow-lg" />
-            <div className="text-left">
-              <span className="font-semibold text-foreground block">Храм Спасения</span>
-              <span className="text-sm text-muted-foreground">2026</span>
-            </div>
+          {/* Training Logo */}
+          <div className="inline-flex items-center justify-center mb-8 animate-fade-in">
+            <img src={trainingLogo} alt="Целостная Жизнь" className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-lg" />
           </div>
 
           {/* Info tags - reordered: dates, time, age */}
