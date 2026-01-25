@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { ChevronDown, ChevronUp, Wrench, Calendar, SunMedium, CalendarDays } from 'lucide-react';
+import { ChevronDown, ChevronUp, Wrench, Calendar, Snowflake, CalendarDays } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const sessions = [
   { num: 1, month: 'session.1.month', date: 'session.1.date', color: 'sunset' },
   { num: 2, month: 'session.2.month', date: 'session.2.date', color: 'terracotta' },
   { num: 3, month: 'session.3.month', date: 'session.3.date', color: 'amber' },
-  { num: 4, month: 'session.4.month', date: 'session.4.date', color: 'cashmere' },
+  { num: 4, month: 'session.4.month', date: 'session.4.date', color: 'cashmere', break: true },
   { num: 5, month: 'session.5.month', date: 'session.5.date', color: 'burnt' },
-  { num: 6, month: 'session.6.month', date: 'session.6.date', color: 'coral', break: true },
+  { num: 6, month: 'session.6.month', date: 'session.6.date', color: 'coral' },
   { num: 7, month: 'session.7.month', date: 'session.7.date', color: 'sunset' },
   { num: 8, month: 'session.8.month', date: 'session.8.date', color: 'terracotta' },
   { num: 9, month: 'session.9.month', date: 'session.9.date', color: 'amber' },
@@ -48,12 +48,12 @@ export const SessionsSection = () => {
 
             return (
               <div key={session.num}>
-                {/* Summer break indicator */}
+                {/* Winter break indicator */}
                 {session.break && (
                   <div className="flex items-center justify-center gap-4 py-6 my-3">
                     <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber/40 to-transparent" />
                     <div className="flex items-center gap-2 text-amber">
-                      <SunMedium className="w-4 h-4" />
+                      <Snowflake className="w-4 h-4" />
                       <span className="text-sm font-medium">{t('sessions.break')}</span>
                     </div>
                     <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber/40 to-transparent" />
