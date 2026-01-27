@@ -1,35 +1,25 @@
 import { LanguageProvider } from '@/contexts/LanguageContext';
-import { Header } from '@/components/Header';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { PhilosophySection } from '@/components/sections/PhilosophySection';
-import { BenefitsSection } from '@/components/sections/BenefitsSection';
-import { TargetSection } from '@/components/sections/TargetSection';
-import { MethodSection } from '@/components/sections/MethodSection';
-import { ApproachSection } from '@/components/sections/ApproachSection';
-import { WheelSection } from '@/components/sections/WheelSection';
-import { SessionsSection } from '@/components/sections/SessionsSection';
-import { CalendarSection } from '@/components/sections/CalendarSection';
-import { TeamSection } from '@/components/sections/TeamSection';
-import { OrganizationSection } from '@/components/sections/OrganizationSection';
-import { Footer } from '@/components/sections/Footer';
+import { ChurchHeader } from '@/components/ChurchHeader';
+import { ChurchHero } from '@/components/sections/ChurchHero';
+import { EventsSection } from '@/components/sections/EventsSection';
+import { MinistriesSection } from '@/components/sections/MinistriesSection';
+import { CareSection } from '@/components/sections/CareSection';
+import { ContactsSection } from '@/components/sections/ContactsSection';
+import { DonationsSection } from '@/components/sections/DonationsSection';
+import { ChurchFooter } from '@/components/sections/ChurchFooter';
 
 const Index = () => {
   return (
     <LanguageProvider>
       <div className="min-h-screen bg-background font-body">
-        <Header />
-        <HeroSection />
-        <PhilosophySection />
-        <BenefitsSection />
-        <TargetSection />
-        <MethodSection />
-        <ApproachSection />
-        <WheelSection />
-        <SessionsSection />
-        <CalendarSection />
-        <TeamSection />
-        <OrganizationSection />
-        <Footer />
+        <ChurchHeader />
+        <ChurchHero />
+        <EventsSection />
+        <MinistriesSection />
+        <CareSection />
+        <ContactsSection />
+        <DonationsSection />
+        <ChurchFooter />
       </div>
     </LanguageProvider>
   );

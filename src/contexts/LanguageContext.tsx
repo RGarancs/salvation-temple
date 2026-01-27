@@ -10,13 +10,103 @@ interface LanguageContextType {
 
 const translations: Record<Language, Record<string, string>> = {
   ru: {
-    // Header
-    'nav.about': 'О курсе',
+    // Church Info
+    'church.name': 'Храм Спасения',
+    'church.officialName': 'Rīgas Misionāru baptistu draudze',
+    'church.shortName': 'Евангельская церковь',
+    'church.tagline': 'Евангельская церковь в Риге',
+    'church.welcome': 'Добро пожаловать в наш дом! Мы — живая община верующих, объединённых любовью ко Христу. Здесь каждый найдёт поддержку, вдохновение и путь к духовному росту.',
+    'church.shortDesc': 'Евангельская христианская церковь, служащая Риге с любовью и верой.',
+    'church.serviceSunday': 'Воскресенье 11:00',
+    'church.serviceWednesday': 'Библейские занятия: Ср 18:00',
+    'church.planVisit': 'Посетить нас',
+    'church.watchLive': 'Смотреть онлайн',
+
+    // Navigation
+    'nav.about': 'О нас',
+    'nav.events': 'События',
+    'nav.ministries': 'Служения',
+    'nav.care': 'Забота',
+    'nav.contacts': 'Контакты',
+    'nav.donations': 'Пожертвования',
     'nav.program': 'Программа',
     'nav.calendar': 'Календарь',
     'nav.team': 'Команда',
     'nav.register': 'Регистрация',
+
+    // Events Section
+    'events.title': 'События',
+    'events.subtitle': 'Будьте в курсе церковной жизни и предстоящих мероприятий',
+    'events.news.title': 'Новости',
+    'events.news.desc': 'Последние новости и обновления из жизни церкви',
+    'events.news.content': 'Следите за нашими социальными сетями для получения последних новостей и обновлений.',
+    'events.calendar.title': 'Календарь',
+    'events.calendar.desc': 'Расписание богослужений и мероприятий',
+    'events.calendar.content': 'Воскресное богослужение в 11:00, Библейские занятия по средам в 18:00.',
+    'events.training.title': 'Учебные мероприятия',
+    'events.training.desc': 'Курс "Целостная Жизнь" 2026-2027',
+    'events.training.content': 'Практический курс для тех, кто хочет построить прочный фундамент, основанный на библейских принципах.',
+    'events.training.link': 'Подробнее о курсе',
+    'events.baptism.title': 'Водное крещение',
+    'events.baptism.desc': 'Информация о крещении и подготовке',
+    'events.baptism.content': 'Крещение — важный шаг веры. Свяжитесь с нами для получения информации о подготовке к крещению.',
+
+    // Ministries Section
+    'ministries.title': 'Служения',
+    'ministries.subtitle': 'Найдите своё место в нашей общине и служите вместе с нами',
+    'ministries.wantToServe': 'Хочу служить',
+    'ministries.worship.title': 'Богослужения',
+    'ministries.worship.desc': 'Еженедельные богослужения и прославление',
+    'ministries.sundaySchool.title': 'Воскресная школа',
+    'ministries.sundaySchool.desc': 'Библейское обучение для детей',
+    'ministries.ribaClub.title': 'Клуб Рыба',
+    'ministries.ribaClub.desc': 'Подростковый клуб (12-16 лет)',
+    'ministries.youth.title': 'Молодёжь',
+    'ministries.youth.desc': 'Служение для молодых людей',
+    'ministries.charity.title': 'Благотворительность',
+    'ministries.charity.desc': 'Помощь нуждающимся',
+    'ministries.choir.title': 'Хор',
+    'ministries.choir.desc': 'Музыкальное служение',
+    'ministries.smallGroups.title': 'Домашние группы',
+    'ministries.smallGroups.desc': 'Малые группы для общения',
+    'ministries.serve.title': 'Хочу служить',
+    'ministries.serve.desc': 'Найди своё служение',
+
+    // Care Section
+    'care.title': 'Забота и Поддержка',
+    'care.subtitle': 'Мы здесь, чтобы поддержать вас в любых жизненных ситуациях',
+    'care.prayer.title': 'Молитвенная поддержка',
+    'care.prayer.desc': 'Отправьте нам свою молитвенную нужду, и мы будем молиться вместе с вами.',
+    'care.prayer.cta': 'Отправить просьбу',
+    'care.counseling.title': 'Душепопечение',
+    'care.counseling.desc': 'Пасторское консультирование для тех, кто нуждается в духовной поддержке и руководстве.',
+    'care.counseling.cta': 'Записаться',
+
+    // Contacts Section
+    'contacts.title': 'Контакты',
+    'contacts.pastor': 'Пастор',
+    'contacts.manager': 'Управляющий',
+    'contacts.address': 'Адрес',
+    'contacts.serviceTimes': 'Время служений',
+    'contacts.parking': 'Парковка доступна рядом с церковью',
+
+    // Donations Section
+    'donations.title': 'Пожертвования',
+    'donations.subtitle': 'Ваши пожертвования помогают нам служить общине и нести Благую Весть',
+    'donations.bankDetails': 'Банковские реквизиты',
+    'donations.recipient': 'Получатель',
+    'donations.bank': 'Банк',
+    'donations.thankYou': 'Благодарим вас за вашу щедрость и поддержку служения церкви!',
+    'donations.footer': 'Поддержите служение церкви',
+    'donations.cta': 'Пожертвовать',
+
+    // Footer
+    'footer.rights': 'Все права защищены.',
+    'footer.church': 'Церковь "Храм Спасения"',
+    'footer.copyright': '© 2026-2027 Целостная Жизнь. Все права защищены.',
+    'footer.scanQR': 'Сканируйте для регистрации',
     
+    // ===== TRAINING PROGRAM TRANSLATIONS =====
     // Hero
     'hero.year': '2026-2027',
     'hero.dates': '19.09 — 22.05',
@@ -121,7 +211,6 @@ const translations: Record<Language, Record<string, string>> = {
     'sessions.tools': 'ИНСТРУМЕНТЫ',
     'sessions.break': 'Зимний Перерыв (Декабрь - Январь)',
     
-    // Session details - Updated dates
     'session.1.month': 'СЕНТЯБРЬ',
     'session.1.date': '19 СЕН',
     'session.1.title': '1. Предназначение',
@@ -230,20 +319,105 @@ const translations: Record<Language, Record<string, string>> = {
     'team.victoria.name': 'Виктория Гаранча',
     'team.victoria.role': 'РАЗУМ И КАРЬЕРА',
     'team.victoria.desc': 'Научит преодолевать страхи и ограничивающие убеждения.',
-    
-    // Footer
-    'footer.church': 'Церковь "Храм Спасения"',
-    'footer.copyright': '© 2026-2027 Целостная Жизнь. Все права защищены.',
-    'footer.scanQR': 'Сканируйте для регистрации',
   },
   en: {
-    // Header
+    // Church Info
+    'church.name': 'Salvation Temple',
+    'church.officialName': 'Riga Missionary Baptist Church',
+    'church.shortName': 'Evangelical Church',
+    'church.tagline': 'Evangelical Church in Riga',
+    'church.welcome': 'Welcome to our home! We are a living community of believers united by love for Christ. Here everyone will find support, inspiration, and a path to spiritual growth.',
+    'church.shortDesc': 'Evangelical Christian church serving Riga with love and faith.',
+    'church.serviceSunday': 'Sunday 11:00',
+    'church.serviceWednesday': 'Bible Study: Wed 18:00',
+    'church.planVisit': 'Plan a Visit',
+    'church.watchLive': 'Watch Live',
+
+    // Navigation
     'nav.about': 'About',
+    'nav.events': 'Events',
+    'nav.ministries': 'Ministries',
+    'nav.care': 'Care',
+    'nav.contacts': 'Contacts',
+    'nav.donations': 'Donations',
     'nav.program': 'Program',
     'nav.calendar': 'Calendar',
     'nav.team': 'Team',
     'nav.register': 'Register',
+
+    // Events Section
+    'events.title': 'Events',
+    'events.subtitle': 'Stay up to date with church life and upcoming events',
+    'events.news.title': 'News',
+    'events.news.desc': 'Latest news and updates from church life',
+    'events.news.content': 'Follow our social media for the latest news and updates.',
+    'events.calendar.title': 'Calendar',
+    'events.calendar.desc': 'Schedule of services and events',
+    'events.calendar.content': 'Sunday service at 11:00, Bible studies on Wednesdays at 18:00.',
+    'events.training.title': 'Training Events',
+    'events.training.desc': '"Wholesome Life" Course 2026-2027',
+    'events.training.content': 'A practical course for those who want to build a solid foundation based on biblical principles.',
+    'events.training.link': 'Learn more about the course',
+    'events.baptism.title': 'Water Baptism',
+    'events.baptism.desc': 'Information about baptism and preparation',
+    'events.baptism.content': 'Baptism is an important step of faith. Contact us for information about baptism preparation.',
+
+    // Ministries Section
+    'ministries.title': 'Ministries',
+    'ministries.subtitle': 'Find your place in our community and serve with us',
+    'ministries.wantToServe': 'I Want to Serve',
+    'ministries.worship.title': 'Worship Services',
+    'ministries.worship.desc': 'Weekly services and praise',
+    'ministries.sundaySchool.title': 'Sunday School',
+    'ministries.sundaySchool.desc': 'Bible education for children',
+    'ministries.ribaClub.title': 'Riba Club',
+    'ministries.ribaClub.desc': 'Teen club (12-16 years)',
+    'ministries.youth.title': 'Youth Ministry',
+    'ministries.youth.desc': 'Ministry for young people',
+    'ministries.charity.title': 'Charity',
+    'ministries.charity.desc': 'Helping those in need',
+    'ministries.choir.title': 'Choir',
+    'ministries.choir.desc': 'Music ministry',
+    'ministries.smallGroups.title': 'Home Groups',
+    'ministries.smallGroups.desc': 'Small groups for fellowship',
+    'ministries.serve.title': 'Want to Serve',
+    'ministries.serve.desc': 'Find your ministry',
+
+    // Care Section
+    'care.title': 'Care & Support',
+    'care.subtitle': 'We are here to support you in any life situation',
+    'care.prayer.title': 'Prayer Support',
+    'care.prayer.desc': 'Send us your prayer request and we will pray together with you.',
+    'care.prayer.cta': 'Submit Request',
+    'care.counseling.title': 'Pastoral Counseling',
+    'care.counseling.desc': 'Pastoral counseling for those who need spiritual support and guidance.',
+    'care.counseling.cta': 'Schedule',
+
+    // Contacts Section
+    'contacts.title': 'Contacts',
+    'contacts.pastor': 'Pastor',
+    'contacts.manager': 'Manager',
+    'contacts.address': 'Address',
+    'contacts.serviceTimes': 'Service Times',
+    'contacts.parking': 'Parking available near the church',
+
+    // Donations Section
+    'donations.title': 'Donations',
+    'donations.subtitle': 'Your donations help us serve the community and share the Good News',
+    'donations.bankDetails': 'Bank Details',
+    'donations.recipient': 'Recipient',
+    'donations.bank': 'Bank',
+    'donations.thankYou': 'Thank you for your generosity and support of the church ministry!',
+    'donations.footer': 'Support the church ministry',
+    'donations.cta': 'Donate',
+
+    // Footer
+    'footer.rights': 'All rights reserved.',
+    'footer.church': '"Salvation Temple" Church',
+    'footer.copyright': '© 2026-2027 Wholesome Life. All rights reserved.',
+    'footer.scanQR': 'Scan to register',
     
+    // ===== TRAINING PROGRAM TRANSLATIONS =====
     // Hero
     'hero.year': '2026-2027',
     'hero.dates': '19.09 — 22.05',
@@ -348,63 +522,62 @@ const translations: Record<Language, Record<string, string>> = {
     'sessions.tools': 'TOOLS',
     'sessions.break': 'Winter Break (December - January)',
     
-    // Session details - Updated dates
     'session.1.month': 'SEPTEMBER',
     'session.1.date': 'SEP 19',
     'session.1.title': '1. Purpose',
     'session.1.about': 'Program start. We will conduct a deep audit of your life and determine the gap between where you are and where God wants to see you.',
     'session.1.tools': 'Balance Wheel (Biblical version)\nIkigai Framework for finding calling\nWriting "Letter from the Future"',
     
-    'session.2.month': 'APRIL',
-    'session.2.date': 'APR 18',
+    'session.2.month': 'OCTOBER',
+    'session.2.date': 'OCT 17',
     'session.2.title': '2. People & Relationships',
     'session.2.about': 'We will learn to talk about difficult things without aggression and set boundaries that preserve love and respect.',
     'session.2.tools': 'Non-Violent Communication (NVC)\nRelationship Audit\nScripts for setting boundaries',
     
-    'session.3.month': 'MAY',
-    'session.3.date': 'MAY 16',
-    'session.3.title': '3. Body & Energy',
+    'session.3.month': 'NOVEMBER',
+    'session.3.date': 'NOV 21',
+    'session.3.title': '3. Body & Health',
     'session.3.about': 'Your body is a Temple. We will explore the physiology of energy, sleep, and nutrition.',
     'session.3.tools': 'Sleep hygiene protocol\nCreating "Joyful Movement Menu"\nAnalysis of daily energy peaks',
     
-    'session.4.month': 'JUNE',
-    'session.4.date': 'JUN 20',
+    'session.4.month': 'DECEMBER',
+    'session.4.date': 'DEC 12',
     'session.4.title': '4. Personal Growth & Career',
     'session.4.about': 'Working with mindset. How do our beliefs sabotage us? We will learn to "renew the mind" (Rom 12:2).',
     'session.4.tools': 'Fear Setting technique (Tim Ferriss)\nCognitive reframing of beliefs',
     
-    'session.5.month': 'JULY',
-    'session.5.date': 'JUL 18',
+    'session.5.month': 'JANUARY',
+    'session.5.date': 'JAN 30',
     'session.5.title': '5. Character & Habits',
     'session.5.about': 'Character is the sum of your habits. We will implement the science of habit formation.',
     'session.5.tools': 'Habit Loop (Atomic Habits)\nHabit Stacking\nSMART goals',
     
-    'session.6.month': 'SEPTEMBER',
-    'session.6.date': 'SEP 19',
+    'session.6.month': 'FEBRUARY',
+    'session.6.date': 'FEB 20',
     'session.6.title': '6. Finances & Management',
     'session.6.about': 'We will move from survival stress to the joy of managing Kingdom resources.',
     'session.6.tools': 'Budget "black holes" audit\nEnvelope method (digital)\nGenerosity plan',
     
-    'session.7.month': 'OCTOBER',
-    'session.7.date': 'OCT 17',
+    'session.7.month': 'MARCH',
+    'session.7.date': 'MAR 20',
     'session.7.title': '7. Church',
     'session.7.about': 'How to find your place in the Body of Christ and turn your home into a place of ministry?',
     'session.7.tools': 'Spiritual gifts test\nHospitality practice',
     
-    'session.8.month': 'NOVEMBER',
-    'session.8.date': 'NOV 21',
+    'session.8.month': 'APRIL',
+    'session.8.date': 'APR 24',
     'session.8.title': '8. Piety & Shalom',
     'session.8.about': 'The art of slowing down and hearing God in a noisy world.',
     'session.8.tools': 'Lectio Divina (Prayerful reading)\nSabbath practice\nYear review',
     
-    'session.9.month': 'DECEMBER',
-    'session.9.date': 'DEC 19',
+    'session.9.month': 'MAY',
+    'session.9.date': 'MAY 22',
     'session.9.title': '9. Mind & Emotions',
     'session.9.about': 'Working with emotional intelligence and inner harmony.',
     'session.9.tools': 'Emotional audit\nMindfulness techniques\nYear planning',
     
-    'session.10.month': 'JANUARY 2027',
-    'session.10.date': 'JAN 13',
+    'session.10.month': 'JUNE 2027',
+    'session.10.date': 'JUN 12',
     'session.10.title': 'FINALE: Reflection & Leaders Evening',
     'session.10.about': 'Final session. Time for deep reflection on the journey, reinforcing useful habits, and celebrating victories together with Leaders Evening.',
     'session.10.tools': 'Year Compass annual review\nReinforcing key habits\nCelebration dinner with leaders',
@@ -414,11 +587,11 @@ const translations: Record<Language, Record<string, string>> = {
     'org.location': 'Location',
     'org.location.value': 'Fish Hall\nLāčplēša 117, Riga\n2nd floor.',
     'org.cost': 'Cost',
-    'org.cost.value': 'Covered by "Temple of Salvation" church\n+ 10 EUR per session (coffee and snacks)',
+    'org.cost.value': 'Covered by "Salvation Temple" church\n+ 10 EUR per session (coffee and snacks)',
     'org.commitment': 'Commitment',
     'org.commitment.value': 'We expect participation in every session.',
     'org.details': 'Details',
-    'org.details.value': 'Age: 18 - 50 years\nDates: 15.03.2026 — 13.01.2027\nRhythm: 1 Saturday per month',
+    'org.details.value': 'Age: 18 - 50 years\nDates: 19.09.2026 — 12.06.2027\nRhythm: 1 Saturday per month',
     
     // Schedule
     'schedule.title': 'Saturday Schedule',
@@ -457,22 +630,108 @@ const translations: Record<Language, Record<string, string>> = {
     'team.victoria.name': 'Victoria Garancha',
     'team.victoria.role': 'MIND & CAREER',
     'team.victoria.desc': 'Will teach you to overcome fears and limiting beliefs.',
-    
-    // Footer
-    'footer.church': '"Temple of Salvation" Church',
-    'footer.copyright': '© 2026-2027 Wholesome Life. All rights reserved.',
-    'footer.scanQR': 'Scan to register',
   },
   lv: {
-    // Header
-    'nav.about': 'Par kursu',
+    // Church Info
+    'church.name': 'Pestīšanas Templis',
+    'church.officialName': 'Rīgas Misionāru baptistu draudze',
+    'church.shortName': 'Evaņģēliskā draudze',
+    'church.tagline': 'Evaņģēliskā draudze Rīgā',
+    'church.welcome': 'Laipni lūdzam mūsu mājās! Mēs esam dzīva ticīgo kopiena, ko vieno mīlestība pret Kristu. Šeit ikviens atradīs atbalstu, iedvesmu un ceļu uz garīgo izaugsmi.',
+    'church.shortDesc': 'Evaņģēliskā kristīgā draudze, kas kalpo Rīgai ar mīlestību un ticību.',
+    'church.serviceSunday': 'Svētdiena 11:00',
+    'church.serviceWednesday': 'Bībeles studijas: Tr 18:00',
+    'church.planVisit': 'Apmeklēt mūs',
+    'church.watchLive': 'Skatīties tiešsaistē',
+
+    // Navigation
+    'nav.about': 'Par mums',
+    'nav.events': 'Notikumi',
+    'nav.ministries': 'Kalpošanas',
+    'nav.care': 'Atbalsts',
+    'nav.contacts': 'Kontakti',
+    'nav.donations': 'Ziedojumi',
     'nav.program': 'Programma',
+    'nav.calendar': 'Kalendārs',
     'nav.team': 'Komanda',
     'nav.register': 'Reģistrācija',
+
+    // Events Section
+    'events.title': 'Notikumi',
+    'events.subtitle': 'Sekojiet līdzi draudzes dzīvei un gaidāmajiem pasākumiem',
+    'events.news.title': 'Jaunumi',
+    'events.news.desc': 'Jaunākās ziņas un atjauninājumi no draudzes dzīves',
+    'events.news.content': 'Sekojiet mūsu sociālajiem tīkliem, lai uzzinātu jaunākās ziņas.',
+    'events.calendar.title': 'Kalendārs',
+    'events.calendar.desc': 'Dievkalpojumu un pasākumu grafiks',
+    'events.calendar.content': 'Svētdienas dievkalpojums plkst. 11:00, Bībeles studijas trešdienās plkst. 18:00.',
+    'events.training.title': 'Mācību pasākumi',
+    'events.training.desc': 'Kurss "Pilnvērtīga Dzīve" 2026-2027',
+    'events.training.content': 'Praktisks kurss tiem, kuri vēlas veidot stabilu pamatu, balstoties uz Bībeles principiem.',
+    'events.training.link': 'Uzzināt vairāk par kursu',
+    'events.baptism.title': 'Ūdens kristības',
+    'events.baptism.desc': 'Informācija par kristībām un sagatavošanos',
+    'events.baptism.content': 'Kristības ir svarīgs ticības solis. Sazinieties ar mums, lai uzzinātu par sagatavošanos kristībām.',
+
+    // Ministries Section
+    'ministries.title': 'Kalpošanas',
+    'ministries.subtitle': 'Atrodiet savu vietu mūsu kopienā un kalpojiet kopā ar mums',
+    'ministries.wantToServe': 'Vēlos kalpot',
+    'ministries.worship.title': 'Dievkalpojumi',
+    'ministries.worship.desc': 'Iknedēļas dievkalpojumi un slavēšana',
+    'ministries.sundaySchool.title': 'Svētdienas skola',
+    'ministries.sundaySchool.desc': 'Bībeles mācības bērniem',
+    'ministries.ribaClub.title': 'Riba klubs',
+    'ministries.ribaClub.desc': 'Pusaudžu klubs (12-16 gadi)',
+    'ministries.youth.title': 'Jauniešu kalpošana',
+    'ministries.youth.desc': 'Kalpošana jauniem cilvēkiem',
+    'ministries.charity.title': 'Labdarība',
+    'ministries.charity.desc': 'Palīdzība tiem, kam nepieciešams',
+    'ministries.choir.title': 'Koris',
+    'ministries.choir.desc': 'Mūzikas kalpošana',
+    'ministries.smallGroups.title': 'Mājas grupas',
+    'ministries.smallGroups.desc': 'Mazās grupas kopībai',
+    'ministries.serve.title': 'Vēlos kalpot',
+    'ministries.serve.desc': 'Atrodi savu kalpošanu',
+
+    // Care Section
+    'care.title': 'Rūpes un Atbalsts',
+    'care.subtitle': 'Mēs esam šeit, lai atbalstītu jūs jebkurā dzīves situācijā',
+    'care.prayer.title': 'Lūgšanu atbalsts',
+    'care.prayer.desc': 'Nosūtiet mums savu lūgšanas vajadzību, un mēs lūgsimies kopā ar jums.',
+    'care.prayer.cta': 'Nosūtīt lūgumu',
+    'care.counseling.title': 'Dvēseļu kopšana',
+    'care.counseling.desc': 'Mācītāja konsultācijas tiem, kam nepieciešams garīgs atbalsts un vadība.',
+    'care.counseling.cta': 'Pieteikties',
+
+    // Contacts Section
+    'contacts.title': 'Kontakti',
+    'contacts.pastor': 'Mācītājs',
+    'contacts.manager': 'Pārvaldnieks',
+    'contacts.address': 'Adrese',
+    'contacts.serviceTimes': 'Dievkalpojumu laiki',
+    'contacts.parking': 'Autostāvvieta pieejama netālu no draudzes',
+
+    // Donations Section
+    'donations.title': 'Ziedojumi',
+    'donations.subtitle': 'Jūsu ziedojumi palīdz mums kalpot kopienai un nest Labo Vēsti',
+    'donations.bankDetails': 'Bankas rekvizīti',
+    'donations.recipient': 'Saņēmējs',
+    'donations.bank': 'Banka',
+    'donations.thankYou': 'Paldies par jūsu dāsnumu un draudzes kalpošanas atbalstu!',
+    'donations.footer': 'Atbalstiet draudzes kalpošanu',
+    'donations.cta': 'Ziedot',
+
+    // Footer
+    'footer.rights': 'Visas tiesības aizsargātas.',
+    'footer.church': 'Draudze "Pestīšanas Templis"',
+    'footer.copyright': '© 2026-2027 Pilnvērtīga Dzīve. Visas tiesības aizsargātas.',
+    'footer.scanQR': 'Skenējiet, lai reģistrētos',
     
+    // ===== TRAINING PROGRAM TRANSLATIONS =====
     // Hero
-    'hero.year': '2026',
-    'hero.dates': '15.03 — 13.01',
+    'hero.year': '2026-2027',
+    'hero.dates': '19.09 — 22.05',
     'hero.time': '10:00 — 14:00',
     'hero.age': '18 - 50 GADI',
     'hero.rhythm': '1 SESTDIENA MĒNESĪ',
@@ -554,141 +813,156 @@ const translations: Record<Language, Record<string, string>> = {
     'wheel.character.desc': 'Gara augļi un paradumu veidošana.',
     'wheel.church.desc': 'Tava vieta Kristus Miesā un kalpošana.',
     'wheel.piety.desc': 'Tuvība ar Dievu, lūgšana un garīgās prakses.',
+    'wheel.purpose.quote': '"Jo mēs esam Viņa darbs, Kristū Jēzū radīti labiem darbiem" — Ef. 2:10',
+    'wheel.people.quote': '"Mīli savu tuvāko kā sevi pašu" — Mt. 22:39',
+    'wheel.body.quote': '"Jūsu miesa ir Svētā Gara templis" — 1.Kor. 6:19',
+    'wheel.mind.quote': '"Pārvērtieties, atjaunodami savu prātu" — Rom. 12:2',
+    'wheel.finance.quote': '"Kas ir uzticams mazumā, tas arī lielumā ir uzticams" — Lk. 16:10',
+    'wheel.character.quote': '"Bet Gara auglis ir: mīlestība, prieks, miers, pacietība..." — Gal. 5:22',
+    'wheel.church.quote': '"Jūs esat Kristus miesa, un katrs no jums ir tās loceklis" — 1.Kor. 12:27',
+    'wheel.piety.quote': '"Tuvojieties Dievam, un Viņš tuvosies jums" — Jēk. 4:8',
+    
+    // Calendar
+    'calendar.title': 'Sesiju kalendārs',
+    'calendar.subtitle': 'Kursa datumi no 2026. gada septembra līdz 2027. gada jūnijam',
+    'calendar.break': 'Ziemas pārtraukums',
     
     // Sessions
     'sessions.title': 'Sesiju programma',
     'sessions.about': 'PAR SESIJU',
     'sessions.tools': 'RĪKI',
-    'sessions.break': 'Vasaras pārtraukums (augusts) — Prakses laiks',
+    'sessions.break': 'Ziemas pārtraukums (Decembris - Janvāris)',
     
-    // Session details - Updated dates
-    'session.1.month': 'MARTS',
-    'session.1.date': '15 MAR',
+    'session.1.month': 'SEPTEMBRIS',
+    'session.1.date': '19. SEP',
     'session.1.title': '1. Mērķis',
-    'session.1.about': 'Programmas sākums. Mēs veiksim dziļu tavas dzīves auditu un noteiktsim plaisu starp to, kur tu esi, un kur Dievs vēlas tevi redzēt.',
+    'session.1.about': 'Programmas sākums. Mēs veiksim dziļu tavas dzīves auditu un noteikt plaisu starp to, kur tu esi, un kur Dievs vēlas tevi redzēt.',
     'session.1.tools': 'Līdzsvara rats (Bībeles versija)\nIkigai ietvars aicinājuma atrašanai\n"Vēstules no nākotnes" rakstīšana',
     
-    'session.2.month': 'APRĪLIS',
-    'session.2.date': '18 APR',
+    'session.2.month': 'OKTOBRIS',
+    'session.2.date': '17. OKT',
     'session.2.title': '2. Cilvēki un attiecības',
     'session.2.about': 'Mēs mācīsimies runāt par grūtām lietām bez agresijas un noteikt robežas, kas saglabā mīlestību un cieņu.',
-    'session.2.tools': 'Nevardarbīga komunikācija (NVC)\nAttiecību audits\nSkripti robežu noteikšanai',
+    'session.2.tools': 'Nevardarbīgā komunikācija (NVC)\nAttiecību audits\nRobežu noteikšanas skripti',
     
-    'session.3.month': 'MAIJS',
-    'session.3.date': '16 MAI',
-    'session.3.title': '3. Ķermenis un enerģija',
+    'session.3.month': 'NOVEMBRIS',
+    'session.3.date': '21. NOV',
+    'session.3.title': '3. Ķermenis un veselība',
     'session.3.about': 'Tavs ķermenis ir Templis. Mēs izpētīsim enerģijas, miega un uztura fizioloģiju.',
-    'session.3.tools': 'Miega higiēnas protokols\n"Priecīgas kustības ēdienkartes" izveide\nDienas enerģijas pīķu analīze',
+    'session.3.tools': 'Miega higiēnas protokols\n"Priecīgas kustības ēdienkartes" izveide\nDienas enerģijas maksimumu analīze',
     
-    'session.4.month': 'JŪNIJS',
-    'session.4.date': '20 JŪN',
+    'session.4.month': 'DECEMBRIS',
+    'session.4.date': '12. DEC',
     'session.4.title': '4. Personīgā izaugsme un karjera',
     'session.4.about': 'Darbs ar domāšanu. Kā mūsu pārliecības mūs sabotē? Mēs mācīsimies "atjaunot prātu" (Rom 12:2).',
-    'session.4.tools': 'Fear Setting tehnika (Tims Feriss)\nKognitīvā pārliecību pārveidošana',
+    'session.4.tools': 'Fear Setting tehnika (Tim Ferriss)\nPārliecību kognitīvā pārformulēšana',
     
-    'session.5.month': 'JŪLIJS',
-    'session.5.date': '18 JŪL',
+    'session.5.month': 'JANVĀRIS',
+    'session.5.date': '30. JAN',
     'session.5.title': '5. Raksturs un paradumi',
     'session.5.about': 'Raksturs ir tavu paradumu summa. Mēs ieviesīsim paradumu veidošanas zinātni.',
     'session.5.tools': 'Paradumu cilpa (Atomic Habits)\nHabit Stacking\nSMART mērķi',
     
-    'session.6.month': 'SEPTEMBRIS',
-    'session.6.date': '19 SEP',
+    'session.6.month': 'FEBRUĀRIS',
+    'session.6.date': '20. FEB',
     'session.6.title': '6. Finanses un pārvaldība',
-    'session.6.about': 'Mēs pāriešim no izdzīvošanas stresa uz Valstības resursu pārvaldīšanas prieku.',
+    'session.6.about': 'Mēs pāriesim no izdzīvošanas stresa uz prieku pārvaldīt Valstības resursus.',
     'session.6.tools': 'Budžeta "melno caurumu" audits\nAplokšņu metode (digitālā)\nDāsnuma plāns',
     
-    'session.7.month': 'OKTOBRIS',
-    'session.7.date': '17 OKT',
+    'session.7.month': 'MARTS',
+    'session.7.date': '20. MAR',
     'session.7.title': '7. Draudze',
-    'session.7.about': 'Kā atrast savu vietu Kristus Miesā un pārvērst savas mājas kalpošanas vietā?',
+    'session.7.about': 'Kā atrast savu vietu Kristus Miesā un pārvērst savas mājas par kalpošanas vietu?',
     'session.7.tools': 'Garīgo dāvanu tests\nViesmīlības prakse',
     
-    'session.8.month': 'NOVEMBRIS',
-    'session.8.date': '21 NOV',
+    'session.8.month': 'APRĪLIS',
+    'session.8.date': '24. APR',
     'session.8.title': '8. Dievbijība un Šaloms',
-    'session.8.about': 'Māksla palēnināties un dzirdēt Dievu trokšņainajā pasaulē.',
-    'session.8.tools': 'Lectio Divina (Lūgšanu lasīšana)\nŠabata prakse\nGada apskats',
+    'session.8.about': 'Māksla palēnināt un dzirdēt Dievu trokšņainā pasaulē.',
+    'session.8.tools': 'Lectio Divina (Lūgšanu lasīšana)\nŠabata prakse\nGada pārskats',
     
-    'session.9.month': 'DECEMBRIS',
-    'session.9.date': '19 DEC',
+    'session.9.month': 'MAIJS',
+    'session.9.date': '22. MAI',
     'session.9.title': '9. Prāts un emocijas',
     'session.9.about': 'Darbs ar emocionālo inteliģenci un iekšējo harmoniju.',
     'session.9.tools': 'Emocionālais audits\nApzinātības tehnikas\nGada plānošana',
     
-    'session.10.month': 'JANVĀRIS 2027',
-    'session.10.date': '13 JAN',
+    'session.10.month': 'JŪNIJS 2027',
+    'session.10.date': '12. JŪN',
     'session.10.title': 'FINĀLS: Refleksija un Līderu vakars',
-    'session.10.about': 'Pēdējā sesija. Laiks dziļai refleksijai par noieto ceļu, noderīgo paradumu nostiprināšanai un uzvaru svinēšanai kopā ar Līderu vakaru.',
-    'session.10.tools': 'Gada apskats (Year Compass)\nGalveno paradumu nostiprināšana\nSvinību vakariņas ar līderiem',
+    'session.10.about': 'Noslēguma sesija. Laiks dziļai refleksijai par noieto ceļu, noderīgo paradumu nostiprināšanai un uzvaru svinēšanai kopā ar Līderu vakaru.',
+    'session.10.tools': 'Year Compass gada pārskats\nGalveno paradumu nostiprināšana\nSvinīgās vakariņas ar līderiem',
     
     // Organization
     'org.title': 'Organizācija un laiks',
     'org.location': 'Vieta',
-    'org.location.value': 'Zivs zāle\nLāčplēša 117, Rīga\n2. stāvs.',
+    'org.location.value': 'Riba zāle\nLāčplēša 117, Rīga\n2. stāvs.',
     'org.cost': 'Izmaksas',
-    'org.cost.value': 'Sedz "Pestīšanas tempļa" draudze\n+ 10 EUR par sesiju (kafija un uzkodas)',
+    'org.cost.value': 'Sedz draudze "Pestīšanas Templis"\n+ 10 EUR par sesiju (kafija un uzkodas)',
     'org.commitment': 'Apņemšanās',
     'org.commitment.value': 'Mēs sagaidām dalību katrā sesijā.',
     'org.details': 'Detaļas',
-    'org.details.value': 'Vecums: 18 - 50 gadi\nDatumi: 15.03.2026 — 13.01.2027\nRitms: 1 Sestdiena mēnesī',
+    'org.details.value': 'Vecums: 18 - 50 gadi\nDatumi: 19.09.2026 — 12.06.2027\nRitms: 1 sestdiena mēnesī',
     
     // Schedule
     'schedule.title': 'Sestdienas grafiks',
     'schedule.welcome': 'Sveicināšana',
-    'schedule.welcome.desc': 'Atzīmēšanās: "Viens vārds, kas apraksta nedēļu". Kafija.',
+    'schedule.welcome.desc': 'Reģistrēšanās: "Viens vārds, kas raksturo nedēļu". Kafija.',
     'schedule.part1': '1. daļa: Apzinātība',
-    'schedule.part1.desc': 'Dieva skatījums: Rakstu enkura lasīšana.\n"Kur tu esi tagad skalā no 1 līdz 10?" Plaisas noteikšana.',
+    'schedule.part1.desc': 'Dieva skatījums: Rakstu enkura lasīšana.\n"Kur tu tagad esi skalā no 1-10?" Plaisas noteikšana.',
     'schedule.part2': '2. daļa: Prasmes',
-    'schedule.part2.desc': 'Teorija un demo: Galvenais rīks caur Bībeles prizmu.',
+    'schedule.part2.desc': 'Teorija un demonstrācija: Galvenais rīks caur Bībeles prizmu.',
     'schedule.coffee': 'Kafijas pārtraukums',
-    'schedule.coffee.desc': 'Nestrukturēts laiks sadraudzībai.',
-    'schedule.part3': '3. daļa: Darbnīca',
+    'schedule.coffee.desc': 'Nestrukturēts laiks kopībai.',
+    'schedule.part3': '3. daļa: Praktikums',
     'schedule.part3.desc': 'Dziļa iegremdēšanās teorijā un praktiskajā nozīmē ar grupu diskusijām.',
     'schedule.part4': '4. daļa: Nostiprināšana',
     'schedule.part4.desc': 'Pildspalva un papīrs: Darba lapu aizpildīšana. Darbs mazās grupās (2-3 cilvēki).',
-    'schedule.checkout': 'Izrakstīšanās',
+    'schedule.checkout': 'Noslēgums',
     'schedule.checkout.desc': 'Mājas darbs mēnesim. "Tavs viens nākamais solis?"',
     
     // Team
     'team.title': 'Komanda',
-    'team.elya.name': 'Eļa Faizuļina',
+    'team.elya.name': 'Eļa Faizulina',
     'team.elya.role': 'ĶERMENIS UN VESELĪBA',
-    'team.elya.desc': 'Iemācīs izturēties pret ķermeni kā pret templi: enerģija, miegs un veselīga kustība.',
+    'team.elya.desc': 'Iemācīs izturēties pret savu ķermeni kā pret templi: enerģija, miegs un veselīga kustība.',
     'team.alex.name': 'Aleksandrs Zvirids',
     'team.alex.role': 'DRAUDZE UN SABIEDRĪBA',
-    'team.alex.desc': 'Atklās kalpošanas, līderības un dievbijīgas vides veidošanas tēmu.',
+    'team.alex.desc': 'Atklās kalpošanas, līderības tēmu un dievbijīgas vides veidošanu ap sevi.',
     'team.tanya.name': 'Taņa Abramova',
     'team.tanya.role': 'ATTIECĪBAS UN GARS',
-    'team.tanya.desc': 'Ar dziļām garīgām praktiķēm uzturēšanai Dievā.',
+    'team.tanya.desc': 'Ar dziļām garīgām praksēm, lai paliktu Dievā.',
     'team.sasha.name': 'Saša Abramovs',
     'team.sasha.role': 'MĒRĶIS',
     'team.sasha.desc': 'Vadīs tevi caur personīgās misijas un stratēģiskās dzīves vīzijas atrašanas procesu.',
-    'team.richards.name': 'Ričards Garančs',
+    'team.richards.name': 'Rihards Garančs',
     'team.richards.role': 'FINANSES UN RAKSTURS',
-    'team.richards.desc': 'Palīdzēs sakārtot budžetu un veidot "atomāros paradumus" ilgtermiņa izaugsmei.',
+    'team.richards.desc': 'Palīdzēs sakārtot budžetu un veidot "atomiskos paradumus" ilgtermiņa izaugsmei.',
     'team.victoria.name': 'Viktorija Garanča',
     'team.victoria.role': 'PRĀTS UN KARJERA',
     'team.victoria.desc': 'Iemācīs pārvarēt bailes un ierobežojošus uzskatus.',
-    
-    // Footer
-    'footer.church': '"Pestīšanas Tempļa" draudze',
-    'footer.copyright': '© 2026-2027 Pilnvērtīga Dzīve. Visas tiesības aizsargātas.',
-    'footer.scanQR': 'Skenējiet, lai reģistrētos',
   },
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>('ru');
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem('language') as Language;
+    return saved || 'ru';
+  });
+
+  const handleSetLanguage = (lang: Language) => {
+    setLanguage(lang);
+    localStorage.setItem('language', lang);
+  };
 
   const t = (key: string): string => {
     return translations[language][key] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -696,7 +970,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
