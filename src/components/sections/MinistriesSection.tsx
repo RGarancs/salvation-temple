@@ -1,18 +1,22 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Church, BookOpen, Users, Heart, Music, Home, Hand, Baby } from 'lucide-react';
+import { Church, Baby, Users, Heart, Music, Home, Hand, Smile, UserCircle, Video, Sparkles } from 'lucide-react';
 
 export const MinistriesSection = () => {
   const { t } = useLanguage();
 
   const ministries = [
-    { key: 'worship', icon: Church, color: 'sunset' },
-    { key: 'sundaySchool', icon: Baby, color: 'amber' },
-    { key: 'ribaClub', icon: Users, color: 'terracotta' },
-    { key: 'youth', icon: Users, color: 'coral' },
-    { key: 'charity', icon: Heart, color: 'sunset' },
-    { key: 'choir', icon: Music, color: 'amber' },
-    { key: 'smallGroups', icon: Home, color: 'terracotta' },
-    { key: 'serve', icon: Hand, color: 'coral' },
+    { key: 'worship', icon: Church, color: 'sunset', leader: 'David Samoylich' },
+    { key: 'sundaySchool', icon: Baby, color: 'amber', leader: 'Kristina Poltarak' },
+    { key: 'ribaClub', icon: Users, color: 'terracotta', leader: 'Ramona & Artem Dudarevi' },
+    { key: 'youth', icon: Sparkles, color: 'coral', leader: 'Peter Voznarsky' },
+    { key: 'youngLife', icon: Smile, color: 'sunset', leader: null },
+    { key: 'charity', icon: Heart, color: 'amber', leader: 'Kristiana Vjatere' },
+    { key: 'choir', icon: Music, color: 'terracotta', leader: 'Alena Isakov' },
+    { key: 'smallGroups', icon: Home, color: 'coral', leader: 'Daniel Poltarak' },
+    { key: 'mensMinistry', icon: UserCircle, color: 'sunset', leader: 'Ilya Nichipuenko' },
+    { key: 'womensMinistry', icon: UserCircle, color: 'coral', leader: 'Viktorija & Jolanta' },
+    { key: 'loveAndCare', icon: Heart, color: 'amber', leader: 'Kristiana Vjatere' },
+    { key: 'media', icon: Video, color: 'terracotta', leader: null },
   ];
 
   const colorMap: Record<string, { bg: string; icon: string; border: string }> = {
@@ -52,9 +56,14 @@ export const MinistriesSection = () => {
                 <h3 className="font-display text-lg font-bold mb-2 text-foreground">
                   {t(`ministries.${ministry.key}.title`)}
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-sm mb-3">
                   {t(`ministries.${ministry.key}.desc`)}
                 </p>
+                {ministry.leader && (
+                  <p className="text-xs font-medium text-sunset">
+                    {t('ministries.leader')}: {ministry.leader}
+                  </p>
+                )}
               </div>
             );
           })}

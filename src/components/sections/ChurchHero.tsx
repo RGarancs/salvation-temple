@@ -1,9 +1,32 @@
+import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Clock, MapPin, Play, Calendar } from 'lucide-react';
+import { Clock, MapPin, Play, Globe } from 'lucide-react';
 import churchLogo from '@/assets/church-logo.png';
 
 export const ChurchHero = () => {
   const { t } = useLanguage();
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const changingTexts = [
+    t('hero.changing.hearts'),
+    t('hero.changing.lives'),
+    t('hero.changing.relationships'),
+    t('hero.changing.minds'),
+    t('hero.changing.personality'),
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentTextIndex((prev) => (prev + 1) % changingTexts.length);
+        setIsAnimating(false);
+      }, 500);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [changingTexts.length]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-20">
@@ -32,9 +55,16 @@ export const ChurchHero = () => {
             {t('church.name')}
           </h1>
           
-          <p className="text-lg md:text-xl text-muted-foreground mb-6 font-medium animate-fade-in">
-            {t('church.tagline')}
-          </p>
+          {/* Changing Text */}
+          <div className="h-16 flex items-center justify-center mb-6">
+            <p 
+              className={`text-2xl md:text-3xl font-display font-bold text-gradient-warm transition-all duration-500 ${
+                isAnimating ? 'opacity-0 transform -translate-y-4' : 'opacity-100 transform translate-y-0'
+              }`}
+            >
+              {changingTexts[currentTextIndex]}
+            </p>
+          </div>
 
           {/* Service times */}
           <div className="flex flex-wrap justify-center gap-4 mb-10 animate-fade-in">
@@ -43,8 +73,8 @@ export const ChurchHero = () => {
               <span className="font-semibold text-foreground">{t('church.serviceSunday')}</span>
             </div>
             <div className="glass px-6 py-3 rounded-full flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-amber" />
-              <span className="font-semibold text-foreground">{t('church.serviceWednesday')}</span>
+              <Globe className="w-5 h-5 text-amber" />
+              <span className="font-semibold text-foreground">{t('church.serviceLanguages')}</span>
             </div>
             <div className="glass px-6 py-3 rounded-full flex items-center gap-2">
               <MapPin className="w-5 h-5 text-coral" />
@@ -60,13 +90,15 @@ export const ChurchHero = () => {
           {/* CTAs */}
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up">
             <a
-              href="#plan-visit"
+              href="#about"
               className="inline-flex items-center gap-3 bg-gradient-to-r from-sunset via-coral to-amber text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               {t('church.planVisit')}
             </a>
             <a
-              href="#livestream"
+              href="https://www.youtube.com/@SalvationTemple"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 glass-sunset px-8 py-4 rounded-full font-bold text-lg text-foreground transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
             >
               <Play className="w-5 h-5 text-sunset" />
