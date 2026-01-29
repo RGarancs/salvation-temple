@@ -1338,8 +1338,18 @@ const translations: Record<Language, Record<string, string>> = {
   },
 };
 
-// Create context outside of component to prevent HMR issues
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+// Default translation function for HMR fallback
+const defaultT = (key: string): string => key;
+
+// Default context value to prevent HMR crashes
+const defaultContextValue: LanguageContextType = {
+  language: 'ru',
+  setLanguage: () => {},
+  t: defaultT,
+};
+
+// Create context with default value to prevent HMR issues
+const LanguageContext = createContext<LanguageContextType>(defaultContextValue);
 
 // Prevent context recreation during HMR
 if (import.meta.hot) {
@@ -1369,9 +1379,5 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
-  return context;
+  return useContext(LanguageContext);
 };
