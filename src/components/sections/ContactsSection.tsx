@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MapPin, Phone, Mail, Clock, Car, Facebook, Instagram, Youtube, Users } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Car, Facebook, Instagram, Youtube, Users, CreditCard } from 'lucide-react';
 
 export const ContactsSection = () => {
   const { t } = useLanguage();
@@ -139,18 +139,49 @@ export const ContactsSection = () => {
             </div>
           </div>
 
-          {/* Map */}
-          <div className="card-warm overflow-hidden h-[600px]">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2175.5!2d24.1247!3d56.9496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2sL%C4%81%C4%8Dpl%C4%93%C5%A1a%20iela%20117%2C%20Centra%20rajons%2C%20R%C4%ABga%2C%20LV-1003!5e0!3m2!1sen!2slv!4v1640000000000!5m2!1sen!2slv"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Church Location"
-            />
+          {/* Map and Donation Info */}
+          <div className="space-y-6">
+            {/* Map */}
+            <div className="card-warm overflow-hidden h-[400px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2175.5!2d24.1247!3d56.9496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2sL%C4%81%C4%8Dpl%C4%93%C5%A1a%20iela%20117%2C%20Centra%20rajons%2C%20R%C4%ABga%2C%20LV-1003!5e0!3m2!1sen!2slv!4v1640000000000!5m2!1sen!2slv"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Church Location"
+              />
+            </div>
+
+            {/* Donation Info */}
+            <div className="card-warm p-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-terracotta/10 flex items-center justify-center flex-shrink-0">
+                  <CreditCard className="w-6 h-6 text-terracotta" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-display font-bold text-foreground mb-3">{t('donations.title')}</h3>
+                  <div className="space-y-2 text-sm">
+                    <p className="text-muted-foreground">
+                      <span className="font-semibold text-foreground">{t('donations.recipient')}:</span><br />
+                      RĪGAS MISIONES BAPTISTU DRAUDZE
+                    </p>
+                    <p className="text-muted-foreground">
+                      <span className="font-semibold text-foreground">IBAN:</span><br />
+                      LV80UNLA0050011859310
+                    </p>
+                    <p className="text-muted-foreground">
+                      <span className="font-semibold text-foreground">{t('donations.bank')}:</span> SEB
+                    </p>
+                    <p className="text-muted-foreground">
+                      <span className="font-semibold text-foreground">SWIFT:</span> UNLALV2X
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

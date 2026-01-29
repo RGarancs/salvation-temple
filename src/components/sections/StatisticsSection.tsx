@@ -1,26 +1,16 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Users, Baby, GraduationCap, UserCheck, UserCircle, Heart, Droplets, BookOpen, Sun } from 'lucide-react';
+import { Users, Droplets, BookOpen, Sun, Home, Backpack, Heart } from 'lucide-react';
+import galleryService from '@/assets/gallery-service.jpg';
 
 export const StatisticsSection = () => {
   const { t } = useLanguage();
-
-  const stats = [
-    { key: 'total', value: 150, icon: Users, color: 'sunset' },
-    { key: 'children', value: 25, icon: Baby, color: 'coral' },
-    { key: 'youth', value: 30, icon: GraduationCap, color: 'amber' },
-    { key: 'adults', value: 70, icon: UserCheck, color: 'terracotta' },
-    { key: 'seniors', value: 25, icon: UserCircle, color: 'burnt' },
-  ];
 
   const activityStats = [
     { key: 'baptisms', value: 12, icon: Droplets, color: 'sunset', label: 'statistics.baptisms' },
     { key: 'sundaySchool', value: 35, icon: BookOpen, color: 'coral', label: 'statistics.sundaySchoolPeople' },
     { key: 'summerCamp', value: 200, icon: Sun, color: 'amber', label: 'statistics.summerCamp' },
-  ];
-
-  const genderStats = [
-    { key: 'male', percentage: 45, color: 'bg-sunset' },
-    { key: 'female', percentage: 55, color: 'bg-coral' },
+    { key: 'familiesHelped', value: 150, icon: Home, color: 'terracotta', label: 'statistics.familiesHelped' },
+    { key: 'childrenSchool', value: 80, icon: Backpack, color: 'burnt', label: 'statistics.childrenSchool' },
   ];
 
   const colorMap: Record<string, { bg: string; icon: string; border: string }> = {
@@ -32,8 +22,24 @@ export const StatisticsSection = () => {
   };
 
   return (
-    <section id="statistics" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="statistics" className="py-24 relative overflow-hidden">
+      {/* Background image with 25% opacity (75% transparent) */}
+      <div className="absolute inset-0">
+        <img 
+          src={galleryService} 
+          alt="" 
+          className="w-full h-full object-cover opacity-[0.25]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/90 to-background" />
+      </div>
+
+      {/* Soft glowing overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-10 left-20 w-80 h-80 rounded-full bg-amber/10 blur-3xl animate-float-slow" />
+        <div className="absolute bottom-10 right-20 w-72 h-72 rounded-full bg-coral/10 blur-3xl animate-float" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-amber/20 to-coral/20 mb-6">
             <Heart className="w-7 h-7 text-amber" />
@@ -46,29 +52,23 @@ export const StatisticsSection = () => {
           </p>
         </div>
 
-        {/* Main Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto mb-12">
-          {stats.map((stat) => {
-            const Icon = stat.icon;
-            const colors = colorMap[stat.color];
-            return (
-              <div key={stat.key} className={`card-warm p-6 text-center border ${colors.border}`}>
-                <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mx-auto mb-3`}>
-                  <Icon className={`w-6 h-6 ${colors.icon}`} />
-                </div>
-                <div className={`font-display text-3xl font-bold ${colors.icon} mb-1`}>
-                  {stat.value}
-                </div>
-                <p className="text-muted-foreground text-sm">
-                  {t(`statistics.${stat.key}`)}
-                </p>
-              </div>
-            );
-          })}
+        {/* Main Community Stat */}
+        <div className="max-w-md mx-auto mb-12">
+          <div className="card-warm p-8 text-center border border-sunset/30">
+            <div className="w-16 h-16 rounded-xl bg-sunset/10 flex items-center justify-center mx-auto mb-4">
+              <Users className="w-8 h-8 text-sunset" />
+            </div>
+            <div className="font-display text-5xl font-bold text-sunset mb-2">
+              150
+            </div>
+            <p className="text-muted-foreground text-lg">
+              {t('statistics.total')}
+            </p>
+          </div>
         </div>
 
-        {/* Activity Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
+        {/* Activity Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
           {activityStats.map((stat) => {
             const Icon = stat.icon;
             const colors = colorMap[stat.color];
@@ -86,36 +86,6 @@ export const StatisticsSection = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Gender Distribution */}
-        <div className="max-w-md mx-auto">
-          <h3 className="font-display text-lg font-bold text-center text-foreground mb-6">
-            {t('statistics.genderDistribution')}
-          </h3>
-          <div className="card-warm p-6">
-            <div className="flex items-center gap-4 mb-4">
-              {genderStats.map((gender) => (
-                <div key={gender.key} className="flex-1 text-center">
-                  <div className={`font-display text-2xl font-bold ${gender.key === 'male' ? 'text-sunset' : 'text-coral'}`}>
-                    {gender.percentage}%
-                  </div>
-                  <p className="text-muted-foreground text-sm">
-                    {t(`statistics.${gender.key}`)}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="h-4 rounded-full bg-muted overflow-hidden flex">
-              {genderStats.map((gender) => (
-                <div
-                  key={gender.key}
-                  className={`${gender.color} h-full transition-all duration-500`}
-                  style={{ width: `${gender.percentage}%` }}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>

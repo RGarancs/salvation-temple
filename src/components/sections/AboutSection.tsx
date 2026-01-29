@@ -1,5 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Target, Compass, Heart, BookOpen, Cross, Users, Sparkles, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import historyTemple from '@/assets/history-temple-1927.png';
 
 export const AboutSection = () => {
   const { t } = useLanguage();
@@ -19,8 +21,24 @@ export const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="py-24 bg-cream-dark">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-24 relative overflow-hidden">
+      {/* Background image with 50% opacity */}
+      <div className="absolute inset-0">
+        <img 
+          src={historyTemple} 
+          alt="" 
+          className="w-full h-full object-cover opacity-[0.15]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/90 via-cream-dark/95 to-cream-dark" />
+      </div>
+      
+      {/* Soft glowing overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-sunset/10 blur-3xl animate-float-slow" />
+        <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-amber/10 blur-3xl animate-float" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-sunset/20 to-amber/20 mb-6">
             <Compass className="w-7 h-7 text-sunset" />
@@ -33,9 +51,27 @@ export const AboutSection = () => {
           </p>
         </div>
 
+        {/* Mission */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="card-warm p-8 text-center">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-coral/20 to-sunset/20 mb-4">
+              <Target className="w-6 h-6 text-coral" />
+            </div>
+            <h3 className="font-display text-2xl font-bold text-gradient-warm mb-4">
+              {t('about.mission.title')}
+            </h3>
+            <p className="text-muted-foreground text-lg leading-relaxed">
+              {t('about.mission.text')}
+            </p>
+          </div>
+        </div>
+
         {/* Vision */}
         <div className="max-w-4xl mx-auto mb-12">
           <div className="card-warm p-8 text-center">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-amber/20 to-coral/20 mb-4">
+              <Heart className="w-6 h-6 text-amber" />
+            </div>
             <h3 className="font-display text-2xl font-bold text-gradient-warm mb-4">
               {t('about.vision.title')}
             </h3>
@@ -45,8 +81,8 @@ export const AboutSection = () => {
           </div>
         </div>
 
-        {/* Values - 4 cards with new structure */}
-        <div className="max-w-5xl mx-auto">
+        {/* Values - centered icons and text, paragraph format */}
+        <div className="max-w-5xl mx-auto mb-12">
           <h3 className="font-display text-2xl font-bold text-center text-gradient-earth mb-8">
             {t('about.values.title')}
           </h3>
@@ -55,30 +91,31 @@ export const AboutSection = () => {
               const Icon = value.icon;
               const colors = colorMap[value.color];
               return (
-                <div key={value.key} className="card-warm p-6">
-                  <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center mb-4`}>
+                <div key={value.key} className="card-warm p-6 text-center">
+                  <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center mx-auto mb-4`}>
                     <Icon className={`w-7 h-7 ${colors.icon}`} />
                   </div>
-                  <h4 className="font-display text-lg font-bold mb-2 text-foreground">
+                  <h4 className="font-display text-lg font-bold mb-3 text-foreground">
                     {t(`about.values.${value.key}.title`)}
                   </h4>
-                  <p className="text-muted-foreground text-sm mb-2">
-                    {t(`about.values.${value.key}.desc`)}
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {t(`about.values.${value.key}.paragraph`)}
                   </p>
-                  <ul className="text-muted-foreground text-xs space-y-1">
-                    <li className="flex items-start gap-1">
-                      <ArrowRight className="w-3 h-3 mt-0.5 text-muted-foreground/50" />
-                      {t(`about.values.${value.key}.sub1`)}
-                    </li>
-                    <li className="flex items-start gap-1">
-                      <ArrowRight className="w-3 h-3 mt-0.5 text-muted-foreground/50" />
-                      {t(`about.values.${value.key}.sub2`)}
-                    </li>
-                  </ul>
                 </div>
               );
             })}
           </div>
+        </div>
+
+        {/* History Button */}
+        <div className="text-center">
+          <Link
+            to="/history"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-terracotta to-burnt text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+          >
+            {t('about.historyButton')}
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </div>
     </section>

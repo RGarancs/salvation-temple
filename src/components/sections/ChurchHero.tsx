@@ -17,7 +17,6 @@ export const ChurchHero = () => {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [imagePosition, setImagePosition] = useState(0);
 
   const changingTexts = [
     t('hero.changing.hearts'),
@@ -57,61 +56,55 @@ export const ChurchHero = () => {
   useEffect(() => {
     const imageInterval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
-    }, 5000);
+    }, 6000);
 
     return () => clearInterval(imageInterval);
   }, [backgroundImages.length]);
 
-  // Slow pan effect for images
-  useEffect(() => {
-    const panInterval = setInterval(() => {
-      setImagePosition((prev) => (prev + 1) % 100);
-    }, 100);
-    return () => clearInterval(panInterval);
-  }, []);
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Slideshow background images - 50% opacity for more visibility */}
+      {/* Ken Burns slideshow background images - 25% opacity (reduced by 50%) */}
       {backgroundImages.map((image, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentImageIndex ? 'opacity-50' : 'opacity-0'
+          className={`absolute inset-0 transition-opacity duration-2000 ${
+            index === currentImageIndex ? 'opacity-25' : 'opacity-0'
           }`}
         >
           <img
             src={image}
             alt=""
-            className="w-full h-full object-cover transition-transform duration-[10000ms] ease-linear"
+            className={`w-full h-full object-cover animate-ken-burns-${index % 4}`}
             style={{
-              transform: `scale(1.1) translateX(${Math.sin(imagePosition * 0.02) * 3}%) translateY(${Math.cos(imagePosition * 0.02) * 2}%)`,
+              animationDuration: '20s',
+              animationTimingFunction: 'ease-in-out',
+              animationIterationCount: 'infinite',
             }}
           />
         </div>
       ))}
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-70" />
+      <div className="absolute inset-0 bg-gradient-hero opacity-80" />
       
-      {/* Parallax decorative elements */}
+      {/* Soft glowing overlay effect */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-sunset/10 blur-3xl animate-float-slow" />
-        <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-amber/10 blur-3xl animate-float" />
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-coral/8 blur-2xl" />
+        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-sunset/15 blur-3xl animate-float-slow" />
+        <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-amber/15 blur-3xl animate-float" />
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-coral/10 blur-2xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Come and See Text */}
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-gradient-earth animate-fade-in-up">
+          {/* Come and See Text - reduced by 75% */}
+          <h1 className="font-display text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-gradient-earth animate-fade-in-up">
             {t('hero.comeAndSee')}
           </h1>
           
-          {/* Changing Text - same large size */}
-          <div className="h-20 md:h-24 flex items-center justify-center mb-8">
+          {/* Changing Text - increased by 100% (doubled) */}
+          <div className="h-24 md:h-32 lg:h-40 flex items-center justify-center mb-8">
             <p 
-              className={`text-4xl md:text-6xl lg:text-7xl font-display font-bold text-gradient-warm transition-all duration-500 ${
+              className={`text-5xl md:text-7xl lg:text-8xl font-display font-bold text-gradient-warm transition-all duration-500 ${
                 isAnimating ? 'opacity-0 transform -translate-y-4' : 'opacity-100 transform translate-y-0'
               }`}
             >
@@ -170,6 +163,33 @@ export const ChurchHero = () => {
           />
         </svg>
       </div>
+
+      <style>{`
+        @keyframes ken-burns-0 {
+          0% { transform: scale(1) translate(0, 0); }
+          50% { transform: scale(1.1) translate(-2%, -1%); }
+          100% { transform: scale(1) translate(0, 0); }
+        }
+        @keyframes ken-burns-1 {
+          0% { transform: scale(1.1) translate(-1%, 1%); }
+          50% { transform: scale(1) translate(1%, -1%); }
+          100% { transform: scale(1.1) translate(-1%, 1%); }
+        }
+        @keyframes ken-burns-2 {
+          0% { transform: scale(1) translate(1%, 0); }
+          50% { transform: scale(1.15) translate(-1%, 2%); }
+          100% { transform: scale(1) translate(1%, 0); }
+        }
+        @keyframes ken-burns-3 {
+          0% { transform: scale(1.05) translate(0, -1%); }
+          50% { transform: scale(1) translate(2%, 1%); }
+          100% { transform: scale(1.05) translate(0, -1%); }
+        }
+        .animate-ken-burns-0 { animation: ken-burns-0 20s ease-in-out infinite; }
+        .animate-ken-burns-1 { animation: ken-burns-1 20s ease-in-out infinite; }
+        .animate-ken-burns-2 { animation: ken-burns-2 20s ease-in-out infinite; }
+        .animate-ken-burns-3 { animation: ken-burns-3 20s ease-in-out infinite; }
+      `}</style>
     </section>
   );
 };
