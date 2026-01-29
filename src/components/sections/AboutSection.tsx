@@ -13,12 +13,18 @@ export const AboutSection = () => {
     { key: 'mission', icon: Sparkles, color: 'terracotta' },
   ];
 
-  const colorMap: Record<string, { bg: string; icon: string }> = {
-    sunset: { bg: 'bg-sunset/10', icon: 'text-sunset' },
-    coral: { bg: 'bg-coral/10', icon: 'text-coral' },
-    amber: { bg: 'bg-amber/10', icon: 'text-amber' },
-    terracotta: { bg: 'bg-terracotta/10', icon: 'text-terracotta' },
+  // Dark bordeaux card style
+  const bordeauxCardStyle = {
+    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
   };
+
+  const bordeauxTextureOverlay = (
+    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
+      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
+                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
+    }} />
+  );
 
   return (
     <section id="about" className="py-24 relative overflow-hidden">
@@ -32,11 +38,12 @@ export const AboutSection = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/85 via-cream-dark/90 to-cream-dark" />
       </div>
       
-      {/* Soft glowing overlay - same effect as hero */}
+      {/* Soft glowing overlay - same effect as hero, slowly moving */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-sunset/15 blur-3xl animate-float-slow" />
         <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-amber/15 blur-3xl animate-float" />
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-coral/10 blur-2xl" />
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-coral/10 blur-2xl animate-float-slow" />
+        <div className="absolute bottom-1/4 right-1/3 w-48 h-48 rounded-full bg-terracotta/8 blur-2xl animate-float" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -52,37 +59,49 @@ export const AboutSection = () => {
           </p>
         </div>
 
-        {/* Mission */}
+        {/* Mission - Dark Bordeaux */}
         <div className="max-w-4xl mx-auto mb-12">
-          <div className="card-warm p-8 text-center">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-coral/20 to-sunset/20 mb-4">
-              <Target className="w-6 h-6 text-coral" />
+          <div 
+            className="relative overflow-hidden rounded-2xl p-8 text-center transition-all duration-300 hover:shadow-xl"
+            style={bordeauxCardStyle}
+          >
+            {bordeauxTextureOverlay}
+            <div className="relative z-10">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-4">
+                <Target className="w-6 h-6 text-sunset-light" />
+              </div>
+              <h3 className="font-display text-2xl font-bold text-white/95 mb-4">
+                {t('about.mission.title')}
+              </h3>
+              <p className="text-white/70 text-lg leading-relaxed">
+                {t('about.mission.text')}
+              </p>
             </div>
-            <h3 className="font-display text-2xl font-bold text-gradient-warm mb-4">
-              {t('about.mission.title')}
-            </h3>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              {t('about.mission.text')}
-            </p>
           </div>
         </div>
 
-        {/* Vision */}
+        {/* Vision - Dark Bordeaux */}
         <div className="max-w-4xl mx-auto mb-12">
-          <div className="card-warm p-8 text-center">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-amber/20 to-coral/20 mb-4">
-              <Heart className="w-6 h-6 text-amber" />
+          <div 
+            className="relative overflow-hidden rounded-2xl p-8 text-center transition-all duration-300 hover:shadow-xl"
+            style={bordeauxCardStyle}
+          >
+            {bordeauxTextureOverlay}
+            <div className="relative z-10">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-4">
+                <Heart className="w-6 h-6 text-amber" />
+              </div>
+              <h3 className="font-display text-2xl font-bold text-white/95 mb-4">
+                {t('about.vision.title')}
+              </h3>
+              <p className="text-white/70 text-lg leading-relaxed">
+                {t('about.vision.textShort')}
+              </p>
             </div>
-            <h3 className="font-display text-2xl font-bold text-gradient-warm mb-4">
-              {t('about.vision.title')}
-            </h3>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              {t('about.vision.text')}
-            </p>
           </div>
         </div>
 
-        {/* Values - centered icons and text, paragraph format */}
+        {/* Values - centered icons and text, Dark Bordeaux */}
         <div className="max-w-5xl mx-auto mb-12">
           <h3 className="font-display text-2xl font-bold text-center text-gradient-earth mb-8">
             {t('about.values.title')}
@@ -90,18 +109,28 @@ export const AboutSection = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value) => {
               const Icon = value.icon;
-              const colors = colorMap[value.color];
               return (
-                <div key={value.key} className="card-warm p-6 text-center">
-                  <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center mx-auto mb-4`}>
-                    <Icon className={`w-7 h-7 ${colors.icon}`} />
+                <div 
+                  key={value.key} 
+                  className="relative overflow-hidden rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+                  style={bordeauxCardStyle}
+                >
+                  {bordeauxTextureOverlay}
+                  {/* Shine effect on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
+                    background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
+                  }} />
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 border border-white/10">
+                      <Icon className="w-7 h-7 text-sunset-light" />
+                    </div>
+                    <h4 className="font-display text-lg font-bold mb-3 text-white/95">
+                      {t(`about.values.${value.key}.title`)}
+                    </h4>
+                    <p className="text-white/60 text-sm leading-relaxed">
+                      {t(`about.values.${value.key}.paragraph`)}
+                    </p>
                   </div>
-                  <h4 className="font-display text-lg font-bold mb-3 text-foreground">
-                    {t(`about.values.${value.key}.title`)}
-                  </h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {t(`about.values.${value.key}.paragraph`)}
-                  </p>
                 </div>
               );
             })}

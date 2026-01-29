@@ -1,25 +1,78 @@
+import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Users, Droplets, BookOpen, Sun, Home, Backpack, Heart } from 'lucide-react';
+import { Users, Droplets, BookOpen, Sun, Home, Backpack, Heart, History, ArrowRight, Info } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import galleryCongregation from '@/assets/gallery-congregation.jpg';
 
 export const StatisticsSection = () => {
   const { t } = useLanguage();
+  const [hoveredStat, setHoveredStat] = useState<string | null>(null);
 
-  const activityStats = [
-    { key: 'baptisms', value: 12, icon: Droplets, color: 'sunset', label: 'statistics.baptisms' },
-    { key: 'sundaySchool', value: 35, icon: BookOpen, color: 'coral', label: 'statistics.sundaySchoolPeople' },
-    { key: 'summerCamp', value: 200, icon: Sun, color: 'amber', label: 'statistics.summerCamp' },
-    { key: 'familiesHelped', value: 150, icon: Home, color: 'terracotta', label: 'statistics.familiesHelped' },
-    { key: 'childrenSchool', value: 80, icon: Backpack, color: 'burnt', label: 'statistics.childrenSchool' },
+  // Historical statistics
+  const historicalStats = [
+    { key: 'baptismsHistory', value: '+350', icon: Droplets, label: 'statistics.history.baptisms' },
+    { key: 'sundaySchoolHistory', value: '+700', icon: BookOpen, label: 'statistics.history.sundaySchool' },
+    { key: 'summerCampsHistory', value: '+5000', icon: Sun, label: 'statistics.history.summerCamps' },
+    { key: 'familiesHistory', value: '+500', icon: Home, label: 'statistics.history.families' },
+    { key: 'childrenHistory', value: '+400', icon: Backpack, label: 'statistics.history.children' },
   ];
 
-  const colorMap: Record<string, { bg: string; icon: string; border: string }> = {
-    sunset: { bg: 'bg-sunset/10', icon: 'text-sunset', border: 'border-sunset/30' },
-    coral: { bg: 'bg-coral/10', icon: 'text-coral', border: 'border-coral/30' },
-    amber: { bg: 'bg-amber/10', icon: 'text-amber', border: 'border-amber/30' },
-    terracotta: { bg: 'bg-terracotta/10', icon: 'text-terracotta', border: 'border-terracotta/30' },
-    burnt: { bg: 'bg-burnt/10', icon: 'text-burnt', border: 'border-burnt/30' },
+  const activityStats = [
+    { 
+      key: 'baptisms', 
+      value: 12, 
+      icon: Droplets, 
+      label: 'statistics.baptisms',
+      hoverInfo: 'statistics.baptisms.hover',
+      hasLink: true,
+      linkText: 'statistics.baptisms.learnMore'
+    },
+    { 
+      key: 'sundaySchool', 
+      value: 35, 
+      icon: BookOpen, 
+      label: 'statistics.sundaySchoolPeople',
+      hoverInfo: 'statistics.sundaySchool.hover',
+      hasLink: true,
+      linkText: 'statistics.sundaySchool.learnMore'
+    },
+    { 
+      key: 'summerCamp', 
+      value: 200, 
+      icon: Sun, 
+      label: 'statistics.summerCamp',
+      hoverInfo: 'statistics.summerCamp.hover',
+      hasLink: true,
+      linkText: 'statistics.summerCamp.learnMore'
+    },
+    { 
+      key: 'familiesHelped', 
+      value: 150, 
+      icon: Home, 
+      label: 'statistics.familiesHelped',
+      hoverInfo: 'statistics.familiesHelped.hover'
+    },
+    { 
+      key: 'childrenSchool', 
+      value: 80, 
+      icon: Backpack, 
+      label: 'statistics.childrenSchool',
+      hoverInfo: 'statistics.childrenSchool.hover'
+    },
+  ];
+
+  // Dark bordeaux card style
+  const bordeauxCardStyle = {
+    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
   };
+
+  const bordeauxTextureOverlay = (
+    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
+      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
+                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
+    }} />
+  );
 
   return (
     <section id="statistics" className="py-24 relative overflow-hidden">
@@ -52,37 +105,123 @@ export const StatisticsSection = () => {
           </p>
         </div>
 
-        {/* Main Community Stat */}
-        <div className="max-w-md mx-auto mb-12">
-          <div className="card-warm p-8 text-center border border-sunset/30">
-            <div className="w-16 h-16 rounded-xl bg-sunset/10 flex items-center justify-center mx-auto mb-4">
-              <Users className="w-8 h-8 text-sunset" />
-            </div>
-            <div className="font-display text-5xl font-bold text-sunset mb-2">
-              150
-            </div>
-            <p className="text-muted-foreground text-lg">
-              {t('statistics.total')}
-            </p>
+        {/* Historical Statistics - 5 icons */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <div className="flex items-center justify-center gap-2 mb-8">
+            <History className="w-5 h-5 text-sunset" />
+            <h3 className="font-display text-xl font-bold text-gradient-warm">
+              {t('statistics.history.title')}
+            </h3>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {historicalStats.map((stat) => {
+              const Icon = stat.icon;
+              return (
+                <div 
+                  key={stat.key} 
+                  className="relative overflow-hidden rounded-2xl p-4 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+                  style={bordeauxCardStyle}
+                >
+                  {bordeauxTextureOverlay}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
+                    background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
+                  }} />
+                  <div className="relative z-10">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-2 border border-white/10">
+                      <Icon className="w-5 h-5 text-sunset-light" />
+                    </div>
+                    <div className="font-display text-2xl font-bold text-sunset-light mb-1">
+                      {stat.value}
+                    </div>
+                    <p className="text-white/60 text-xs">
+                      {t(stat.label)}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Activity Stats Grid */}
+        {/* Main Community Stat - Circle Shape */}
+        <div className="max-w-md mx-auto mb-12">
+          <div 
+            className="relative overflow-hidden rounded-full aspect-square max-w-[280px] mx-auto flex items-center justify-center transition-all duration-300 hover:shadow-xl group"
+            style={bordeauxCardStyle}
+          >
+            {bordeauxTextureOverlay}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-full" style={{
+              background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
+            }} />
+            <div className="relative z-10 text-center p-8">
+              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4 border border-white/10">
+                <Users className="w-8 h-8 text-sunset-light" />
+              </div>
+              <div className="font-display text-5xl font-bold text-sunset-light mb-2">
+                150
+              </div>
+              <p className="text-white/70 text-lg">
+                {t('statistics.total')}
+              </p>
+              {/* Hover info */}
+              <div className="absolute inset-0 flex items-center justify-center rounded-full bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="p-6 text-center">
+                  <p className="text-white/90 text-sm leading-relaxed">
+                    {t('statistics.members.hover')}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Activity Stats Grid - Dark Bordeaux with hover */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
           {activityStats.map((stat) => {
             const Icon = stat.icon;
-            const colors = colorMap[stat.color];
+            const isHovered = hoveredStat === stat.key;
             return (
-              <div key={stat.key} className={`card-warm p-6 text-center border ${colors.border}`}>
-                <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mx-auto mb-3`}>
-                  <Icon className={`w-6 h-6 ${colors.icon}`} />
+              <div 
+                key={stat.key} 
+                className="relative overflow-hidden rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer"
+                style={bordeauxCardStyle}
+                onMouseEnter={() => setHoveredStat(stat.key)}
+                onMouseLeave={() => setHoveredStat(null)}
+              >
+                {bordeauxTextureOverlay}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
+                  background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
+                }} />
+                
+                {/* Normal content */}
+                <div className={`relative z-10 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
+                  <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-3 border border-white/10">
+                    <Icon className="w-6 h-6 text-sunset-light" />
+                  </div>
+                  <div className="font-display text-3xl font-bold text-sunset-light mb-1">
+                    {stat.value}
+                  </div>
+                  <p className="text-white/60 text-sm">
+                    {t(stat.label)}
+                  </p>
+                  <Info className="w-4 h-4 text-white/30 mx-auto mt-2" />
                 </div>
-                <div className={`font-display text-3xl font-bold ${colors.icon} mb-1`}>
-                  {stat.value}
+
+                {/* Hover content */}
+                <div className={`absolute inset-0 flex flex-col items-center justify-center p-4 transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
+                  <p className="text-white/90 text-xs leading-relaxed mb-3 text-center">
+                    {t(stat.hoverInfo)}
+                  </p>
+                  {stat.hasLink && (
+                    <Link
+                      to={`/${stat.key === 'baptisms' ? 'baptism' : stat.key === 'sundaySchool' ? 'sunday-school' : 'summer-camps'}`}
+                      className="inline-flex items-center gap-1 text-sunset-light text-xs font-semibold hover:underline"
+                    >
+                      {t(stat.linkText)}
+                      <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  )}
                 </div>
-                <p className="text-muted-foreground text-sm">
-                  {t(stat.label)}
-                </p>
               </div>
             );
           })}

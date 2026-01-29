@@ -13,9 +13,6 @@ export const EventsSection = () => {
     const sundays = [];
     const today = new Date();
     
-    // Add March 1st, 2026 as a special date (it's a Sunday)
-    const march1st = new Date(2026, 2, 1); // March 1, 2026
-    
     let nextSunday = new Date(today);
     nextSunday.setDate(today.getDate() + (7 - today.getDay()) % 7);
     if (today.getDay() === 0) nextSunday = today;
@@ -58,37 +55,34 @@ export const EventsSection = () => {
     { 
       key: 'news', 
       icon: Newspaper, 
-      color: 'sunset',
       content: 'events.news.content',
       hasSocial: true
     },
     { 
-      key: 'calendar', 
-      icon: Calendar, 
-      color: 'amber',
-      content: 'events.calendar.content'
-    },
-    { 
       key: 'training', 
       icon: GraduationCap, 
-      color: 'terracotta',
       hasLink: true,
       linkText: 'events.training.link'
     },
     { 
       key: 'baptism', 
       icon: Droplets, 
-      color: 'coral',
       content: 'events.baptism.content'
     },
   ];
 
-  const colorMap: Record<string, { bg: string; icon: string }> = {
-    sunset: { bg: 'bg-sunset/10', icon: 'text-sunset' },
-    amber: { bg: 'bg-amber/10', icon: 'text-amber' },
-    terracotta: { bg: 'bg-terracotta/10', icon: 'text-terracotta' },
-    coral: { bg: 'bg-coral/10', icon: 'text-coral' },
+  // Dark bordeaux card style
+  const bordeauxCardStyle = {
+    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
   };
+
+  const bordeauxTextureOverlay = (
+    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
+      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
+                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
+    }} />
+  );
 
   return (
     <section id="events" className="py-24 bg-background">
@@ -105,61 +99,10 @@ export const EventsSection = () => {
           </p>
         </div>
 
-        {/* Upcoming Services Calendar */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <div className="card-warm p-6">
-            <div className="flex items-center gap-3 mb-6">
-              <CalendarCheck className="w-6 h-6 text-sunset" />
-              <h3 className="font-display text-xl font-bold text-foreground">
-                {t('events.upcoming')}
-              </h3>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {/* This Friday Prayer */}
-              <div className="p-4 bg-terracotta/10 rounded-xl text-center border border-terracotta/20">
-                <p className="text-xs text-terracotta font-semibold mb-1">{t('events.prayerMeeting')}</p>
-                <p className="font-display text-lg font-bold text-foreground">{formatDate(thisFriday)}</p>
-                <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
-                  <Clock className="w-3 h-3" /> 18:00
-                </p>
-              </div>
-              
-              {/* Upcoming Sundays - all labeled as Sunday Service */}
-              {upcomingSundays.map((sunday, index) => {
-                const hasCommunion = isFirstSunday(index) || isMarch1st(sunday);
-                return (
-                  <div 
-                    key={index} 
-                    className={`p-4 rounded-xl text-center border ${
-                      hasCommunion 
-                        ? 'bg-sunset/10 border-sunset/20' 
-                        : 'bg-muted/30 border-border'
-                    }`}
-                  >
-                    <p className="text-xs font-semibold mb-1 text-sunset">
-                      {t('events.sundayService')}
-                    </p>
-                    <p className="font-display text-lg font-bold text-foreground">{formatDate(sunday)}</p>
-                    <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
-                      <Clock className="w-3 h-3" /> 11:00
-                    </p>
-                    {hasCommunion && (
-                      <p className="text-xs text-coral mt-1 font-medium">
-                        {t('events.holyCommunion')}
-                      </p>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        <div className="max-w-3xl mx-auto space-y-4">
+        {/* Event Categories - moved before calendar */}
+        <div className="max-w-3xl mx-auto space-y-4 mb-12">
           {eventCategories.map((category) => {
             const Icon = category.icon;
-            const colors = colorMap[category.color];
             const isOpen = openSection === category.key;
 
             return (
@@ -169,23 +112,32 @@ export const EventsSection = () => {
                 onOpenChange={(open) => setOpenSection(open ? category.key : null)}
               >
                 <CollapsibleTrigger className="w-full">
-                  <div className="card-warm p-5 flex items-center gap-4 cursor-pointer">
-                    <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center flex-shrink-0`}>
-                      <Icon className={`w-6 h-6 ${colors.icon}`} />
+                  <div 
+                    className="relative overflow-hidden rounded-2xl p-5 flex items-center gap-4 cursor-pointer transition-all duration-300 hover:shadow-xl group"
+                    style={bordeauxCardStyle}
+                  >
+                    {bordeauxTextureOverlay}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
+                      background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
+                    }} />
+                    <div className="relative z-10 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
+                      <Icon className="w-6 h-6 text-sunset-light" />
                     </div>
-                    <div className="flex-1 text-left">
-                      <h3 className="font-display text-lg font-bold text-foreground">
+                    <div className="relative z-10 flex-1 text-left">
+                      <h3 className="font-display text-lg font-bold text-white/95">
                         {t(`events.${category.key}.title`)}
                       </h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-white/60">
                         {t(`events.${category.key}.desc`)}
                       </p>
                     </div>
-                    {isOpen ? (
-                      <ChevronDown className="w-5 h-5 text-muted-foreground" />
-                    ) : (
-                      <ChevronRight className="w-5 h-5 text-muted-foreground" />
-                    )}
+                    <div className="relative z-10">
+                      {isOpen ? (
+                        <ChevronDown className="w-5 h-5 text-white/60" />
+                      ) : (
+                        <ChevronRight className="w-5 h-5 text-white/60" />
+                      )}
+                    </div>
                   </div>
                 </CollapsibleTrigger>
 
@@ -251,6 +203,63 @@ export const EventsSection = () => {
               </Collapsible>
             );
           })}
+        </div>
+
+        {/* Upcoming Services Calendar - now below event categories */}
+        <div className="max-w-4xl mx-auto">
+          <div 
+            className="relative overflow-hidden rounded-2xl p-6"
+            style={bordeauxCardStyle}
+          >
+            {bordeauxTextureOverlay}
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-6">
+                <CalendarCheck className="w-6 h-6 text-sunset-light" />
+                <h3 className="font-display text-xl font-bold text-white/95">
+                  {t('events.upcoming')}
+                </h3>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                {/* This Friday Prayer */}
+                <div className="p-4 bg-white/5 rounded-xl text-center border border-white/10">
+                  <p className="text-xs text-sunset-light font-semibold mb-1">{t('events.prayerMeeting')}</p>
+                  <p className="font-display text-lg font-bold text-white/95">{formatDate(thisFriday)}</p>
+                  <p className="text-sm text-white/60 flex items-center justify-center gap-1">
+                    <Clock className="w-3 h-3" /> 18:00
+                  </p>
+                </div>
+                
+                {/* Upcoming Sundays - all labeled as Sunday Service */}
+                {upcomingSundays.map((sunday, index) => {
+                  const hasCommunion = isFirstSunday(index) || isMarch1st(sunday);
+                  return (
+                    <div 
+                      key={index} 
+                      className={`p-4 rounded-xl text-center border ${
+                        hasCommunion 
+                          ? 'bg-sunset/20 border-sunset/30' 
+                          : 'bg-white/5 border-white/10'
+                      }`}
+                    >
+                      <p className="text-xs font-semibold mb-1 text-sunset-light">
+                        {t('events.sundayService')}
+                      </p>
+                      <p className="font-display text-lg font-bold text-white/95">{formatDate(sunday)}</p>
+                      <p className="text-sm text-white/60 flex items-center justify-center gap-1">
+                        <Clock className="w-3 h-3" /> 11:00
+                      </p>
+                      {hasCommunion && (
+                        <p className="text-xs text-coral mt-1 font-medium">
+                          {t('events.holyCommunion')}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
