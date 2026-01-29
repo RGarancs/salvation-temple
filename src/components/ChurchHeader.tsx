@@ -3,6 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeToggle } from './ThemeToggle';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import churchLogo from '@/assets/church-logo.png';
 
 export const ChurchHeader = () => {
@@ -19,12 +20,12 @@ export const ChurchHeader = () => {
   }, []);
 
   const navItems = [
-    { key: 'nav.about', href: '#about' },
-    { key: 'nav.events', href: '#events' },
-    { key: 'nav.ministries', href: '#ministries' },
-    { key: 'nav.care', href: '#care' },
-    { key: 'nav.contacts', href: '#contacts' },
-    { key: 'nav.donations', href: '#donations' },
+    { key: 'nav.about', href: '/#about' },
+    { key: 'nav.history', href: '/history', isLink: true },
+    { key: 'nav.events', href: '/#events' },
+    { key: 'nav.ministries', href: '/#ministries' },
+    { key: 'nav.testimonies', href: '/testimonies', isLink: true },
+    { key: 'nav.contacts', href: '/#contacts' },
   ];
 
   return (
@@ -37,7 +38,7 @@ export const ChurchHeader = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
+        <Link to="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl overflow-hidden transition-all duration-300 group-hover:scale-105">
             <img 
               src={churchLogo} 
@@ -53,18 +54,28 @@ export const ChurchHeader = () => {
               {t('church.shortName')}
             </span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-6">
           {navItems.map((item) => (
-            <a
-              key={item.key}
-              href={item.href}
-              className="text-foreground/70 hover:text-foreground transition-colors font-medium text-sm"
-            >
-              {t(item.key)}
-            </a>
+            item.isLink ? (
+              <Link
+                key={item.key}
+                to={item.href}
+                className="text-foreground/70 hover:text-foreground transition-colors font-medium text-sm"
+              >
+                {t(item.key)}
+              </Link>
+            ) : (
+              <a
+                key={item.key}
+                href={item.href}
+                className="text-foreground/70 hover:text-foreground transition-colors font-medium text-sm"
+              >
+                {t(item.key)}
+              </a>
+            )
           ))}
         </nav>
 
@@ -72,7 +83,7 @@ export const ChurchHeader = () => {
           <ThemeToggle />
           <LanguageSwitcher />
           <a
-            href="#plan-visit"
+            href="/#contacts"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
             {t('church.planVisit')}
@@ -99,19 +110,30 @@ export const ChurchHeader = () => {
       >
         <div className="container mx-auto px-4 py-4 flex flex-col gap-3">
           {navItems.map((item) => (
-            <a
-              key={item.key}
-              href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="text-foreground/80 hover:text-foreground transition-colors font-medium py-2 text-sm"
-            >
-              {t(item.key)}
-            </a>
+            item.isLink ? (
+              <Link
+                key={item.key}
+                to={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-foreground/80 hover:text-foreground transition-colors font-medium py-2 text-sm"
+              >
+                {t(item.key)}
+              </Link>
+            ) : (
+              <a
+                key={item.key}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-foreground/80 hover:text-foreground transition-colors font-medium py-2 text-sm"
+              >
+                {t(item.key)}
+              </a>
+            )
           ))}
           <div className="flex items-center justify-between pt-4 border-t border-border">
             <LanguageSwitcher />
             <a
-              href="#plan-visit"
+              href="/#contacts"
               onClick={() => setIsMobileMenuOpen(false)}
               className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all"
             >
