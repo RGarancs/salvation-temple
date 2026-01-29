@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock } from 'lucide-react';
+import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Link } from 'react-router-dom';
 
@@ -8,10 +8,14 @@ export const EventsSection = () => {
   const { t } = useLanguage();
   const [openSection, setOpenSection] = useState<string | null>('training');
 
-  // Get upcoming Sundays
+  // Get upcoming Sundays including March 1st
   const getUpcomingSundays = () => {
     const sundays = [];
     const today = new Date();
+    
+    // Add March 1st, 2026 as a special date (it's a Sunday)
+    const march1st = new Date(2026, 2, 1); // March 1, 2026
+    
     let nextSunday = new Date(today);
     nextSunday.setDate(today.getDate() + (7 - today.getDay()) % 7);
     if (today.getDay() === 0) nextSunday = today;
@@ -21,6 +25,7 @@ export const EventsSection = () => {
       sunday.setDate(nextSunday.getDate() + (i * 7));
       sundays.push(sunday);
     }
+    
     return sundays;
   };
 
@@ -41,12 +46,21 @@ export const EventsSection = () => {
     return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
   };
 
+  // Check if date is March 1st
+  const isMarch1st = (date: Date) => {
+    return date.getDate() === 1 && date.getMonth() === 2;
+  };
+
+  // Check if first Sunday (communion)
+  const isFirstSunday = (index: number) => index === 0;
+
   const eventCategories = [
     { 
       key: 'news', 
       icon: Newspaper, 
       color: 'sunset',
-      content: 'events.news.content'
+      content: 'events.news.content',
+      hasSocial: true
     },
     { 
       key: 'calendar', 
@@ -111,26 +125,33 @@ export const EventsSection = () => {
                 </p>
               </div>
               
-              {/* Upcoming Sundays */}
-              {upcomingSundays.map((sunday, index) => (
-                <div 
-                  key={index} 
-                  className={`p-4 rounded-xl text-center border ${
-                    index === 0 
-                      ? 'bg-sunset/10 border-sunset/20' 
-                      : 'bg-muted/30 border-border'
-                  }`}
-                >
-                  <p className="text-xs font-semibold mb-1 text-sunset">
-                    {index === 0 && t('events.holyCommunion')}
-                    {index !== 0 && t('church.serviceSunday').split(' ')[0]}
-                  </p>
-                  <p className="font-display text-lg font-bold text-foreground">{formatDate(sunday)}</p>
-                  <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
-                    <Clock className="w-3 h-3" /> 11:00
-                  </p>
-                </div>
-              ))}
+              {/* Upcoming Sundays - all labeled as Sunday Service */}
+              {upcomingSundays.map((sunday, index) => {
+                const hasCommunion = isFirstSunday(index) || isMarch1st(sunday);
+                return (
+                  <div 
+                    key={index} 
+                    className={`p-4 rounded-xl text-center border ${
+                      hasCommunion 
+                        ? 'bg-sunset/10 border-sunset/20' 
+                        : 'bg-muted/30 border-border'
+                    }`}
+                  >
+                    <p className="text-xs font-semibold mb-1 text-sunset">
+                      {t('events.sundayService')}
+                    </p>
+                    <p className="font-display text-lg font-bold text-foreground">{formatDate(sunday)}</p>
+                    <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
+                      <Clock className="w-3 h-3" /> 11:00
+                    </p>
+                    {hasCommunion && (
+                      <p className="text-xs text-coral mt-1 font-medium">
+                        {t('events.holyCommunion')}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -180,6 +201,45 @@ export const EventsSection = () => {
                           {t('events.training.link')}
                           <ChevronRight className="w-4 h-4" />
                         </Link>
+                      </div>
+                    ) : category.hasSocial ? (
+                      <div className="mt-4 p-4 bg-muted/50 rounded-xl">
+                        <p className="text-muted-foreground mb-4">{t(category.content!)}</p>
+                        <div className="flex flex-wrap gap-3">
+                          <a
+                            href="https://www.facebook.com/SalvationTempleLV/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                          >
+                            <Facebook className="w-4 h-4" />
+                            Facebook
+                          </a>
+                          <a
+                            href="https://www.instagram.com/salvationtemplelv/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                          >
+                            <Instagram className="w-4 h-4" />
+                            Instagram
+                          </a>
+                          <a
+                            href="https://www.youtube.com/@SalvationTemple"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                          >
+                            <Youtube className="w-4 h-4" />
+                            YouTube
+                          </a>
+                        </div>
+                      </div>
+                    ) : category.key === 'baptism' ? (
+                      <div className="mt-4 p-4 bg-muted/50 rounded-xl">
+                        <p className="text-muted-foreground mb-2">{t('events.baptism.content')}</p>
+                        <p className="text-foreground font-semibold mb-2">{t('events.baptism.nextDate')}</p>
+                        <p className="text-muted-foreground text-sm">{t('events.baptism.contactPastor')}</p>
                       </div>
                     ) : (
                       <div className="mt-4 p-4 bg-muted/50 rounded-xl">

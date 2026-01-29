@@ -36,10 +36,10 @@ export const MinistriesSection = () => {
       leader: { ru: 'Алёна Мюллер', en: 'Aljona Muller', lv: 'Aļona Millere' }
     },
     { 
-      key: 'charity', 
+      key: 'loveAndCare', 
       icon: Heart, 
       color: 'sunset',
-      leader: { ru: 'Кристиана Вятере', en: 'Kristiana Vjatere', lv: 'Kristiāna Vjātere' }
+      leader: { ru: 'Кристиана Вятере', en: 'Kristiāna Vjatere', lv: 'Kristiāna Vjātere' }
     },
     { 
       key: 'choir', 
@@ -66,10 +66,10 @@ export const MinistriesSection = () => {
       leader: { ru: 'Виктория и Йоланта', en: 'Viktorija & Jolanta', lv: 'Viktorija un Jolanta' }
     },
     { 
-      key: 'loveAndCare', 
+      key: 'charity', 
       icon: Sparkles, 
       color: 'sunset',
-      leader: null
+      leader: { ru: 'Кристиана Вятере', en: 'Kristiana Vjatere', lv: 'Kristiāna Vjātere' }
     },
     { 
       key: 'media', 
@@ -109,9 +109,9 @@ export const MinistriesSection = () => {
             return (
               <div 
                 key={ministry.key} 
-                className={`card-warm p-6 border ${colors.border} transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+                className={`card-warm p-6 text-center border ${colors.border} transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
               >
-                <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mb-4`}>
+                <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mx-auto mb-4`}>
                   <Icon className={`w-6 h-6 ${colors.icon}`} />
                 </div>
                 <h3 className="font-display text-lg font-bold text-foreground mb-2">

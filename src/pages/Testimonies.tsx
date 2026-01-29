@@ -3,6 +3,7 @@ import { ChurchHeader } from '@/components/ChurchHeader';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Quote, Heart } from 'lucide-react';
+import galleryCommunity from '@/assets/gallery-community.jpg';
 
 const TestimoniesContent = () => {
   const { t } = useLanguage();
@@ -31,8 +32,24 @@ const TestimoniesContent = () => {
   ];
 
   return (
-    <section className="py-24 bg-cream-dark min-h-screen pt-32">
-      <div className="container mx-auto px-4">
+    <section className="py-24 min-h-screen pt-32 relative overflow-hidden">
+      {/* Background image with opacity */}
+      <div className="absolute inset-0">
+        <img 
+          src={galleryCommunity} 
+          alt="" 
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/90 via-cream-dark/95 to-cream-dark" />
+      </div>
+
+      {/* Soft glowing overlay */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-coral/10 blur-3xl animate-float-slow" />
+        <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-sunset/10 blur-3xl animate-float" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-coral/20 to-sunset/20 mb-6">
             <Heart className="w-7 h-7 text-coral" />
