@@ -1228,7 +1228,13 @@ const translations: Record<Language, Record<string, string>> = {
   },
 };
 
+// Create context outside of component to prevent HMR issues
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+// Prevent context recreation during HMR
+if (import.meta.hot) {
+  import.meta.hot.accept();
+}
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>(() => {
