@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Users, Baby, GraduationCap, UserCheck, UserCircle, Heart } from 'lucide-react';
+import { Users, Baby, GraduationCap, UserCheck, UserCircle, Heart, Droplets, BookOpen, Sun } from 'lucide-react';
 
 export const StatisticsSection = () => {
   const { t } = useLanguage();
@@ -10,6 +10,12 @@ export const StatisticsSection = () => {
     { key: 'youth', value: 30, icon: GraduationCap, color: 'amber' },
     { key: 'adults', value: 70, icon: UserCheck, color: 'terracotta' },
     { key: 'seniors', value: 25, icon: UserCircle, color: 'burnt' },
+  ];
+
+  const activityStats = [
+    { key: 'baptisms', value: 12, icon: Droplets, color: 'sunset', label: 'statistics.baptisms' },
+    { key: 'sundaySchool', value: 35, icon: BookOpen, color: 'coral', label: 'statistics.sundaySchoolPeople' },
+    { key: 'summerCamp', value: 200, icon: Sun, color: 'amber', label: 'statistics.summerCamp' },
   ];
 
   const genderStats = [
@@ -26,7 +32,7 @@ export const StatisticsSection = () => {
   };
 
   return (
-    <section id="statistics" className="py-24 bg-cream-dark">
+    <section id="statistics" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-amber/20 to-coral/20 mb-6">
@@ -55,6 +61,27 @@ export const StatisticsSection = () => {
                 </div>
                 <p className="text-muted-foreground text-sm">
                   {t(`statistics.${stat.key}`)}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Activity Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
+          {activityStats.map((stat) => {
+            const Icon = stat.icon;
+            const colors = colorMap[stat.color];
+            return (
+              <div key={stat.key} className={`card-warm p-6 text-center border ${colors.border}`}>
+                <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mx-auto mb-3`}>
+                  <Icon className={`w-6 h-6 ${colors.icon}`} />
+                </div>
+                <div className={`font-display text-3xl font-bold ${colors.icon} mb-1`}>
+                  {stat.value}
+                </div>
+                <p className="text-muted-foreground text-sm">
+                  {t(stat.label)}
                 </p>
               </div>
             );

@@ -1,11 +1,45 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight } from 'lucide-react';
+import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Link } from 'react-router-dom';
 
 export const EventsSection = () => {
   const { t } = useLanguage();
   const [openSection, setOpenSection] = useState<string | null>('training');
+
+  // Get upcoming Sundays
+  const getUpcomingSundays = () => {
+    const sundays = [];
+    const today = new Date();
+    let nextSunday = new Date(today);
+    nextSunday.setDate(today.getDate() + (7 - today.getDay()) % 7);
+    if (today.getDay() === 0) nextSunday = today;
+    
+    for (let i = 0; i < 4; i++) {
+      const sunday = new Date(nextSunday);
+      sunday.setDate(nextSunday.getDate() + (i * 7));
+      sundays.push(sunday);
+    }
+    return sundays;
+  };
+
+  const upcomingSundays = getUpcomingSundays();
+  
+  // Get this Friday
+  const getThisFriday = () => {
+    const today = new Date();
+    const daysUntilFriday = (5 - today.getDay() + 7) % 7;
+    const friday = new Date(today);
+    friday.setDate(today.getDate() + (daysUntilFriday === 0 ? 7 : daysUntilFriday));
+    return friday;
+  };
+
+  const thisFriday = getThisFriday();
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+  };
 
   const eventCategories = [
     { 
@@ -57,6 +91,50 @@ export const EventsSection = () => {
           </p>
         </div>
 
+        {/* Upcoming Services Calendar */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="card-warm p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <CalendarCheck className="w-6 h-6 text-sunset" />
+              <h3 className="font-display text-xl font-bold text-foreground">
+                {t('events.upcoming')}
+              </h3>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              {/* This Friday Prayer */}
+              <div className="p-4 bg-terracotta/10 rounded-xl text-center border border-terracotta/20">
+                <p className="text-xs text-terracotta font-semibold mb-1">{t('events.prayerMeeting')}</p>
+                <p className="font-display text-lg font-bold text-foreground">{formatDate(thisFriday)}</p>
+                <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
+                  <Clock className="w-3 h-3" /> 18:00
+                </p>
+              </div>
+              
+              {/* Upcoming Sundays */}
+              {upcomingSundays.map((sunday, index) => (
+                <div 
+                  key={index} 
+                  className={`p-4 rounded-xl text-center border ${
+                    index === 0 
+                      ? 'bg-sunset/10 border-sunset/20' 
+                      : 'bg-muted/30 border-border'
+                  }`}
+                >
+                  <p className="text-xs font-semibold mb-1 text-sunset">
+                    {index === 0 && t('events.holyCommunion')}
+                    {index !== 0 && t('church.serviceSunday').split(' ')[0]}
+                  </p>
+                  <p className="font-display text-lg font-bold text-foreground">{formatDate(sunday)}</p>
+                  <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
+                    <Clock className="w-3 h-3" /> 11:00
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div className="max-w-3xl mx-auto space-y-4">
           {eventCategories.map((category) => {
             const Icon = category.icon;
@@ -95,13 +173,13 @@ export const EventsSection = () => {
                     {category.hasLink ? (
                       <div className="mt-4 p-4 bg-muted/50 rounded-xl">
                         <p className="text-muted-foreground mb-4">{t('events.training.content')}</p>
-                        <a
-                          href="/training"
+                        <Link
+                          to="/training"
                           className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
                         >
                           {t('events.training.link')}
                           <ChevronRight className="w-4 h-4" />
-                        </a>
+                        </Link>
                       </div>
                     ) : (
                       <div className="mt-4 p-4 bg-muted/50 rounded-xl">

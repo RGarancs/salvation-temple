@@ -1,14 +1,14 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Target, Compass, Heart, BookOpen } from 'lucide-react';
+import { Target, Compass, Heart, BookOpen, Cross, Users, Sparkles, ArrowRight } from 'lucide-react';
 
 export const AboutSection = () => {
   const { t } = useLanguage();
 
   const values = [
-    { key: 'faith', icon: BookOpen, color: 'sunset' },
-    { key: 'love', icon: Heart, color: 'coral' },
-    { key: 'community', icon: Target, color: 'amber' },
-    { key: 'growth', icon: Compass, color: 'terracotta' },
+    { key: 'christ', icon: Cross, color: 'sunset' },
+    { key: 'bible', icon: BookOpen, color: 'coral' },
+    { key: 'discipleship', icon: Users, color: 'amber' },
+    { key: 'mission', icon: Sparkles, color: 'terracotta' },
   ];
 
   const colorMap: Record<string, { bg: string; icon: string }> = {
@@ -28,13 +28,13 @@ export const AboutSection = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
             {t('about.title')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t('about.subtitle')}
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            {t('about.intro')}
           </p>
         </div>
 
         {/* Vision */}
-        <div className="max-w-4xl mx-auto mb-16">
+        <div className="max-w-4xl mx-auto mb-12">
           <div className="card-warm p-8 text-center">
             <h3 className="font-display text-2xl font-bold text-gradient-warm mb-4">
               {t('about.vision.title')}
@@ -45,19 +45,7 @@ export const AboutSection = () => {
           </div>
         </div>
 
-        {/* Mission */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className="card-warm p-8 text-center">
-            <h3 className="font-display text-2xl font-bold text-gradient-warm mb-4">
-              {t('about.mission.title')}
-            </h3>
-            <p className="text-muted-foreground text-lg leading-relaxed">
-              {t('about.mission.text')}
-            </p>
-          </div>
-        </div>
-
-        {/* Values */}
+        {/* Values - 4 cards with new structure */}
         <div className="max-w-5xl mx-auto">
           <h3 className="font-display text-2xl font-bold text-center text-gradient-earth mb-8">
             {t('about.values.title')}
@@ -67,16 +55,26 @@ export const AboutSection = () => {
               const Icon = value.icon;
               const colors = colorMap[value.color];
               return (
-                <div key={value.key} className="card-warm p-6 text-center">
-                  <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center mx-auto mb-4`}>
+                <div key={value.key} className="card-warm p-6">
+                  <div className={`w-14 h-14 rounded-xl ${colors.bg} flex items-center justify-center mb-4`}>
                     <Icon className={`w-7 h-7 ${colors.icon}`} />
                   </div>
                   <h4 className="font-display text-lg font-bold mb-2 text-foreground">
                     {t(`about.values.${value.key}.title`)}
                   </h4>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-muted-foreground text-sm mb-2">
                     {t(`about.values.${value.key}.desc`)}
                   </p>
+                  <ul className="text-muted-foreground text-xs space-y-1">
+                    <li className="flex items-start gap-1">
+                      <ArrowRight className="w-3 h-3 mt-0.5 text-muted-foreground/50" />
+                      {t(`about.values.${value.key}.sub1`)}
+                    </li>
+                    <li className="flex items-start gap-1">
+                      <ArrowRight className="w-3 h-3 mt-0.5 text-muted-foreground/50" />
+                      {t(`about.values.${value.key}.sub2`)}
+                    </li>
+                  </ul>
                 </div>
               );
             })}

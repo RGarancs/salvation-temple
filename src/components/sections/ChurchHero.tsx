@@ -1,11 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Clock, MapPin, Play, Globe } from 'lucide-react';
-import churchLogo from '@/assets/church-logo.png';
+import galleryChoir from '@/assets/gallery-choir.jpg';
+import galleryService from '@/assets/gallery-service.jpg';
+import galleryPastor from '@/assets/gallery-pastor.jpg';
+import galleryCross from '@/assets/gallery-cross.jpg';
+import galleryWorship from '@/assets/gallery-worship.jpg';
+import galleryKids from '@/assets/gallery-kids.jpg';
 
 export const ChurchHero = () => {
   const { t } = useLanguage();
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const changingTexts = [
@@ -14,10 +20,21 @@ export const ChurchHero = () => {
     t('hero.changing.relationships'),
     t('hero.changing.minds'),
     t('hero.changing.personality'),
+    t('hero.changing.values'),
+    t('hero.changing.eternities'),
+  ];
+
+  const backgroundImages = [
+    galleryChoir,
+    galleryService,
+    galleryPastor,
+    galleryCross,
+    galleryWorship,
+    galleryKids,
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const textInterval = setInterval(() => {
       setIsAnimating(true);
       setTimeout(() => {
         setCurrentTextIndex((prev) => (prev + 1) % changingTexts.length);
@@ -25,12 +42,39 @@ export const ChurchHero = () => {
       }, 500);
     }, 3000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(textInterval);
   }, [changingTexts.length]);
 
+  useEffect(() => {
+    const imageInterval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 5000);
+
+    return () => clearInterval(imageInterval);
+  }, [backgroundImages.length]);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-hero pt-20">
-      {/* Parallax background elements */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Slideshow background images */}
+      {backgroundImages.map((image, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            index === currentImageIndex ? 'opacity-30' : 'opacity-0'
+          }`}
+        >
+          <img
+            src={image}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ))}
+
+      {/* Gradient overlays */}
+      <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+      
+      {/* Parallax decorative elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-sunset/10 blur-3xl animate-float-slow" />
         <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-amber/10 blur-3xl animate-float" />
@@ -39,26 +83,15 @@ export const ChurchHero = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Logo */}
-          <div className="flex justify-center mb-8">
-            <div className="w-28 h-28 rounded-2xl overflow-hidden shadow-xl animate-fade-in">
-              <img 
-                src={churchLogo} 
-                alt={t('church.name')} 
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-
-          {/* Church Name */}
-          <h1 className="font-display text-5xl md:text-7xl font-bold mb-4 text-gradient-earth animate-fade-in-up">
-            {t('church.name')}
+          {/* Come and See Text */}
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-gradient-earth animate-fade-in-up">
+            {t('hero.comeAndSee')}
           </h1>
           
-          {/* Changing Text */}
-          <div className="h-16 flex items-center justify-center mb-6">
+          {/* Changing Text - same large size */}
+          <div className="h-20 md:h-24 flex items-center justify-center mb-8">
             <p 
-              className={`text-2xl md:text-3xl font-display font-bold text-gradient-warm transition-all duration-500 ${
+              className={`text-4xl md:text-6xl lg:text-7xl font-display font-bold text-gradient-warm transition-all duration-500 ${
                 isAnimating ? 'opacity-0 transform -translate-y-4' : 'opacity-100 transform translate-y-0'
               }`}
             >
@@ -84,13 +117,13 @@ export const ChurchHero = () => {
 
           {/* Welcome message */}
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10 text-lg leading-relaxed animate-fade-in">
-            {t('church.welcome')}
+            {t('church.heroWelcome')}
           </p>
 
           {/* CTAs */}
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up">
             <a
-              href="#about"
+              href="#contacts"
               className="inline-flex items-center gap-3 bg-gradient-to-r from-sunset via-coral to-amber text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               {t('church.planVisit')}
