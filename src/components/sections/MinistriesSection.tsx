@@ -66,26 +66,12 @@ export const MinistriesSection = () => {
       leader: { ru: 'Виктория и Йоланта', en: 'Viktorija & Jolanta', lv: 'Viktorija un Jolanta' }
     },
     { 
-      key: 'charity', 
-      icon: Sparkles, 
-      color: 'sunset',
-      leader: { ru: 'Кристиана Вятере', en: 'Kristiana Vjatere', lv: 'Kristiāna Vjātere' }
-    },
-    { 
       key: 'media', 
       icon: Camera, 
       color: 'coral',
       leader: { ru: 'Станислав Исаков', en: 'Stanislav Isakov', lv: 'Staņislavs Isakovs' }
     },
   ];
-
-  const colorMap: Record<string, { bg: string; icon: string; border: string }> = {
-    sunset: { bg: 'bg-sunset/10', icon: 'text-sunset', border: 'border-sunset/20' },
-    coral: { bg: 'bg-coral/10', icon: 'text-coral', border: 'border-coral/20' },
-    amber: { bg: 'bg-amber/10', icon: 'text-amber', border: 'border-amber/20' },
-    terracotta: { bg: 'bg-terracotta/10', icon: 'text-terracotta', border: 'border-terracotta/20' },
-    burnt: { bg: 'bg-burnt/10', icon: 'text-burnt', border: 'border-burnt/20' },
-  };
 
   return (
     <section id="ministries" className="py-24 bg-cream-dark">
@@ -105,28 +91,43 @@ export const MinistriesSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {ministries.map((ministry) => {
             const Icon = ministry.icon;
-            const colors = colorMap[ministry.color];
             return (
               <div 
                 key={ministry.key} 
-                className={`card-warm p-6 text-center border ${colors.border} transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}
+                className="relative overflow-hidden rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
+                }}
               >
-                <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center mx-auto mb-4`}>
-                  <Icon className={`w-6 h-6 ${colors.icon}`} />
-                </div>
-                <h3 className="font-display text-lg font-bold text-foreground mb-2">
-                  {t(`ministries.${ministry.key}.title`)}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-3">
-                  {t(`ministries.${ministry.key}.desc`)}
-                </p>
-                {ministry.leader && (
-                  <div className="pt-3 border-t border-border">
-                    <p className="text-xs text-muted-foreground">
-                      {t('ministries.leader')}: <span className="font-semibold text-foreground">{ministry.leader[language]}</span>
-                    </p>
+                {/* Premium texture overlay */}
+                <div className="absolute inset-0 opacity-20" style={{
+                  backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
+                                    radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
+                                    linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
+                }} />
+                {/* Subtle shine effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" style={{
+                  background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
+                }} />
+                
+                <div className="relative z-10">
+                  <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 border border-white/10">
+                    <Icon className="w-6 h-6 text-sunset-light" />
                   </div>
-                )}
+                  <h3 className="font-display text-lg font-bold text-white/95 mb-2">
+                    {t(`ministries.${ministry.key}.title`)}
+                  </h3>
+                  <p className="text-white/60 text-sm mb-3">
+                    {t(`ministries.${ministry.key}.desc`)}
+                  </p>
+                  {ministry.leader && (
+                    <div className="pt-3 border-t border-white/10">
+                      <p className="text-xs text-white/50">
+                        {t('ministries.leader')}: <span className="font-semibold text-white/80">{ministry.leader[language]}</span>
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
             );
           })}

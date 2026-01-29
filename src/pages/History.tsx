@@ -2,7 +2,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ChurchHeader } from '@/components/ChurchHeader';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { History, Church, BookOpen, Users, Globe, Heart } from 'lucide-react';
+import { History, Church, BookOpen, Users, Globe, Heart, ExternalLink } from 'lucide-react';
 import historyTent from '@/assets/history-tent.png';
 import historyBuilding from '@/assets/history-building.png';
 import historyFetler from '@/assets/history-fetler.png';
@@ -33,7 +33,7 @@ const HistoryContent = () => {
               <div>
                 <img 
                   src={historyFetler} 
-                  alt="Viljams Fetlers" 
+                  alt="Viljams Fetlers (1883-1957)" 
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">
@@ -110,7 +110,7 @@ const HistoryContent = () => {
               <div>
                 <img 
                   src={historyTent} 
-                  alt="Evangelization tent" 
+                  alt={t('history.tent.caption')}
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">
@@ -128,7 +128,7 @@ const HistoryContent = () => {
               <div className="order-2 md:order-1">
                 <img 
                   src={historyTemple} 
-                  alt="Pestīšanas Templis 1927" 
+                  alt={t('history.building.caption')}
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">
@@ -169,7 +169,7 @@ const HistoryContent = () => {
               <div>
                 <img 
                   src={historyBuilding} 
-                  alt="Church interior" 
+                  alt={t('history.interior.caption')}
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">
@@ -181,7 +181,7 @@ const HistoryContent = () => {
         </div>
 
         {/* Legacy */}
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto mb-12">
           <div className="card-warm p-8 text-center">
             <h3 className="font-display text-xl font-bold text-foreground mb-4">
               {t('history.legacy.title')}
@@ -189,6 +189,53 @@ const HistoryContent = () => {
             <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               {t('history.legacy.text')}
             </p>
+          </div>
+        </div>
+
+        {/* Historical Resources Links */}
+        <div className="max-w-5xl mx-auto">
+          <div className="card-warm p-8">
+            <h3 className="font-display text-xl font-bold text-foreground mb-6 text-center">
+              {t('history.resources.title')}
+            </h3>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <a
+                href="https://www.laikmetazimes.ebaznica.lv/2012/10/01/viljams-fetlers-ii-darbs-latvija-un-muza-pedejie-gadi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-xl bg-muted/50 hover:bg-sunset/10 transition-colors group"
+              >
+                <ExternalLink className="w-5 h-5 text-sunset group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium text-foreground">{t('history.resources.fetlerArticle')}</span>
+              </a>
+              <a
+                href="https://bible.lv/lbc-ekas-vesture/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-xl bg-muted/50 hover:bg-sunset/10 transition-colors group"
+              >
+                <ExternalLink className="w-5 h-5 text-coral group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium text-foreground">{t('history.resources.lbcHistory')}</span>
+              </a>
+              <a
+                href="https://enciklopedija.lv/skirklis/22208-baptistu-baznīca-Latvijā"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-xl bg-muted/50 hover:bg-sunset/10 transition-colors group"
+              >
+                <ExternalLink className="w-5 h-5 text-amber group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium text-foreground">{t('history.resources.encyclopedia')}</span>
+              </a>
+              <a
+                href="https://zudusilatvija.lv/objects/object/31132/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-xl bg-muted/50 hover:bg-sunset/10 transition-colors group"
+              >
+                <ExternalLink className="w-5 h-5 text-terracotta group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium text-foreground">{t('history.resources.lostLatvia')}</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

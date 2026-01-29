@@ -1,7 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Target, Compass, Heart, BookOpen, Cross, Users, Sparkles, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import historyTemple from '@/assets/history-temple-1927.png';
+import historyBuilding from '@/assets/history-building.png';
 
 export const AboutSection = () => {
   const { t } = useLanguage();
@@ -22,20 +22,21 @@ export const AboutSection = () => {
 
   return (
     <section id="about" className="py-24 relative overflow-hidden">
-      {/* Background image with 50% opacity */}
+      {/* Background image of church building with 50% opacity */}
       <div className="absolute inset-0">
         <img 
-          src={historyTemple} 
+          src={historyBuilding} 
           alt="" 
-          className="w-full h-full object-cover opacity-[0.15]"
+          className="w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/90 via-cream-dark/95 to-cream-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/85 via-cream-dark/90 to-cream-dark" />
       </div>
       
-      {/* Soft glowing overlay */}
+      {/* Soft glowing overlay - same effect as hero */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-sunset/10 blur-3xl animate-float-slow" />
-        <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-amber/10 blur-3xl animate-float" />
+        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-sunset/15 blur-3xl animate-float-slow" />
+        <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-amber/15 blur-3xl animate-float" />
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-coral/10 blur-2xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
