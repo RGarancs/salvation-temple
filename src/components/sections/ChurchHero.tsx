@@ -63,12 +63,12 @@ export const ChurchHero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Ken Burns slideshow background images - 17% opacity (reduced by 30% from 25%) */}
+      {/* Ken Burns slideshow background images - full opacity for visibility */}
       {backgroundImages.map((image, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-2000 ${
-            index === currentImageIndex ? 'opacity-[0.17]' : 'opacity-0'
+            index === currentImageIndex ? 'opacity-100' : 'opacity-0'
           }`}
         >
           <img
@@ -84,11 +84,11 @@ export const ChurchHero = () => {
         </div>
       ))}
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+      {/* Gradient overlays - increased for foreground transparency */}
+      <div className="absolute inset-0 bg-gradient-hero opacity-90" />
       
-      {/* Soft glowing overlay effect */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Soft glowing overlay effect - 50% more transparent */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-50">
         <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-sunset/15 blur-3xl animate-float-slow" />
         <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-amber/15 blur-3xl animate-float" />
         <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-coral/10 blur-2xl" />

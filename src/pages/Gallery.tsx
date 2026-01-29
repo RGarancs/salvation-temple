@@ -84,10 +84,10 @@ const GalleryContent = () => {
             <Images className="w-7 h-7 text-coral" />
           </div>
           <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
-            {t('gallery.pageTitle')}
+            {t('gallery.title')}
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            {t('gallery.pageSubtitle')}
+            {t('gallery.subtitle')}
           </p>
         </div>
 
