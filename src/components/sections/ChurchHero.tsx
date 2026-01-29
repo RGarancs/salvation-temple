@@ -7,12 +7,17 @@ import galleryPastor from '@/assets/gallery-pastor.jpg';
 import galleryCross from '@/assets/gallery-cross.jpg';
 import galleryWorship from '@/assets/gallery-worship.jpg';
 import galleryKids from '@/assets/gallery-kids.jpg';
+import galleryStage from '@/assets/gallery-stage.jpg';
+import galleryWorshipBand from '@/assets/gallery-worship-band.jpg';
+import galleryCommunity from '@/assets/gallery-community.jpg';
+import galleryMembers from '@/assets/gallery-members.jpg';
 
 export const ChurchHero = () => {
   const { t } = useLanguage();
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [imagePosition, setImagePosition] = useState(0);
 
   const changingTexts = [
     t('hero.changing.hearts'),
@@ -31,6 +36,10 @@ export const ChurchHero = () => {
     galleryCross,
     galleryWorship,
     galleryKids,
+    galleryStage,
+    galleryWorshipBand,
+    galleryCommunity,
+    galleryMembers,
   ];
 
   useEffect(() => {
@@ -53,26 +62,37 @@ export const ChurchHero = () => {
     return () => clearInterval(imageInterval);
   }, [backgroundImages.length]);
 
+  // Slow pan effect for images
+  useEffect(() => {
+    const panInterval = setInterval(() => {
+      setImagePosition((prev) => (prev + 1) % 100);
+    }, 100);
+    return () => clearInterval(panInterval);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Slideshow background images */}
+      {/* Slideshow background images - 50% opacity for more visibility */}
       {backgroundImages.map((image, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentImageIndex ? 'opacity-30' : 'opacity-0'
+            index === currentImageIndex ? 'opacity-50' : 'opacity-0'
           }`}
         >
           <img
             src={image}
             alt=""
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-[10000ms] ease-linear"
+            style={{
+              transform: `scale(1.1) translateX(${Math.sin(imagePosition * 0.02) * 3}%) translateY(${Math.cos(imagePosition * 0.02) * 2}%)`,
+            }}
           />
         </div>
       ))}
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+      <div className="absolute inset-0 bg-gradient-hero opacity-70" />
       
       {/* Parallax decorative elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
