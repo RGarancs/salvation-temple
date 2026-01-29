@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import churchLogo from '@/assets/church-logo.png';
 
 export const ChurchHeader = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -84,7 +84,9 @@ export const ChurchHeader = () => {
           <LanguageSwitcher />
           <a
             href="/#contacts"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+            className={`inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 ${
+              language === 'ru' ? 'text-xs' : 'text-sm'
+            }`}
           >
             {t('church.planVisit')}
           </a>

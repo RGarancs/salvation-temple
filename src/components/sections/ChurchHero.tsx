@@ -63,12 +63,12 @@ export const ChurchHero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Ken Burns slideshow background images - 25% opacity (reduced by 50%) */}
+      {/* Ken Burns slideshow background images - 17% opacity (reduced by 30% from 25%) */}
       {backgroundImages.map((image, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-2000 ${
-            index === currentImageIndex ? 'opacity-25' : 'opacity-0'
+            index === currentImageIndex ? 'opacity-[0.17]' : 'opacity-0'
           }`}
         >
           <img

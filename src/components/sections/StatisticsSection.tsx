@@ -1,6 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Users, Droplets, BookOpen, Sun, Home, Backpack, Heart } from 'lucide-react';
-import galleryService from '@/assets/gallery-service.jpg';
+import galleryCongregation from '@/assets/gallery-congregation.jpg';
 
 export const StatisticsSection = () => {
   const { t } = useLanguage();
@@ -26,7 +26,7 @@ export const StatisticsSection = () => {
       {/* Background image with 25% opacity (75% transparent) */}
       <div className="absolute inset-0">
         <img 
-          src={galleryService} 
+          src={galleryCongregation} 
           alt="" 
           className="w-full h-full object-cover opacity-[0.25]"
         />

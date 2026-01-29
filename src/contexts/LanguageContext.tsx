@@ -118,6 +118,11 @@ const translations: Record<Language, Record<string, string>> = {
     'history.evangelization.label': 'Евангелизация',
     'history.legacy.title': 'Наследие Веры',
     'history.legacy.text': 'Сегодня Храм Спасения продолжает миссию, начатую почти 100 лет назад — прославлять Бога и взращивать учеников Христа. Мы храним богатое духовное наследие и с верой смотрим в будущее.',
+    'history.resources.title': 'Исторические источники',
+    'history.resources.fetlerArticle': 'Статья о Вильямсе Фетлере',
+    'history.resources.lbcHistory': 'История ЛБЦ',
+    'history.resources.encyclopedia': 'Энциклопедия: Баптисты в Латвии',
+    'history.resources.lostLatvia': 'Утраченная Латвия: Храм Спасения',
 
     // Testimonies
     'testimonies.title': 'Свидетельства',
@@ -523,6 +528,11 @@ const translations: Record<Language, Record<string, string>> = {
     'history.evangelization.label': 'Evangelization',
     'history.legacy.title': 'Legacy of Faith',
     'history.legacy.text': 'Today, Salvation Temple continues the mission begun almost 100 years ago — to glorify God and nurture disciples of Christ. We preserve a rich spiritual heritage and look to the future with faith.',
+    'history.resources.title': 'Historical Resources',
+    'history.resources.fetlerArticle': 'Article about Viljams Fetlers',
+    'history.resources.lbcHistory': 'LBC History',
+    'history.resources.encyclopedia': 'Encyclopedia: Baptists in Latvia',
+    'history.resources.lostLatvia': 'Lost Latvia: Salvation Temple',
 
     // Testimonies
     'testimonies.title': 'Testimonies',
@@ -970,6 +980,11 @@ const translations: Record<Language, Record<string, string>> = {
     'history.evangelization.label': 'Evaņģelizācija',
     'history.legacy.title': 'Ticības Mantojums',
     'history.legacy.text': 'Šodien Pestīšanas Templis turpina misiju, kas aizsākta gandrīz pirms 100 gadiem — slavēt Dievu un audzināt Kristus mācekļus. Mēs glabājam bagātu garīgo mantojumu un ar ticību raugāmies nākotnē.',
+    'history.resources.title': 'Vēsturiskie Resursi',
+    'history.resources.fetlerArticle': 'Raksts par Viljamu Fetleru',
+    'history.resources.lbcHistory': 'LBC Vēsture',
+    'history.resources.encyclopedia': 'Enciklopēdija: Baptisti Latvijā',
+    'history.resources.lostLatvia': 'Zudusī Latvija: Pestīšanas Templis',
 
     // Testimonies Section
     'testimonies.title': 'Liecības',
