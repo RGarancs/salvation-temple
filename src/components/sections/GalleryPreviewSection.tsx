@@ -7,6 +7,8 @@ import galleryService from '@/assets/gallery-service.jpg';
 import galleryCross from '@/assets/gallery-cross.jpg';
 import galleryWorship from '@/assets/gallery-worship.jpg';
 import galleryBaptism from '@/assets/gallery-baptism.jpg';
+import galleryStage from '@/assets/gallery-stage.jpg';
+import galleryCommunity from '@/assets/gallery-community.jpg';
 
 export const GalleryPreviewSection = () => {
   const { t } = useLanguage();
@@ -18,6 +20,8 @@ export const GalleryPreviewSection = () => {
     { src: galleryCross, alt: 'Cross in sanctuary' },
     { src: galleryWorship, alt: 'Worship' },
     { src: galleryBaptism, alt: 'Baptism' },
+    { src: galleryStage, alt: 'Stage' },
+    { src: galleryCommunity, alt: 'Community' },
   ];
 
   return (
@@ -35,7 +39,7 @@ export const GalleryPreviewSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
           {images.map((image, index) => (
             <div
               key={index}
@@ -49,7 +53,7 @@ export const GalleryPreviewSection = () => {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 style={{ 
                   aspectRatio: index === 0 ? '1/1' : '4/3',
-                  minHeight: index === 0 ? '400px' : '200px'
+                  minHeight: index === 0 ? '400px' : '180px'
                 }}
               />
             </div>
