@@ -16,7 +16,8 @@ export const ChurchHero = () => {
   const { t } = useLanguage();
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
 
   // Only the changing words (not the full "Changed X" text)
   const changingWords = [
@@ -42,17 +43,31 @@ export const ChurchHero = () => {
     galleryMembers,
   ];
 
+  // Typing animation effect
   useEffect(() => {
-    const textInterval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentTextIndex((prev) => (prev + 1) % changingWords.length);
-        setIsAnimating(false);
-      }, 500);
-    }, 3000);
+    const currentWord = changingWords[currentTextIndex];
+    let charIndex = 0;
+    setIsTyping(true);
+    setDisplayedText('');
 
-    return () => clearInterval(textInterval);
-  }, [changingWords.length]);
+    // Type out the word
+    const typeInterval = setInterval(() => {
+      if (charIndex <= currentWord.length) {
+        setDisplayedText(currentWord.slice(0, charIndex));
+        charIndex++;
+      } else {
+        clearInterval(typeInterval);
+        setIsTyping(false);
+        
+        // Wait before moving to next word
+        setTimeout(() => {
+          setCurrentTextIndex((prev) => (prev + 1) % changingWords.length);
+        }, 2000);
+      }
+    }, 100);
+
+    return () => clearInterval(typeInterval);
+  }, [currentTextIndex, changingWords.length]);
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -102,16 +117,13 @@ export const ChurchHero = () => {
             {t('hero.comeAndSee')}
           </h1>
           
-          {/* Changed + Changing Word - "Changed" stays, only word changes */}
-          <div className="h-24 md:h-32 lg:h-40 flex items-center justify-center mb-8">
-            <p className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-gradient-warm">
+          {/* Changed + Typing Word - "Changed" stays, word types out */}
+          <div className="flex items-center justify-center mb-8">
+            <p className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-gradient-warm whitespace-nowrap">
               <span>{t('hero.changed')}</span>{' '}
-              <span 
-                className={`inline-block transition-all duration-500 ${
-                  isAnimating ? 'opacity-0 transform -translate-y-4' : 'opacity-100 transform translate-y-0'
-                }`}
-              >
-                {changingWords[currentTextIndex]}
+              <span className="inline-block min-w-[200px] md:min-w-[280px] lg:min-w-[350px] text-left">
+                {displayedText}
+                <span className={`inline-block w-[3px] h-[0.9em] bg-sunset ml-1 ${isTyping ? 'animate-pulse' : 'opacity-0'}`} />
               </span>
             </p>
           </div>
