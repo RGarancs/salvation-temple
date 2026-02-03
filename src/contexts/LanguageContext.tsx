@@ -748,6 +748,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contacts.parking': 'Parking available near the church',
     'contacts.parkingAvailable': 'Parking available on church grounds',
     'contacts.socialMedia': 'Social Media',
+    'contacts.followUs': 'Follow us and stay updated on all events',
     'contacts.youthAccounts': 'Youth accounts',
 
     // Donations Section
