@@ -15,6 +15,7 @@ export const StatisticsSection = () => {
     { key: 'summerCampsHistory', value: '+5000', icon: Sun, label: 'statistics.history.summerCamps' },
     { key: 'familiesHistory', value: '+500', icon: Home, label: 'statistics.history.families' },
     { key: 'childrenHistory', value: '+400', icon: Gift, label: 'statistics.history.children' },
+    { key: 'childrenGiftsHistory', value: '+4000', icon: Gift, label: 'statistics.history.childrenGifts' },
   ];
 
   // Current year activity stats - updated numbers
