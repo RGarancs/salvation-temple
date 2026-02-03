@@ -38,15 +38,15 @@ export const ContactsSection = () => {
   );
 
   return (
-    <section id="contacts" className="py-24 relative overflow-hidden">
+    <section id="contacts" className="py-24 relative overflow-hidden bg-gradient-to-b from-[hsl(350_30%_8%)] via-[hsl(350_35%_6%)] to-[hsl(350_30%_5%)]">
       {/* Background image with opacity */}
       <div className="absolute inset-0">
         <img 
           src={galleryCommunity} 
           alt="" 
-          className="w-full h-full object-cover opacity-[0.15]"
+          className="w-full h-full object-cover opacity-[0.08]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/90 via-cream-dark/95 to-cream-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(350_30%_8%)/90] via-[hsl(350_35%_6%)/95] to-[hsl(350_30%_5%)]" />
       </div>
 
       {/* Soft glowing overlay */}
