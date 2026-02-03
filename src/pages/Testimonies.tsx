@@ -81,16 +81,12 @@ const TestimoniesContent = () => {
             <div 
               key={testimony.key} 
               className="relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 group border border-white/5"
-              style={warmCardStyle}
+              style={bordeauxCardStyle}
             >
-              {warmTextureOverlay}
+              {bordeauxTextureOverlay}
               {/* Animated shine effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 rounded-2xl" style={{
-                background: 'linear-gradient(135deg, transparent 0%, hsl(32 90% 65%) 50%, transparent 100%)',
-              }} />
-              {/* Subtle inner glow */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
-                boxShadow: 'inset 0 0 40px hsl(32 50% 30% / 0.2)',
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
+                background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
               }} />
               <div className="relative z-10 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">

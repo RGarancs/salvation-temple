@@ -211,15 +211,16 @@ export const ContactsSection = () => {
               </div>
             </div>
 
-            {/* Social Media - Dark Bordeaux */}
+            {/* Social Media - Dark Bordeaux - expanded to match parking height */}
             <div 
-              className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
+              className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group flex flex-col"
               style={bordeauxCardStyle}
             >
               {bordeauxTextureOverlay}
-              <div className="relative z-10">
+              <div className="relative z-10 flex-1 flex flex-col">
                 <h3 className="font-display font-bold text-white/95 mb-4">{t('contacts.socialMedia')}</h3>
-                <div className="flex flex-wrap gap-3">
+                <p className="text-white/60 text-sm mb-6">{t('contacts.followUs')}</p>
+                <div className="flex flex-wrap gap-3 mt-auto">
                   <a
                     href="https://www.facebook.com/SalvationTempleLV/"
                     target="_blank"
