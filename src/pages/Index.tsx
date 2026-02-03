@@ -16,9 +16,9 @@ const Index = () => {
       <div className="min-h-screen bg-background font-body">
         <ChurchHeader />
         <ChurchHero />
+        <EventsSection />
         <AboutSection />
         <StatisticsSection />
-        <EventsSection />
         <MinistriesSection />
         <GalleryPreviewSection />
         <TestimoniesPreviewSection />
