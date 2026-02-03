@@ -151,7 +151,7 @@ export const StatisticsSection = () => {
         </div>
 
         {/* Activity Stats Grid - Dark Bordeaux with hover */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto mb-16">
           {activityStats.map((stat) => {
             const Icon = stat.icon;
             const isHovered = hoveredStat === stat.key;
