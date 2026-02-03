@@ -45,21 +45,22 @@ const TestimoniesContent = () => {
   );
 
   return (
-    <section className="py-24 min-h-screen pt-32 relative overflow-hidden">
+    <section className="py-24 min-h-screen pt-32 relative overflow-hidden bg-gradient-to-b from-chocolate-dark via-chocolate to-chocolate-dark">
       {/* Background image with opacity */}
       <div className="absolute inset-0">
         <img 
           src={galleryCommunity} 
           alt="" 
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-15"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/90 via-cream-dark/95 to-cream-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-chocolate-dark/90 via-chocolate/80 to-chocolate-dark" />
       </div>
 
       {/* Soft glowing overlay */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-coral/10 blur-3xl animate-float-slow" />
+        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-amber/15 blur-3xl animate-float-slow" />
         <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-sunset/10 blur-3xl animate-float" />
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-terracotta/10 blur-3xl animate-float" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
