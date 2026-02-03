@@ -54,6 +54,13 @@ export const StatisticsSection = () => {
       label: 'statistics.childrenGifts',
       hoverInfo: 'statistics.childrenGifts.hover'
     },
+    { 
+      key: 'familiesHelped', 
+      value: 75, 
+      icon: Home, 
+      label: 'statistics.familiesHelped',
+      hoverInfo: 'statistics.familiesHelped.hover'
+    },
   ];
 
   // Dark bordeaux card style
