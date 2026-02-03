@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Users, Droplets, BookOpen, Sun, Home, Backpack, Heart, History, ArrowRight, Info } from 'lucide-react';
+import { Users, Droplets, BookOpen, Sun, Home, Gift, Heart, History, ArrowRight, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import galleryCongregation from '@/assets/gallery-congregation.jpg';
 
@@ -8,15 +8,16 @@ export const StatisticsSection = () => {
   const { t } = useLanguage();
   const [hoveredStat, setHoveredStat] = useState<string | null>(null);
 
-  // Historical statistics
+  // Historical statistics - moved to the end
   const historicalStats = [
     { key: 'baptismsHistory', value: '+350', icon: Droplets, label: 'statistics.history.baptisms' },
     { key: 'sundaySchoolHistory', value: '+700', icon: BookOpen, label: 'statistics.history.sundaySchool' },
     { key: 'summerCampsHistory', value: '+5000', icon: Sun, label: 'statistics.history.summerCamps' },
     { key: 'familiesHistory', value: '+500', icon: Home, label: 'statistics.history.families' },
-    { key: 'childrenHistory', value: '+400', icon: Backpack, label: 'statistics.history.children' },
+    { key: 'childrenHistory', value: '+400', icon: Gift, label: 'statistics.history.children' },
   ];
 
+  // Current year activity stats - updated numbers
   const activityStats = [
     { 
       key: 'baptisms', 
@@ -29,7 +30,7 @@ export const StatisticsSection = () => {
     },
     { 
       key: 'sundaySchool', 
-      value: 35, 
+      value: 80, 
       icon: BookOpen, 
       label: 'statistics.sundaySchoolPeople',
       hoverInfo: 'statistics.sundaySchool.hover',
@@ -38,7 +39,7 @@ export const StatisticsSection = () => {
     },
     { 
       key: 'summerCamp', 
-      value: 200, 
+      value: 90, 
       icon: Sun, 
       label: 'statistics.summerCamp',
       hoverInfo: 'statistics.summerCamp.hover',
@@ -46,18 +47,11 @@ export const StatisticsSection = () => {
       linkText: 'statistics.summerCamp.learnMore'
     },
     { 
-      key: 'familiesHelped', 
-      value: 150, 
-      icon: Home, 
-      label: 'statistics.familiesHelped',
-      hoverInfo: 'statistics.familiesHelped.hover'
-    },
-    { 
-      key: 'childrenSchool', 
-      value: 80, 
-      icon: Backpack, 
-      label: 'statistics.childrenSchool',
-      hoverInfo: 'statistics.childrenSchool.hover'
+      key: 'childrenGifts', 
+      value: 800, 
+      icon: Gift, 
+      label: 'statistics.childrenGifts',
+      hoverInfo: 'statistics.childrenGifts.hover'
     },
   ];
 
@@ -105,51 +99,17 @@ export const StatisticsSection = () => {
           </p>
         </div>
 
-        {/* Historical Statistics - 5 icons */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <div className="flex items-center justify-center gap-2 mb-8">
-            <History className="w-5 h-5 text-sunset" />
-            <h3 className="font-display text-xl font-bold text-gradient-warm">
-              {t('statistics.history.title')}
-            </h3>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {historicalStats.map((stat) => {
-              const Icon = stat.icon;
-              return (
-                <div 
-                  key={stat.key} 
-                  className="relative overflow-hidden rounded-2xl p-4 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
-                  style={bordeauxCardStyle}
-                >
-                  {bordeauxTextureOverlay}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
-                    background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-                  }} />
-                  <div className="relative z-10">
-                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-2 border border-white/10">
-                      <Icon className="w-5 h-5 text-sunset-light" />
-                    </div>
-                    <div className="font-display text-2xl font-bold text-sunset-light mb-1">
-                      {stat.value}
-                    </div>
-                    <p className="text-white/60 text-xs">
-                      {t(stat.label)}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
         {/* Main Community Stat - Circle Shape */}
         <div className="max-w-md mx-auto mb-12">
           <div 
             className="relative overflow-hidden rounded-full aspect-square max-w-[280px] mx-auto flex items-center justify-center transition-all duration-300 hover:shadow-xl group"
             style={bordeauxCardStyle}
           >
-            {bordeauxTextureOverlay}
+            {/* Circular texture overlay */}
+            <div className="absolute inset-0 opacity-20 rounded-full" style={{
+              backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
+                                radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%)`,
+            }} />
             <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-full" style={{
               background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
             }} />
@@ -175,8 +135,15 @@ export const StatisticsSection = () => {
           </div>
         </div>
 
+        {/* Past Year Label */}
+        <div className="text-center mb-8">
+          <h3 className="font-display text-xl font-bold text-gradient-warm">
+            {t('statistics.pastYear.title')}
+          </h3>
+        </div>
+
         {/* Activity Stats Grid - Dark Bordeaux with hover */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
           {activityStats.map((stat) => {
             const Icon = stat.icon;
             const isHovered = hoveredStat === stat.key;
@@ -225,6 +192,44 @@ export const StatisticsSection = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Historical Statistics - moved to the end */}
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-center justify-center gap-2 mb-8">
+            <History className="w-5 h-5 text-sunset" />
+            <h3 className="font-display text-xl font-bold text-gradient-warm">
+              {t('statistics.history.title')}
+            </h3>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {historicalStats.map((stat) => {
+              const Icon = stat.icon;
+              return (
+                <div 
+                  key={stat.key} 
+                  className="relative overflow-hidden rounded-2xl p-4 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+                  style={bordeauxCardStyle}
+                >
+                  {bordeauxTextureOverlay}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
+                    background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
+                  }} />
+                  <div className="relative z-10">
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-2 border border-white/10">
+                      <Icon className="w-5 h-5 text-sunset-light" />
+                    </div>
+                    <div className="font-display text-2xl font-bold text-sunset-light mb-1">
+                      {stat.value}
+                    </div>
+                    <p className="text-white/60 text-xs">
+                      {t(stat.label)}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

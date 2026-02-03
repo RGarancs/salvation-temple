@@ -18,14 +18,15 @@ export const ChurchHero = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const changingTexts = [
-    t('hero.changing.hearts'),
-    t('hero.changing.lives'),
-    t('hero.changing.relationships'),
-    t('hero.changing.minds'),
-    t('hero.changing.personality'),
-    t('hero.changing.values'),
-    t('hero.changing.eternities'),
+  // Only the changing words (not the full "Changed X" text)
+  const changingWords = [
+    t('hero.word.hearts'),
+    t('hero.word.lives'),
+    t('hero.word.relationships'),
+    t('hero.word.minds'),
+    t('hero.word.personality'),
+    t('hero.word.values'),
+    t('hero.word.eternities'),
   ];
 
   const backgroundImages = [
@@ -45,13 +46,13 @@ export const ChurchHero = () => {
     const textInterval = setInterval(() => {
       setIsAnimating(true);
       setTimeout(() => {
-        setCurrentTextIndex((prev) => (prev + 1) % changingTexts.length);
+        setCurrentTextIndex((prev) => (prev + 1) % changingWords.length);
         setIsAnimating(false);
       }, 500);
     }, 3000);
 
     return () => clearInterval(textInterval);
-  }, [changingTexts.length]);
+  }, [changingWords.length]);
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -87,8 +88,8 @@ export const ChurchHero = () => {
       {/* Gradient overlays - increased for foreground transparency */}
       <div className="absolute inset-0 bg-gradient-hero opacity-90" />
       
-      {/* Soft glowing overlay effect - 50% more transparent */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-50">
+      {/* Soft glowing overlay effect - 75% more transparent (from 50% to 25%) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-25">
         <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-sunset/15 blur-3xl animate-float-slow" />
         <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-amber/15 blur-3xl animate-float" />
         <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-coral/10 blur-2xl" />
@@ -101,14 +102,17 @@ export const ChurchHero = () => {
             {t('hero.comeAndSee')}
           </h1>
           
-          {/* Changing Text - increased by 100% (doubled) */}
+          {/* Changed + Changing Word - "Changed" stays, only word changes */}
           <div className="h-24 md:h-32 lg:h-40 flex items-center justify-center mb-8">
-            <p 
-              className={`text-5xl md:text-7xl lg:text-8xl font-display font-bold text-gradient-warm transition-all duration-500 ${
-                isAnimating ? 'opacity-0 transform -translate-y-4' : 'opacity-100 transform translate-y-0'
-              }`}
-            >
-              {changingTexts[currentTextIndex]}
+            <p className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-gradient-warm">
+              <span>{t('hero.changed')}</span>{' '}
+              <span 
+                className={`inline-block transition-all duration-500 ${
+                  isAnimating ? 'opacity-0 transform -translate-y-4' : 'opacity-100 transform translate-y-0'
+                }`}
+              >
+                {changingWords[currentTextIndex]}
+              </span>
             </p>
           </div>
 
