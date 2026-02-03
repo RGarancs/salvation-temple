@@ -87,8 +87,7 @@ const translations: Record<Language, Record<string, string>> = {
     'statistics.history.sundaySchool': 'Детей в воскресной школе',
     'statistics.history.summerCamps': 'Участников летних лагерей',
     'statistics.history.families': 'Семей получили помощь',
-    'statistics.history.children': 'Детей подготовлено к школе',
-    'statistics.history.childrenGifts': 'Детей получили подарки',
+    'statistics.history.childrenCare': 'Детей получили заботу и внимание',
     'statistics.baptisms': 'Крещений',
     'statistics.baptisms.hover': 'В прошлом году 12 человек приняли водное крещение. Следующее крещение состоится 9 мая 2026 года. Свяжитесь с пастором, если хотите подготовиться к крещению.',
     'statistics.baptisms.learnMore': 'Узнать о крещении',
@@ -240,6 +239,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contacts.parkingAvailable': 'Парковка доступна на территории церкви',
     'contacts.prayerFriday': 'Молитва: Пятница 18:00',
     'contacts.socialMedia': 'Социальные сети',
+    'contacts.followUs': 'Следите за нами и будьте в курсе всех событий',
 
     // Donations
     'donations.title': 'Пожертвования',
@@ -567,8 +567,7 @@ const translations: Record<Language, Record<string, string>> = {
     'statistics.history.sundaySchool': 'Children in Sunday School',
     'statistics.history.summerCamps': 'Summer camp participants',
     'statistics.history.families': 'Families helped',
-    'statistics.history.children': 'Children prepared for school',
-    'statistics.history.childrenGifts': 'Children received gifts',
+    'statistics.history.childrenCare': 'Children received care and attention',
     'statistics.baptisms': 'Baptisms',
     'statistics.baptisms.hover': 'Last year 12 people were baptized. The next baptism will be on May 9, 2026. Contact the pastor if you want to prepare for baptism.',
     'statistics.baptisms.learnMore': 'Learn about baptism',
@@ -749,6 +748,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contacts.parking': 'Parking available near the church',
     'contacts.parkingAvailable': 'Parking available on church grounds',
     'contacts.socialMedia': 'Social Media',
+    'contacts.followUs': 'Follow us and stay updated on all events',
     'contacts.youthAccounts': 'Youth accounts',
 
     // Donations Section
@@ -1078,8 +1078,7 @@ const translations: Record<Language, Record<string, string>> = {
     'statistics.history.sundaySchool': 'Bērni svētdienas skolā',
     'statistics.history.summerCamps': 'Vasaras nometņu dalībnieki',
     'statistics.history.families': 'Ģimenes saņēma palīdzību',
-    'statistics.history.children': 'Bērni sagatavoti skolai',
-    'statistics.history.childrenGifts': 'Bērni saņēma dāvanas',
+    'statistics.history.childrenCare': 'Bērni saņēma rūpes un uzmanību',
     'statistics.baptisms': 'Kristības',
     'statistics.baptisms.hover': 'Pagājušajā gadā 12 cilvēki tika kristīti. Nākamā kristība notiks 2026. gada 9. maijā. Sazinieties ar mācītāju, ja vēlaties sagatavoties kristībām.',
     'statistics.baptisms.learnMore': 'Uzzināt par kristībām',
@@ -1230,6 +1229,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contacts.parking': 'Autostāvvieta pieejama netālu no draudzes',
     'contacts.parkingAvailable': 'Autostāvvieta pieejama draudzes teritorijā',
     'contacts.socialMedia': 'Sociālie tīkli',
+    'contacts.followUs': 'Sekojiet mums un esiet informēti par visiem pasākumiem',
     'contacts.youthAccounts': 'Jauniešu konti',
 
     // Donations Section

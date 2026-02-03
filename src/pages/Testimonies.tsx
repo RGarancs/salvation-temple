@@ -31,16 +31,16 @@ const TestimoniesContent = () => {
     },
   ];
 
-  // Warm amber/sunset card style - unified with rest of site
-  const warmCardStyle = {
-    background: 'linear-gradient(135deg, hsl(25 45% 12%) 0%, hsl(20 50% 8%) 100%)',
+  // Dark bordeaux card style - unified with rest of site
+  const bordeauxCardStyle = {
+    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
   };
 
-  const warmTextureOverlay = (
-    <div className="absolute inset-0 opacity-25 rounded-2xl" style={{
-      backgroundImage: `radial-gradient(circle at 30% 70%, hsl(32 60% 20%) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 30%, hsl(15 50% 18%) 0%, transparent 50%),
-                        linear-gradient(135deg, transparent 0%, hsl(25 40% 15% / 0.6) 100%)`,
+  const bordeauxTextureOverlay = (
+    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
+      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
+                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
     }} />
   );
 
@@ -81,16 +81,12 @@ const TestimoniesContent = () => {
             <div 
               key={testimony.key} 
               className="relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 group border border-white/5"
-              style={warmCardStyle}
+              style={bordeauxCardStyle}
             >
-              {warmTextureOverlay}
+              {bordeauxTextureOverlay}
               {/* Animated shine effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 rounded-2xl" style={{
-                background: 'linear-gradient(135deg, transparent 0%, hsl(32 90% 65%) 50%, transparent 100%)',
-              }} />
-              {/* Subtle inner glow */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
-                boxShadow: 'inset 0 0 40px hsl(32 50% 30% / 0.2)',
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
+                background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
               }} />
               <div className="relative z-10 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
