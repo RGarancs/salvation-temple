@@ -209,7 +209,7 @@ export const StatisticsSection = () => {
               {t('statistics.history.title')}
             </h3>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {historicalStats.map((stat) => {
               const Icon = stat.icon;
               return (
