@@ -14,8 +14,7 @@ export const StatisticsSection = () => {
     { key: 'sundaySchoolHistory', value: '+700', icon: BookOpen, label: 'statistics.history.sundaySchool' },
     { key: 'summerCampsHistory', value: '+5000', icon: Sun, label: 'statistics.history.summerCamps' },
     { key: 'familiesHistory', value: '+500', icon: Home, label: 'statistics.history.families' },
-    { key: 'childrenHistory', value: '+400', icon: Gift, label: 'statistics.history.children' },
-    { key: 'childrenGiftsHistory', value: '+4000', icon: Gift, label: 'statistics.history.childrenGifts' },
+    { key: 'childrenCareHistory', value: '+4000', icon: Heart, label: 'statistics.history.childrenCare' },
   ];
 
   // Current year activity stats - updated numbers
