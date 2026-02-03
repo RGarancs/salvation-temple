@@ -239,6 +239,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contacts.parkingAvailable': 'Парковка доступна на территории церкви',
     'contacts.prayerFriday': 'Молитва: Пятница 18:00',
     'contacts.socialMedia': 'Социальные сети',
+    'contacts.followUs': 'Следите за нами и будьте в курсе всех событий',
 
     // Donations
     'donations.title': 'Пожертвования',
