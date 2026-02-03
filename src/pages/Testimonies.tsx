@@ -31,35 +31,36 @@ const TestimoniesContent = () => {
     },
   ];
 
-  // Dark bordeaux card style
-  const bordeauxCardStyle = {
-    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
+  // Warm amber/sunset card style - unified with rest of site
+  const warmCardStyle = {
+    background: 'linear-gradient(135deg, hsl(25 45% 12%) 0%, hsl(20 50% 8%) 100%)',
   };
 
-  const bordeauxTextureOverlay = (
-    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
-      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
-                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
+  const warmTextureOverlay = (
+    <div className="absolute inset-0 opacity-25 rounded-2xl" style={{
+      backgroundImage: `radial-gradient(circle at 30% 70%, hsl(32 60% 20%) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, hsl(15 50% 18%) 0%, transparent 50%),
+                        linear-gradient(135deg, transparent 0%, hsl(25 40% 15% / 0.6) 100%)`,
     }} />
   );
 
   return (
-    <section className="py-24 min-h-screen pt-32 relative overflow-hidden">
+    <section className="py-24 min-h-screen pt-32 relative overflow-hidden bg-gradient-to-b from-chocolate-dark via-chocolate to-chocolate-dark">
       {/* Background image with opacity */}
       <div className="absolute inset-0">
         <img 
           src={galleryCommunity} 
           alt="" 
-          className="w-full h-full object-cover opacity-20"
+          className="w-full h-full object-cover opacity-15"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/90 via-cream-dark/95 to-cream-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-chocolate-dark/90 via-chocolate/80 to-chocolate-dark" />
       </div>
 
       {/* Soft glowing overlay */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-coral/10 blur-3xl animate-float-slow" />
+        <div className="absolute top-20 right-10 w-96 h-96 rounded-full bg-amber/15 blur-3xl animate-float-slow" />
         <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-sunset/10 blur-3xl animate-float" />
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-terracotta/10 blur-3xl animate-float" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -79,12 +80,17 @@ const TestimoniesContent = () => {
           {testimonies.map((testimony, index) => (
             <div 
               key={testimony.key} 
-              className="relative overflow-hidden rounded-2xl p-8 transition-all duration-300 hover:shadow-xl group"
-              style={bordeauxCardStyle}
+              className="relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 group border border-white/5"
+              style={warmCardStyle}
             >
-              {bordeauxTextureOverlay}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
-                background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
+              {warmTextureOverlay}
+              {/* Animated shine effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 rounded-2xl" style={{
+                background: 'linear-gradient(135deg, transparent 0%, hsl(32 90% 65%) 50%, transparent 100%)',
+              }} />
+              {/* Subtle inner glow */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
+                boxShadow: 'inset 0 0 40px hsl(32 50% 30% / 0.2)',
               }} />
               <div className="relative z-10 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">

@@ -15,6 +15,7 @@ export const StatisticsSection = () => {
     { key: 'summerCampsHistory', value: '+5000', icon: Sun, label: 'statistics.history.summerCamps' },
     { key: 'familiesHistory', value: '+500', icon: Home, label: 'statistics.history.families' },
     { key: 'childrenHistory', value: '+400', icon: Gift, label: 'statistics.history.children' },
+    { key: 'childrenGiftsHistory', value: '+4000', icon: Gift, label: 'statistics.history.childrenGifts' },
   ];
 
   // Current year activity stats - updated numbers
@@ -52,6 +53,13 @@ export const StatisticsSection = () => {
       icon: Gift, 
       label: 'statistics.childrenGifts',
       hoverInfo: 'statistics.childrenGifts.hover'
+    },
+    { 
+      key: 'familiesHelped', 
+      value: 75, 
+      icon: Home, 
+      label: 'statistics.familiesHelped',
+      hoverInfo: 'statistics.familiesHelped.hover'
     },
   ];
 
@@ -143,7 +151,7 @@ export const StatisticsSection = () => {
         </div>
 
         {/* Activity Stats Grid - Dark Bordeaux with hover */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto mb-16">
           {activityStats.map((stat) => {
             const Icon = stat.icon;
             const isHovered = hoveredStat === stat.key;
@@ -202,7 +210,7 @@ export const StatisticsSection = () => {
               {t('statistics.history.title')}
             </h3>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
             {historicalStats.map((stat) => {
               const Icon = stat.icon;
               return (
