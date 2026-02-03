@@ -1229,6 +1229,7 @@ const translations: Record<Language, Record<string, string>> = {
     'contacts.parking': 'Autostāvvieta pieejama netālu no draudzes',
     'contacts.parkingAvailable': 'Autostāvvieta pieejama draudzes teritorijā',
     'contacts.socialMedia': 'Sociālie tīkli',
+    'contacts.followUs': 'Sekojiet mums un esiet informēti par visiem pasākumiem',
     'contacts.youthAccounts': 'Jauniešu konti',
 
     // Donations Section
