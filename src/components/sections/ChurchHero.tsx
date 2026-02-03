@@ -16,7 +16,8 @@ export const ChurchHero = () => {
   const { t } = useLanguage();
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
 
   // Only the changing words (not the full "Changed X" text)
   const changingWords = [
@@ -42,17 +43,31 @@ export const ChurchHero = () => {
     galleryMembers,
   ];
 
+  // Typing animation effect
   useEffect(() => {
-    const textInterval = setInterval(() => {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setCurrentTextIndex((prev) => (prev + 1) % changingWords.length);
-        setIsAnimating(false);
-      }, 500);
-    }, 3000);
+    const currentWord = changingWords[currentTextIndex];
+    let charIndex = 0;
+    setIsTyping(true);
+    setDisplayedText('');
 
-    return () => clearInterval(textInterval);
-  }, [changingWords.length]);
+    // Type out the word
+    const typeInterval = setInterval(() => {
+      if (charIndex <= currentWord.length) {
+        setDisplayedText(currentWord.slice(0, charIndex));
+        charIndex++;
+      } else {
+        clearInterval(typeInterval);
+        setIsTyping(false);
+        
+        // Wait before moving to next word
+        setTimeout(() => {
+          setCurrentTextIndex((prev) => (prev + 1) % changingWords.length);
+        }, 2000);
+      }
+    }, 100);
+
+    return () => clearInterval(typeInterval);
+  }, [currentTextIndex, changingWords.length]);
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
