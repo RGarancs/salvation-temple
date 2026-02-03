@@ -31,16 +31,16 @@ const TestimoniesContent = () => {
     },
   ];
 
-  // Warm amber/sunset card style - unified with rest of site
-  const warmCardStyle = {
-    background: 'linear-gradient(135deg, hsl(25 45% 12%) 0%, hsl(20 50% 8%) 100%)',
+  // Dark bordeaux card style - unified with rest of site
+  const bordeauxCardStyle = {
+    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
   };
 
-  const warmTextureOverlay = (
-    <div className="absolute inset-0 opacity-25 rounded-2xl" style={{
-      backgroundImage: `radial-gradient(circle at 30% 70%, hsl(32 60% 20%) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 30%, hsl(15 50% 18%) 0%, transparent 50%),
-                        linear-gradient(135deg, transparent 0%, hsl(25 40% 15% / 0.6) 100%)`,
+  const bordeauxTextureOverlay = (
+    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
+      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
+                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
     }} />
   );
 
