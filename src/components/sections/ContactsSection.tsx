@@ -38,7 +38,7 @@ export const ContactsSection = () => {
   );
 
   return (
-    <section id="contacts" className="py-24 relative overflow-hidden bg-gradient-to-b from-[hsl(350_30%_8%)] via-[hsl(350_35%_6%)] to-[hsl(350_30%_5%)]">
+    <section id="contacts" className="py-12 md:py-16 lg:py-24 relative overflow-hidden bg-gradient-to-b from-[hsl(350_30%_8%)] via-[hsl(350_35%_6%)] to-[hsl(350_30%_5%)]">
       {/* Background image with opacity */}
       <div className="absolute inset-0">
         <img 
@@ -55,7 +55,7 @@ export const ContactsSection = () => {
         <div className="absolute bottom-20 left-10 w-72 h-72 rounded-full bg-sunset/10 blur-3xl animate-float" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-terracotta/20 to-sunset/20 mb-6">
             <MapPin className="w-7 h-7 text-terracotta" />

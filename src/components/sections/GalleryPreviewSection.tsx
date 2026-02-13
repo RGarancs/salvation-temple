@@ -25,8 +25,8 @@ export const GalleryPreviewSection = () => {
   ];
 
   return (
-    <section id="gallery" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="gallery" className="py-12 md:py-16 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-coral/20 to-sunset/20 mb-6">
             <Images className="w-7 h-7 text-coral" />

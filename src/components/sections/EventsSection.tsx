@@ -85,8 +85,8 @@ export const EventsSection = () => {
   );
 
   return (
-    <section id="events" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="events" className="py-12 md:py-16 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-amber/20 to-sunset/20 mb-6">
             <Calendar className="w-7 h-7 text-amber" />
@@ -112,8 +112,8 @@ export const EventsSection = () => {
                 onOpenChange={(open) => setOpenSection(open ? category.key : null)}
               >
                 <CollapsibleTrigger className="w-full">
-                  <div 
-                    className="relative overflow-hidden rounded-2xl p-5 flex items-center gap-4 cursor-pointer transition-all duration-300 hover:shadow-xl group"
+                  <div
+                    className="relative overflow-hidden rounded-2xl p-4 md:p-5 flex items-center gap-4 cursor-pointer transition-all duration-300 hover:shadow-xl group"
                     style={bordeauxCardStyle}
                   >
                     {bordeauxTextureOverlay}
@@ -207,8 +207,8 @@ export const EventsSection = () => {
 
         {/* Upcoming Services Calendar - now below event categories */}
         <div className="max-w-4xl mx-auto">
-          <div 
-            className="relative overflow-hidden rounded-2xl p-6"
+          <div
+            className="relative overflow-hidden rounded-2xl p-6 md:p-8"
             style={bordeauxCardStyle}
           >
             {bordeauxTextureOverlay}

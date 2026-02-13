@@ -29,7 +29,7 @@ export const AboutSection = () => {
   );
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
+    <section id="about" className="py-12 md:py-16 lg:py-24 relative overflow-hidden">
       {/* Background image of church building with 50% opacity */}
       <div className="absolute inset-0">
         <img 
@@ -48,7 +48,7 @@ export const AboutSection = () => {
         <div className="absolute bottom-1/4 right-1/3 w-48 h-48 rounded-full bg-terracotta/8 blur-2xl animate-float" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-sunset/20 to-amber/20 mb-6">
             <Compass className="w-7 h-7 text-sunset" />
@@ -79,8 +79,8 @@ export const AboutSection = () => {
         <div className={`transition-all duration-500 overflow-hidden ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
           {/* Mission - Dark Bordeaux */}
           <div className="max-w-4xl mx-auto mb-12 mt-12">
-            <div 
-              className="relative overflow-hidden rounded-2xl p-8 text-center transition-all duration-300 hover:shadow-xl"
+            <div
+              className="relative overflow-hidden rounded-2xl p-6 md:p-8 text-center transition-all duration-300 hover:shadow-xl"
               style={bordeauxCardStyle}
             >
               {bordeauxTextureOverlay}
@@ -100,8 +100,8 @@ export const AboutSection = () => {
 
           {/* Vision - Dark Bordeaux */}
           <div className="max-w-4xl mx-auto mb-12">
-            <div 
-              className="relative overflow-hidden rounded-2xl p-8 text-center transition-all duration-300 hover:shadow-xl"
+            <div
+              className="relative overflow-hidden rounded-2xl p-6 md:p-8 text-center transition-all duration-300 hover:shadow-xl"
               style={bordeauxCardStyle}
             >
               {bordeauxTextureOverlay}

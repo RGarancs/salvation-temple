@@ -12,8 +12,8 @@ export const TestimoniesPreviewSection = () => {
   ];
 
   return (
-    <section id="testimonies" className="py-24 bg-cream-dark">
-      <div className="container mx-auto px-4">
+    <section id="testimonies" className="py-12 md:py-16 lg:py-24 bg-cream-dark">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-coral/20 to-sunset/20 mb-6">
             <Heart className="w-7 h-7 text-coral" />
@@ -26,7 +26,7 @@ export const TestimoniesPreviewSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
           {testimonies.map((testimony) => (
             <div key={testimony.key} className="card-warm p-6">
               <Quote className="w-8 h-8 text-sunset/40 mb-4" />

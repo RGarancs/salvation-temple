@@ -76,7 +76,7 @@ export const StatisticsSection = () => {
   );
 
   return (
-    <section id="statistics" className="py-24 relative overflow-hidden">
+    <section id="statistics" className="py-12 md:py-16 lg:py-24 relative overflow-hidden">
       {/* Background image with 25% opacity (75% transparent) */}
       <div className="absolute inset-0">
         <img 
@@ -93,7 +93,7 @@ export const StatisticsSection = () => {
         <div className="absolute bottom-10 right-20 w-72 h-72 rounded-full bg-coral/10 blur-3xl animate-float" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-amber/20 to-coral/20 mb-6">
             <Heart className="w-7 h-7 text-amber" />
@@ -150,7 +150,7 @@ export const StatisticsSection = () => {
         </div>
 
         {/* Activity Stats Grid - Dark Bordeaux with hover */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 max-w-5xl mx-auto mb-16">
           {activityStats.map((stat) => {
             const Icon = stat.icon;
             const isHovered = hoveredStat === stat.key;

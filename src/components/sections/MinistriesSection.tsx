@@ -75,8 +75,8 @@ export const MinistriesSection = () => {
   };
 
   return (
-    <section id="ministries" className="py-24 bg-cream-dark">
-      <div className="container mx-auto px-4">
+    <section id="ministries" className="py-12 md:py-16 lg:py-24 bg-cream-dark">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-coral/20 to-amber/20 mb-6">
             <Users className="w-7 h-7 text-coral" />
@@ -89,7 +89,7 @@ export const MinistriesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
           {ministries.map((ministry) => {
             const Icon = ministry.icon;
             const isHovered = hoveredMinistry === ministry.key;
