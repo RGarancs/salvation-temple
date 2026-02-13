@@ -63,7 +63,7 @@ export const ChurchHeader = () => {
               <Link
                 key={item.key}
                 to={item.href}
-                className="text-foreground/70 hover:text-foreground transition-colors font-medium text-sm"
+                className="text-foreground/70 hover:text-foreground focus:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-md px-2 py-1 transition-all font-medium text-sm"
               >
                 {t(item.key)}
               </Link>
@@ -71,7 +71,7 @@ export const ChurchHeader = () => {
               <a
                 key={item.key}
                 href={item.href}
-                className="text-foreground/70 hover:text-foreground transition-colors font-medium text-sm"
+                className="text-foreground/70 hover:text-foreground focus:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-md px-2 py-1 transition-all font-medium text-sm"
               >
                 {t(item.key)}
               </a>
@@ -84,7 +84,7 @@ export const ChurchHeader = () => {
           <LanguageSwitcher />
           <a
             href="/#contacts"
-            className={`inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 ${
+            className={`inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${
               language === 'ru' ? 'text-xs' : 'text-sm'
             }`}
           >
@@ -97,7 +97,8 @@ export const ChurchHeader = () => {
           <ThemeToggle />
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-foreground glass rounded-lg"
+            className="p-2.5 text-foreground glass rounded-lg min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -117,7 +118,7 @@ export const ChurchHeader = () => {
                 key={item.key}
                 to={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-foreground/80 hover:text-foreground transition-colors font-medium py-2 text-sm"
+                className="text-foreground/80 hover:text-foreground focus:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-md px-2 py-2 transition-all font-medium text-sm"
               >
                 {t(item.key)}
               </Link>
@@ -126,7 +127,7 @@ export const ChurchHeader = () => {
                 key={item.key}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-foreground/80 hover:text-foreground transition-colors font-medium py-2 text-sm"
+                className="text-foreground/80 hover:text-foreground focus:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-md px-2 py-2 transition-all font-medium text-sm"
               >
                 {t(item.key)}
               </a>
