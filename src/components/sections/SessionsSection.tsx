@@ -94,7 +94,7 @@ export const SessionsSection = () => {
                     </div>
                   </CollapsibleTrigger>
 
-                  <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
                     <div className="pt-3 pb-2 px-4 space-y-3">
                       {/* About */}
                       <div className="bg-muted/50 rounded-xl p-4">

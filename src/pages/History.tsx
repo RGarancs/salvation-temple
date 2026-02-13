@@ -31,9 +31,10 @@ const HistoryContent = () => {
           <div className="card-warm p-8">
             <div className="grid md:grid-cols-2 gap-8 items-start">
               <div>
-                <img 
-                  src={historyFetler} 
-                  alt="Viljams Fetlers (1883-1957)" 
+                <img
+                  src={historyFetler}
+                  alt="Viljams Fetlers (1883-1957)"
+                  loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">
@@ -108,9 +109,10 @@ const HistoryContent = () => {
                 </p>
               </div>
               <div>
-                <img 
-                  src={historyTent} 
+                <img
+                  src={historyTent}
                   alt={t('history.tent.caption')}
+                  loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">
@@ -126,9 +128,10 @@ const HistoryContent = () => {
           <div className="card-warm p-8">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="order-2 md:order-1">
-                <img 
-                  src={historyTemple} 
+                <img
+                  src={historyTemple}
                   alt={t('history.building.caption')}
+                  loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">
@@ -167,9 +170,10 @@ const HistoryContent = () => {
                 </p>
               </div>
               <div>
-                <img 
-                  src={historyBuilding} 
+                <img
+                  src={historyBuilding}
                   alt={t('history.interior.caption')}
+                  loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">

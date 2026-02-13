@@ -27,9 +27,10 @@ export const HistorySection = () => {
           <div className="card-warm p-8">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <img 
-                  src={historyFetler} 
-                  alt="Viljams Fetlers" 
+                <img
+                  src={historyFetler}
+                  alt="Viljams Fetlers"
+                  loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">
@@ -76,9 +77,10 @@ export const HistorySection = () => {
                 </p>
               </div>
               <div>
-                <img 
-                  src={historyTent} 
-                  alt="Evangelization tent" 
+                <img
+                  src={historyTent}
+                  alt="Evangelization tent"
+                  loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">
@@ -92,9 +94,10 @@ export const HistorySection = () => {
           <div className="card-warm p-8">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="order-2 md:order-1">
-                <img 
-                  src={historyBuilding} 
-                  alt="Salvation Temple 1927" 
+                <img
+                  src={historyBuilding}
+                  alt="Salvation Temple 1927"
+                  loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
                 <p className="text-sm text-muted-foreground mt-3 text-center italic">

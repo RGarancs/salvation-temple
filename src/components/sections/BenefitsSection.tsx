@@ -45,7 +45,7 @@ export const BenefitsSection = () => {
             </div>
           </CollapsibleTrigger>
 
-          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
               {benefits.map((benefit) => {
                 const Icon = benefit.icon;

@@ -55,7 +55,7 @@ export const ApproachSection = () => {
             </div>
           </CollapsibleTrigger>
 
-          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
             <div className="relative max-w-5xl mx-auto mt-8">
               {/* Connection line for desktop */}
               <div className="absolute left-0 right-0 top-16 h-0.5 bg-gradient-to-r from-sunset via-amber to-burnt hidden lg:block opacity-20 rounded-full" />

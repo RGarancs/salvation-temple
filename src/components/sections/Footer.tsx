@@ -70,9 +70,10 @@ export const Footer = () => {
                 {t('nav.register')}
               </p>
               <div className="w-40 h-40 mx-auto mb-3 rounded-xl overflow-hidden bg-white p-2">
-                <img 
-                  src={qrCode} 
-                  alt="QR Code для регистрации" 
+                <img
+                  src={qrCode}
+                  alt="QR Code для регистрации"
+                  loading="lazy"
                   className="w-full h-full object-contain"
                 />
               </div>

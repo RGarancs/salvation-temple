@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Hand, Stethoscope, Info } from 'lucide-react';
+import { bordeauxCardStyle } from '@/styles/bordeaux';
+import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
 export const MinistriesSection = () => {
   const { t, language } = useLanguage();
@@ -69,11 +71,6 @@ export const MinistriesSection = () => {
     },
   ];
 
-  // Dark bordeaux card style with premium texture
-  const bordeauxCardStyle = {
-    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
-  };
-
   return (
     <section id="ministries" className="py-12 md:py-16 lg:py-24 bg-cream-dark">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -89,7 +86,7 @@ export const MinistriesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
           {ministries.map((ministry) => {
             const Icon = ministry.icon;
             const isHovered = hoveredMinistry === ministry.key;
@@ -101,16 +98,9 @@ export const MinistriesSection = () => {
                 onMouseEnter={() => setHoveredMinistry(ministry.key)}
                 onMouseLeave={() => setHoveredMinistry(null)}
               >
-                {/* Premium texture overlay */}
-                <div className="absolute inset-0 opacity-20" style={{
-                  backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
-                                    radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
-                                    linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
-                }} />
+                <BordeauxOverlay />
                 {/* Subtle shine effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500" style={{
-                  background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-                }} />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-shine" />
                 
                 {/* Normal content */}
                 <div className={`relative z-10 transition-all duration-300 ${isHovered ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>

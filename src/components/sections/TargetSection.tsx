@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Target, ChevronDown, Check, Circle } from 'lucide-react';
+import { Target, ChevronDown, Check } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const personas = [
@@ -56,7 +56,7 @@ export const TargetSection = () => {
             </div>
           </CollapsibleTrigger>
 
-          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
             <div className="max-w-2xl mx-auto mt-8 space-y-3">
               <p className="text-center text-white/70 text-sm mb-4 font-medium uppercase tracking-wide">
                 {t('target.checklist.title')}

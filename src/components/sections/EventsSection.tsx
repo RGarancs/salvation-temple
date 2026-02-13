@@ -3,6 +3,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Link } from 'react-router-dom';
+import { bordeauxCardStyle } from '@/styles/bordeaux';
+import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
 export const EventsSection = () => {
   const { t } = useLanguage();
@@ -71,19 +73,6 @@ export const EventsSection = () => {
     },
   ];
 
-  // Dark bordeaux card style
-  const bordeauxCardStyle = {
-    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
-  };
-
-  const bordeauxTextureOverlay = (
-    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
-      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
-                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
-    }} />
-  );
-
   return (
     <section id="events" className="py-12 md:py-16 lg:py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -100,7 +89,7 @@ export const EventsSection = () => {
         </div>
 
         {/* Event Categories - moved before calendar */}
-        <div className="max-w-3xl mx-auto space-y-4 mb-12">
+        <div className="max-w-4xl mx-auto space-y-4 mb-12">
           {eventCategories.map((category) => {
             const Icon = category.icon;
             const isOpen = openSection === category.key;
@@ -116,10 +105,8 @@ export const EventsSection = () => {
                     className="relative overflow-hidden rounded-2xl p-4 md:p-5 flex items-center gap-4 cursor-pointer transition-all duration-300 hover:shadow-xl group"
                     style={bordeauxCardStyle}
                   >
-                    {bordeauxTextureOverlay}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
-                      background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-                    }} />
+                    <BordeauxOverlay />
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
                     <div className="relative z-10 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
                       <Icon className="w-6 h-6 text-sunset-light" />
                     </div>
@@ -141,7 +128,7 @@ export const EventsSection = () => {
                   </div>
                 </CollapsibleTrigger>
 
-                <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
                   <div className="p-5 pt-0 ml-16">
                     {category.hasLink ? (
                       <div className="mt-4 p-4 bg-muted/50 rounded-xl">
@@ -211,7 +198,7 @@ export const EventsSection = () => {
             className="relative overflow-hidden rounded-2xl p-6 md:p-8"
             style={bordeauxCardStyle}
           >
-            {bordeauxTextureOverlay}
+            <BordeauxOverlay />
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
                 <CalendarCheck className="w-6 h-6 text-sunset-light" />

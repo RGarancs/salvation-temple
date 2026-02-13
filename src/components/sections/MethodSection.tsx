@@ -42,7 +42,7 @@ export const MethodSection = () => {
             </div>
           </CollapsibleTrigger>
 
-          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mt-8">
               {methods.map((method, index) => {
                 const Icon = method.icon;

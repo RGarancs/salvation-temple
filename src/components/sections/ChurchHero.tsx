@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Clock, MapPin, Play, Globe } from 'lucide-react';
 import galleryChoir from '@/assets/gallery-choir.jpg';
@@ -20,7 +20,7 @@ export const ChurchHero = () => {
   const [isTyping, setIsTyping] = useState(true);
 
   // Only the changing words (not the full "Changed X" text)
-  const changingWords = [
+  const changingWords = useMemo(() => [
     t('hero.word.hearts'),
     t('hero.word.lives'),
     t('hero.word.relationships'),
@@ -28,7 +28,7 @@ export const ChurchHero = () => {
     t('hero.word.personality'),
     t('hero.word.values'),
     t('hero.word.eternities'),
-  ];
+  ], [t]);
 
   const backgroundImages = [
     galleryChoir,
@@ -67,7 +67,7 @@ export const ChurchHero = () => {
     }, 100);
 
     return () => clearInterval(typeInterval);
-  }, [currentTextIndex, changingWords.length]);
+  }, [currentTextIndex, changingWords]);
 
   useEffect(() => {
     const imageInterval = setInterval(() => {
@@ -110,7 +110,7 @@ export const ChurchHero = () => {
         <div className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-coral/10 blur-2xl" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
           {/* Come and See Text - reduced by 75% */}
           <h1 className="font-display text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-gradient-earth animate-fade-in-up">
@@ -121,7 +121,7 @@ export const ChurchHero = () => {
           <div className="flex items-center justify-center mb-8">
             <p className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-gradient-warm whitespace-nowrap">
               <span>{t('hero.changed')}</span>{' '}
-              <span className="inline-block min-w-[200px] md:min-w-[280px] lg:min-w-[350px] text-left">
+              <span className="inline-block min-w-[200px] md:min-w-[280px] lg:min-w-[350px] text-left pb-2">
                 {displayedText}
                 <span className={`inline-block w-[3px] h-[0.9em] bg-sunset ml-1 ${isTyping ? 'animate-pulse' : 'opacity-0'}`} />
               </span>

@@ -72,7 +72,7 @@ export const OrganizationSection = () => {
               </div>
             </CollapsibleTrigger>
 
-            <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+            <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
               <div className="space-y-2 mt-4">
                 {schedule.map((item) => (
                   <div key={item.key} className="flex items-start gap-4 p-4 bg-background rounded-xl border border-border">

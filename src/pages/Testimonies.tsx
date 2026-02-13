@@ -4,6 +4,8 @@ import { ChurchFooter } from '@/components/sections/ChurchFooter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Quote, Heart } from 'lucide-react';
 import galleryCommunity from '@/assets/gallery-community.jpg';
+import { bordeauxCardStyle } from '@/styles/bordeaux';
+import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
 const TestimoniesContent = () => {
   const { t } = useLanguage();
@@ -31,26 +33,14 @@ const TestimoniesContent = () => {
     },
   ];
 
-  // Dark bordeaux card style - unified with rest of site
-  const bordeauxCardStyle = {
-    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
-  };
-
-  const bordeauxTextureOverlay = (
-    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
-      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
-                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
-    }} />
-  );
-
   return (
     <section className="py-24 min-h-screen pt-32 relative overflow-hidden bg-gradient-to-b from-chocolate-dark via-chocolate to-chocolate-dark">
       {/* Background image with opacity */}
       <div className="absolute inset-0">
-        <img 
-          src={galleryCommunity} 
-          alt="" 
+        <img
+          src={galleryCommunity}
+          alt=""
+          loading="lazy"
           className="w-full h-full object-cover opacity-15"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-chocolate-dark/90 via-chocolate/80 to-chocolate-dark" />
@@ -83,11 +73,9 @@ const TestimoniesContent = () => {
               className="relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 group border border-white/5"
               style={bordeauxCardStyle}
             >
-              {bordeauxTextureOverlay}
+              <BordeauxOverlay />
               {/* Animated shine effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
-                background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-              }} />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
               <div className="relative z-10 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
                   <Quote className="w-6 h-6 text-sunset-light" />

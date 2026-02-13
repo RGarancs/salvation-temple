@@ -50,6 +50,7 @@ export const GalleryPreviewSection = () => {
               <img
                 src={image.src}
                 alt={image.alt}
+                loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 style={{ 
                   aspectRatio: index === 0 ? '1/1' : '4/3',

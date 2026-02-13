@@ -3,6 +3,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Target, Compass, Heart, BookOpen, Cross, Users, Sparkles, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import historyBuilding from '@/assets/history-building.png';
+import { bordeauxCardStyle } from '@/styles/bordeaux';
+import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
 export const AboutSection = () => {
   const { t } = useLanguage();
@@ -15,26 +17,14 @@ export const AboutSection = () => {
     { key: 'mission', icon: Sparkles, color: 'terracotta' },
   ];
 
-  // Dark bordeaux card style
-  const bordeauxCardStyle = {
-    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
-  };
-
-  const bordeauxTextureOverlay = (
-    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
-      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
-                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
-    }} />
-  );
-
   return (
     <section id="about" className="py-12 md:py-16 lg:py-24 relative overflow-hidden">
       {/* Background image of church building with 50% opacity */}
       <div className="absolute inset-0">
-        <img 
-          src={historyBuilding} 
-          alt="" 
+        <img
+          src={historyBuilding}
+          alt=""
+          loading="lazy"
           className="w-full h-full object-cover opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-cream-dark/85 via-cream-dark/90 to-cream-dark" />
@@ -83,7 +73,7 @@ export const AboutSection = () => {
               className="relative overflow-hidden rounded-2xl p-6 md:p-8 text-center transition-all duration-300 hover:shadow-xl"
               style={bordeauxCardStyle}
             >
-              {bordeauxTextureOverlay}
+              <BordeauxOverlay />
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-4">
                   <Target className="w-6 h-6 text-sunset-light" />
@@ -104,7 +94,7 @@ export const AboutSection = () => {
               className="relative overflow-hidden rounded-2xl p-6 md:p-8 text-center transition-all duration-300 hover:shadow-xl"
               style={bordeauxCardStyle}
             >
-              {bordeauxTextureOverlay}
+              <BordeauxOverlay />
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 mb-4">
                   <Heart className="w-6 h-6 text-amber" />
@@ -133,11 +123,9 @@ export const AboutSection = () => {
                     className="relative overflow-hidden rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
                     style={bordeauxCardStyle}
                   >
-                    {bordeauxTextureOverlay}
+                    <BordeauxOverlay />
                     {/* Shine effect on hover */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
-                      background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-                    }} />
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
                     <div className="relative z-10">
                       <div className="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 border border-white/10">
                         <Icon className="w-7 h-7 text-sunset-light" />

@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Quote, BookOpen } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 
 export const PhilosophySection = () => {
   const { t } = useLanguage();

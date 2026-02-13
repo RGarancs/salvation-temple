@@ -46,7 +46,7 @@ export const WheelSection = () => {
             </div>
           </CollapsibleTrigger>
 
-          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+          <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
             <div className="flex flex-col lg:flex-row items-center justify-center gap-16 mt-8">
               {/* Interactive Wheel */}
               <div className="relative w-72 h-72 lg:w-80 lg:h-80">

@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfix\\(navbar\\): replace undefined sage colors in LanguageSwitcher\n\n- Replace text-sage with text-foreground/80 for better visibility\n- Replace bg-sage with bg-primary for clear active state\n- Remove opacity-70 from Globe icon for improved visibility\n- Fixes critical bug where undefined colors rendered incorrectly\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit:*)",
+      "Bash(npm run lint)",
+      "Bash(wc:*)",
+      "Bash(npm run test:*)",
+      "Bash(ls:*)",
+      "Bash(test:*)",
+      "Bash(npm install:*)",
+      "Bash(npx playwright:*)",
+      "Bash(del \"C:\\\\Users\\\\shawn\\\\WebstormProjects\\\\salvation-temple\\\\src\\\\App.css\")",
+      "Bash(node:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx eslint:*)",
+      "Bash(grep:*)"
+    ]
+  }
+}

@@ -29,7 +29,7 @@
 
     /* Muted earthy tones */
     --muted: 25 15% 90%;
-    --muted-foreground: 20 20% 40%;
+    --muted-foreground: 20 25% 30%;
 
     /* Amber Accent */
     --accent: 32 85% 55%;
@@ -240,8 +240,24 @@
   }
 
   /* Dark mode text gradients */
+  .dark .text-gradient-sunset {
+    background-image: linear-gradient(135deg, hsl(18 80% 68%) 0%, hsl(8 85% 68%) 100%);
+  }
+
+  .dark .text-gradient-amber {
+    background-image: linear-gradient(135deg, hsl(32 90% 70%) 0%, hsl(22 85% 65%) 100%);
+  }
+
   .dark .text-gradient-earth {
     background-image: linear-gradient(135deg, hsl(32 80% 68%) 0%, hsl(28 70% 58%) 100%);
+  }
+
+  .dark .text-gradient-coral {
+    background-image: linear-gradient(135deg, hsl(8 80% 70%) 0%, hsl(22 85% 70%) 50%, hsl(32 90% 70%) 100%);
+  }
+
+  .dark .text-gradient-warm {
+    background-image: linear-gradient(135deg, hsl(25 35% 78%) 0%, hsl(32 90% 70%) 50%, hsl(8 80% 70%) 100%);
   }
 
   /* Glass effects */
@@ -270,25 +286,6 @@
     border-color: hsl(32 90% 55% / 0.2);
   }
 
-  .glass-coral {
-    @apply backdrop-blur-xl border;
-    background: hsl(8 75% 55% / 0.1);
-    border-color: hsl(8 75% 55% / 0.2);
-  }
-
-  .glass-chocolate {
-    @apply backdrop-blur-xl border;
-    background: hsl(20 50% 25% / 0.85);
-    border-color: hsl(20 40% 32% / 0.5);
-    box-shadow: 0 8px 32px hsl(20 50% 12% / 0.3);
-  }
-
-  .glass-cashmere {
-    @apply backdrop-blur-xl border;
-    background: hsl(25 30% 72% / 0.15);
-    border-color: hsl(25 30% 72% / 0.25);
-  }
-
   /* Glow effects */
   .glow-amber {
     box-shadow: 0 0 40px hsl(32 90% 55% / 0.35), 0 0 80px hsl(32 90% 55% / 0.15);
@@ -296,14 +293,6 @@
 
   .glow-sunset {
     box-shadow: 0 0 40px hsl(18 75% 50% / 0.35), 0 0 80px hsl(18 75% 50% / 0.15);
-  }
-
-  .glow-coral {
-    box-shadow: 0 0 40px hsl(8 75% 55% / 0.35), 0 0 80px hsl(8 75% 55% / 0.15);
-  }
-
-  .glow-text-amber {
-    text-shadow: 0 0 20px hsl(32 90% 55% / 0.5), 0 0 40px hsl(32 90% 55% / 0.3);
   }
 
   /* Card variants */
@@ -322,27 +311,6 @@
   .card-warm:hover {
     box-shadow: var(--shadow-warm);
     transform: translateY(-2px);
-  }
-
-  .card-glass {
-    @apply rounded-2xl backdrop-blur-xl border transition-all duration-300;
-    background: hsl(30 25% 97% / 0.6);
-    border-color: hsl(25 15% 85% / 0.4);
-    box-shadow: 0 8px 32px hsl(20 30% 15% / 0.1);
-  }
-
-  .dark .card-glass {
-    background: hsl(20 40% 12% / 0.6);
-    border-color: hsl(20 20% 22% / 0.4);
-  }
-
-  .card-glass:hover {
-    background: hsl(30 25% 97% / 0.8);
-    box-shadow: 0 12px 40px hsl(20 30% 15% / 0.15);
-  }
-
-  .dark .card-glass:hover {
-    background: hsl(20 40% 12% / 0.8);
   }
 
   /* Organic shapes */
@@ -379,40 +347,10 @@
     background: hsl(var(--cream-dark));
   }
 
-  /* Animated underline */
-  .link-underline {
-    @apply relative inline-block;
+  /* Shine hover overlay for bordeaux cards */
+  .bg-shine {
+    background: linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%);
   }
-
-  .link-underline::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-full h-0.5 scale-x-0 origin-right transition-transform duration-300;
-    background: linear-gradient(90deg, hsl(var(--sunset)), hsl(var(--amber)));
-  }
-
-  .link-underline:hover::after {
-    @apply scale-x-100 origin-left;
-  }
-
-  /* Hover effects */
-  .hover-lift {
-    @apply transition-all duration-300;
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-warm);
-  }
-
-  /* Wheel segment colors - Warm palette */
-  .wheel-purpose { background: hsl(var(--sunset)); }
-  .wheel-people { background: hsl(var(--terracotta)); }
-  .wheel-body { background: hsl(var(--amber)); }
-  .wheel-mind { background: hsl(var(--cashmere)); }
-  .wheel-finance { background: hsl(var(--burnt)); }
-  .wheel-character { background: hsl(var(--chocolate-light)); }
-  .wheel-church { background: hsl(var(--coral)); }
-  .wheel-piety { background: hsl(var(--sunset-dark)); }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {
@@ -434,53 +372,3 @@
   }
 }
 
-@layer utilities {
-  .animate-fade-in {
-    animation: fade-in 0.5s ease-out forwards;
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out forwards;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-float-slow {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 2.5s ease-in-out infinite;
-  }
-
-  .animate-spin-slow {
-    animation: spin-slow 20s linear infinite;
-  }
-
-  @keyframes fade-in {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fade-in-up {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px hsl(32 90% 55% / 0.3), 0 0 40px hsl(32 90% 55% / 0.15); }
-    50% { box-shadow: 0 0 40px hsl(32 90% 55% / 0.5), 0 0 80px hsl(32 90% 55% / 0.25); }
-  }
-
-  @keyframes spin-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-}

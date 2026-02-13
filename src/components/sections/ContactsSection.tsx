@@ -3,6 +3,8 @@ import { MapPin, Phone, Mail, Clock, Car, Facebook, Instagram, Youtube, CreditCa
 import leaderPastor from '@/assets/leader-pastor.jpg';
 import leaderStanislav from '@/assets/leader-stanislav.jpg';
 import galleryCommunity from '@/assets/gallery-community.jpg';
+import { bordeauxCardStyle } from '@/styles/bordeaux';
+import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
 export const ContactsSection = () => {
   const { t, language } = useLanguage();
@@ -24,26 +26,14 @@ export const ContactsSection = () => {
     },
   ];
 
-  // Dark bordeaux card style
-  const bordeauxCardStyle = {
-    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
-  };
-
-  const bordeauxTextureOverlay = (
-    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
-      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
-                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
-    }} />
-  );
-
   return (
     <section id="contacts" className="py-12 md:py-16 lg:py-24 relative overflow-hidden bg-gradient-to-b from-[hsl(350_30%_8%)] via-[hsl(350_35%_6%)] to-[hsl(350_30%_5%)]">
       {/* Background image with opacity */}
       <div className="absolute inset-0">
-        <img 
-          src={galleryCommunity} 
-          alt="" 
+        <img
+          src={galleryCommunity}
+          alt=""
+          loading="lazy"
           className="w-full h-full object-cover opacity-[0.08]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[hsl(350_30%_8%)/90] via-[hsl(350_35%_6%)/95] to-[hsl(350_30%_5%)]" />
@@ -75,15 +65,14 @@ export const ContactsSection = () => {
                 className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
                 style={bordeauxCardStyle}
               >
-                {bordeauxTextureOverlay}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
-                  background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-                }} />
+                <BordeauxOverlay />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
                 <div className="relative z-10 flex items-start gap-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-white/20">
-                    <img 
-                      src={contact.image} 
-                      alt={contact.name[language]} 
+                    <img
+                      src={contact.image}
+                      alt={contact.name[language]}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -114,7 +103,7 @@ export const ContactsSection = () => {
               className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
               style={bordeauxCardStyle}
             >
-              {bordeauxTextureOverlay}
+              <BordeauxOverlay />
               <div className="relative z-10 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
                   <MapPin className="w-6 h-6 text-sunset-light" />
@@ -132,7 +121,7 @@ export const ContactsSection = () => {
               className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
               style={bordeauxCardStyle}
             >
-              {bordeauxTextureOverlay}
+              <BordeauxOverlay />
               <div className="relative z-10 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
                   <Clock className="w-6 h-6 text-coral" />
@@ -150,7 +139,7 @@ export const ContactsSection = () => {
               className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
               style={bordeauxCardStyle}
             >
-              {bordeauxTextureOverlay}
+              <BordeauxOverlay />
               <div className="relative z-10 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
                   <Car className="w-6 h-6 text-amber" />
@@ -171,7 +160,7 @@ export const ContactsSection = () => {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2175.7!2d24.1247!3d56.9496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2sL%C4%81%C4%8Dpl%C4%93%C5%A1a%20iela%20117%2C%20Centra%20rajons%2C%20R%C4%ABga%2C%20LV-1003!5e0!3m2!1sen!2slv!4v1640000000000!5m2!1sen!2slv"
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                className="border-0"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -184,7 +173,7 @@ export const ContactsSection = () => {
               className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
               style={bordeauxCardStyle}
             >
-              {bordeauxTextureOverlay}
+              <BordeauxOverlay />
               <div className="relative z-10 flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
                   <CreditCard className="w-6 h-6 text-terracotta" />
@@ -216,7 +205,7 @@ export const ContactsSection = () => {
               className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group flex flex-col"
               style={bordeauxCardStyle}
             >
-              {bordeauxTextureOverlay}
+              <BordeauxOverlay />
               <div className="relative z-10 flex-1 flex flex-col">
                 <h3 className="font-display font-bold text-white/95 mb-4">{t('contacts.socialMedia')}</h3>
                 <p className="text-white/60 text-sm mb-6">{t('contacts.followUs')}</p>

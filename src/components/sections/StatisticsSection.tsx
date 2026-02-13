@@ -3,6 +3,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Users, Droplets, BookOpen, Sun, Home, Gift, Heart, History, ArrowRight, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import galleryCongregation from '@/assets/gallery-congregation.jpg';
+import { bordeauxCardStyle } from '@/styles/bordeaux';
+import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
 export const StatisticsSection = () => {
   const { t } = useLanguage();
@@ -62,26 +64,14 @@ export const StatisticsSection = () => {
     },
   ];
 
-  // Dark bordeaux card style
-  const bordeauxCardStyle = {
-    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
-  };
-
-  const bordeauxTextureOverlay = (
-    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
-      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
-                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
-    }} />
-  );
-
   return (
     <section id="statistics" className="py-12 md:py-16 lg:py-24 relative overflow-hidden">
       {/* Background image with 25% opacity (75% transparent) */}
       <div className="absolute inset-0">
-        <img 
-          src={galleryCongregation} 
-          alt="" 
+        <img
+          src={galleryCongregation}
+          alt=""
+          loading="lazy"
           className="w-full h-full object-cover opacity-[0.25]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/90 to-background" />
@@ -117,9 +107,7 @@ export const StatisticsSection = () => {
               backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
                                 radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%)`,
             }} />
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-full" style={{
-              background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-            }} />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-full bg-shine" />
             <div className="relative z-10 text-center p-8">
               <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4 border border-white/10">
                 <Users className="w-8 h-8 text-sunset-light" />
@@ -162,10 +150,8 @@ export const StatisticsSection = () => {
                 onMouseEnter={() => setHoveredStat(stat.key)}
                 onMouseLeave={() => setHoveredStat(null)}
               >
-                {bordeauxTextureOverlay}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
-                  background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-                }} />
+                <BordeauxOverlay />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
                 
                 {/* Normal content */}
                 <div className={`relative z-10 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
@@ -218,10 +204,8 @@ export const StatisticsSection = () => {
                   className="relative overflow-hidden rounded-2xl p-4 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
                   style={bordeauxCardStyle}
                 >
-                  {bordeauxTextureOverlay}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
-                    background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-                  }} />
+                  <BordeauxOverlay />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
                   <div className="relative z-10">
                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-2 border border-white/10">
                       <Icon className="w-5 h-5 text-sunset-light" />

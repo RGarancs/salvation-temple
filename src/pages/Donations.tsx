@@ -4,6 +4,8 @@ import { ChurchFooter } from '@/components/sections/ChurchFooter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Heart, Copy, Check, Building2, Church, Users, BookOpen, Sun, Home } from 'lucide-react';
 import { useState } from 'react';
+import { bordeauxCardStyle } from '@/styles/bordeaux';
+import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
 const DonationsContent = () => {
   const { t } = useLanguage();
@@ -23,19 +25,6 @@ const DonationsContent = () => {
     { key: 'charity', icon: Users, color: 'terracotta' },
     { key: 'families', icon: Home, color: 'burnt' },
   ];
-
-  // Dark bordeaux card style
-  const bordeauxCardStyle = {
-    background: 'linear-gradient(135deg, hsl(350 35% 18%) 0%, hsl(350 40% 12%) 100%)',
-  };
-
-  const bordeauxTextureOverlay = (
-    <div className="absolute inset-0 opacity-20 rounded-2xl" style={{
-      backgroundImage: `radial-gradient(circle at 20% 80%, hsl(350 30% 25%) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, hsl(25 30% 25%) 0%, transparent 50%),
-                        linear-gradient(135deg, transparent 0%, hsl(350 20% 20% / 0.5) 100%)`,
-    }} />
-  );
 
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -64,7 +53,7 @@ const DonationsContent = () => {
             className="relative overflow-hidden rounded-2xl p-8 text-center transition-all duration-300 hover:shadow-xl"
             style={bordeauxCardStyle}
           >
-            {bordeauxTextureOverlay}
+            <BordeauxOverlay />
             <div className="relative z-10">
               <h2 className="font-display text-2xl font-bold text-white/95 mb-4">
                 {t('donations.whyGive')}
@@ -90,10 +79,8 @@ const DonationsContent = () => {
                   className="relative overflow-hidden rounded-2xl p-4 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
                   style={bordeauxCardStyle}
                 >
-                  {bordeauxTextureOverlay}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl" style={{
-                    background: 'linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%)',
-                  }} />
+                  <BordeauxOverlay />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
                   <div className="relative z-10">
                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-3 border border-white/10">
                       <Icon className="w-5 h-5 text-sunset-light" />
@@ -117,7 +104,7 @@ const DonationsContent = () => {
             className="relative overflow-hidden rounded-2xl p-8 transition-all duration-300 hover:shadow-xl"
             style={bordeauxCardStyle}
           >
-            {bordeauxTextureOverlay}
+            <BordeauxOverlay />
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-6">
                 <Building2 className="w-6 h-6 text-sunset-light" />
@@ -211,7 +198,7 @@ const DonationsContent = () => {
             className="relative overflow-hidden rounded-2xl p-8 transition-all duration-300 hover:shadow-xl"
             style={bordeauxCardStyle}
           >
-            {bordeauxTextureOverlay}
+            <BordeauxOverlay />
             <div className="relative z-10">
               <h2 className="font-display text-2xl font-bold text-white/95 mb-6 text-center">
                 {t('donations.impact')}
