@@ -61,7 +61,7 @@ const TestimoniesContent = () => {
           <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
             {t('testimonies.title')}
           </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-foreground/70 max-w-2xl mx-auto">
             {t('testimonies.subtitle')}
           </p>
         </div>
@@ -118,7 +118,7 @@ const TestimoniesContent = () => {
         </div>
 
         <div className="text-center mt-12">
-          <p className="text-muted-foreground mb-4">
+          <p className="text-foreground/70 mb-4">
             {t('testimonies.share')}
           </p>
           <a

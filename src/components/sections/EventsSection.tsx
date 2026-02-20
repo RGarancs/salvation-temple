@@ -132,7 +132,7 @@ export const EventsSection = () => {
                   <div className="p-5 pt-0 ml-16">
                     {category.hasLink ? (
                       <div className="mt-4 p-4 bg-muted/50 rounded-xl">
-                        <p className="text-muted-foreground mb-4">{t('events.training.content')}</p>
+                        <p className="text-foreground/70 mb-4">{t('events.training.content')}</p>
                         <Link
                           to="/training"
                           className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
@@ -143,7 +143,7 @@ export const EventsSection = () => {
                       </div>
                     ) : category.hasSocial ? (
                       <div className="mt-4 p-4 bg-muted/50 rounded-xl">
-                        <p className="text-muted-foreground mb-4">{t(category.content!)}</p>
+                        <p className="text-foreground/70 mb-4">{t(category.content!)}</p>
                         <div className="flex flex-wrap gap-3">
                           <a
                             href="https://www.facebook.com/SalvationTempleLV/"
@@ -176,13 +176,13 @@ export const EventsSection = () => {
                       </div>
                     ) : category.key === 'baptism' ? (
                       <div className="mt-4 p-4 bg-muted/50 rounded-xl">
-                        <p className="text-muted-foreground mb-2">{t('events.baptism.content')}</p>
+                        <p className="text-foreground/70 mb-2">{t('events.baptism.content')}</p>
                         <p className="text-foreground font-semibold mb-2">{t('events.baptism.nextDate')}</p>
-                        <p className="text-muted-foreground text-sm">{t('events.baptism.contactPastor')}</p>
+                        <p className="text-foreground/70 text-sm">{t('events.baptism.contactPastor')}</p>
                       </div>
                     ) : (
                       <div className="mt-4 p-4 bg-muted/50 rounded-xl">
-                        <p className="text-muted-foreground">{t(category.content!)}</p>
+                        <p className="text-foreground/70">{t(category.content!)}</p>
                       </div>
                     )}
                   </div>

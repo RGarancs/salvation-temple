@@ -21,8 +21,8 @@ export const DonationsSection = () => {
   };
 
   return (
-    <section id="donations" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="donations" className="py-12 md:py-16 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-amber/20 to-coral/20 mb-6">
             <Heart className="w-7 h-7 text-coral" />
@@ -48,45 +48,45 @@ export const DonationsSection = () => {
 
             <div className="space-y-4">
               <div className="p-4 bg-muted/50 rounded-xl">
-                <p className="text-sm text-muted-foreground mb-1">{t('donations.recipient')}</p>
+                <p className="text-sm text-foreground/70 mb-1">{t('donations.recipient')}</p>
                 <div className="flex items-center justify-between gap-4">
                   <p className="font-medium text-foreground text-sm">{bankDetails.accountName}</p>
                   <button
                     onClick={() => copyToClipboard(bankDetails.accountName, 'name')}
                     className="p-2 hover:bg-muted rounded-lg transition-colors"
                   >
-                    <Copy className={`w-4 h-4 ${copied === 'name' ? 'text-sunset' : 'text-muted-foreground'}`} />
+                    <Copy className={`w-4 h-4 ${copied === 'name' ? 'text-sunset' : 'text-foreground/70'}`} />
                   </button>
                 </div>
               </div>
 
               <div className="p-4 bg-muted/50 rounded-xl">
-                <p className="text-sm text-muted-foreground mb-1">IBAN</p>
+                <p className="text-sm text-foreground/70 mb-1">IBAN</p>
                 <div className="flex items-center justify-between gap-4">
                   <p className="font-mono font-medium text-foreground">{bankDetails.iban}</p>
                   <button
                     onClick={() => copyToClipboard(bankDetails.iban, 'iban')}
                     className="p-2 hover:bg-muted rounded-lg transition-colors"
                   >
-                    <Copy className={`w-4 h-4 ${copied === 'iban' ? 'text-sunset' : 'text-muted-foreground'}`} />
+                    <Copy className={`w-4 h-4 ${copied === 'iban' ? 'text-sunset' : 'text-foreground/70'}`} />
                   </button>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 bg-muted/50 rounded-xl">
-                  <p className="text-sm text-muted-foreground mb-1">SWIFT</p>
+                  <p className="text-sm text-foreground/70 mb-1">SWIFT</p>
                   <p className="font-mono font-medium text-foreground">{bankDetails.swift}</p>
                 </div>
                 <div className="p-4 bg-muted/50 rounded-xl">
-                  <p className="text-sm text-muted-foreground mb-1">{t('donations.bank')}</p>
+                  <p className="text-sm text-foreground/70 mb-1">{t('donations.bank')}</p>
                   <p className="font-medium text-foreground">{bankDetails.bankName}</p>
                 </div>
               </div>
             </div>
 
             <div className="mt-8 p-4 bg-sunset/5 rounded-xl border border-sunset/10">
-              <p className="text-sm text-muted-foreground text-center">
+              <p className="text-sm text-foreground/70 text-center">
                 {t('donations.thankYou')}
               </p>
             </div>

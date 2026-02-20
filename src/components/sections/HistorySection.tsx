@@ -8,8 +8,8 @@ export const HistorySection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="history" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="history" className="py-12 md:py-16 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-terracotta/20 to-burnt/20 mb-6">
             <History className="w-7 h-7 text-terracotta" />
@@ -17,7 +17,7 @@ export const HistorySection = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
             {t('history.title')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-foreground/70 max-w-2xl mx-auto">
             {t('history.subtitle')}
           </p>
         </div>
@@ -33,7 +33,7 @@ export const HistorySection = () => {
                   loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
-                <p className="text-sm text-muted-foreground mt-3 text-center italic">
+                <p className="text-sm text-foreground/70 mt-3 text-center italic">
                   {t('history.fetler.caption')}
                 </p>
               </div>
@@ -45,7 +45,7 @@ export const HistorySection = () => {
                 <h3 className="font-display text-2xl font-bold text-foreground mb-4">
                   {t('history.fetler.name')}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
+                <p className="text-foreground/70 leading-relaxed mb-4">
                   {t('history.fetler.desc')}
                 </p>
               </div>
@@ -60,7 +60,7 @@ export const HistorySection = () => {
             <h3 className="font-display text-xl font-bold text-foreground mb-4">
               {t('history.obds.title')}
             </h3>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-foreground/70 leading-relaxed">
               {t('history.obds.text')}
             </p>
           </div>
@@ -72,7 +72,7 @@ export const HistorySection = () => {
                 <h3 className="font-display text-xl font-bold text-foreground mb-4">
                   {t('history.evangelization.title')}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   {t('history.evangelization.text')}
                 </p>
               </div>
@@ -83,7 +83,7 @@ export const HistorySection = () => {
                   loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
-                <p className="text-sm text-muted-foreground mt-3 text-center italic">
+                <p className="text-sm text-foreground/70 mt-3 text-center italic">
                   {t('history.tent.caption')}
                 </p>
               </div>
@@ -100,7 +100,7 @@ export const HistorySection = () => {
                   loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
-                <p className="text-sm text-muted-foreground mt-3 text-center italic">
+                <p className="text-sm text-foreground/70 mt-3 text-center italic">
                   {t('history.building.caption')}
                 </p>
               </div>
@@ -112,7 +112,7 @@ export const HistorySection = () => {
                 <h3 className="font-display text-xl font-bold text-foreground mb-4">
                   {t('history.temple.title')}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   {t('history.temple.text')}
                 </p>
               </div>

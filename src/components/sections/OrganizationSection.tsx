@@ -32,8 +32,8 @@ export const OrganizationSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-cream-dark">
-      <div className="container mx-auto px-4">
+    <section className="py-12 md:py-16 lg:py-24 bg-cream-dark">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-sunset/20 to-amber/20 mb-6">
             <Settings className="w-7 h-7 text-sunset" />
@@ -53,7 +53,7 @@ export const OrganizationSection = () => {
                   <Icon className={`w-6 h-6 ${colors.icon}`} />
                 </div>
                 <h3 className="font-display text-lg font-bold mb-2 text-foreground">{t(`org.${item.key}`)}</h3>
-                <p className="text-muted-foreground text-sm whitespace-pre-line">{t(`org.${item.key}.value`)}</p>
+                <p className="text-foreground/70 text-sm whitespace-pre-line">{t(`org.${item.key}.value`)}</p>
               </div>
             );
           })}
@@ -68,7 +68,7 @@ export const OrganizationSection = () => {
                   <Clock className="w-5 h-5 text-amber" />
                 </div>
                 <h3 className="font-display text-2xl font-bold text-gradient-earth">{t('schedule.title')}</h3>
-                <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-300 ${isScheduleOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-5 h-5 text-foreground/70 transition-transform duration-300 ${isScheduleOpen ? 'rotate-180' : ''}`} />
               </div>
             </CollapsibleTrigger>
 
@@ -79,7 +79,7 @@ export const OrganizationSection = () => {
                     <span className="text-sm font-mono text-sunset font-semibold whitespace-nowrap">{item.time}</span>
                     <div className="flex-1">
                       <h4 className="font-semibold text-foreground text-sm">{t(`schedule.${item.key}`)}</h4>
-                      <p className="text-xs text-muted-foreground whitespace-pre-line">{t(`schedule.${item.key}.desc`)}</p>
+                      <p className="text-xs text-foreground/70 whitespace-pre-line">{t(`schedule.${item.key}.desc`)}</p>
                     </div>
                   </div>
                 ))}

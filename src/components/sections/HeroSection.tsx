@@ -46,7 +46,7 @@ export const HeroSection = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 animate-fade-in font-body leading-relaxed" style={{ animationDelay: '0.2s' }}>
+          <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto mb-12 animate-fade-in font-body leading-relaxed" style={{ animationDelay: '0.2s' }}>
             {t('hero.subtitle')}
           </p>
 
@@ -66,7 +66,7 @@ export const HeroSection = () => {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+        <a href="#about" className="flex flex-col items-center gap-2 text-foreground/70 hover:text-foreground transition-colors">
           <ChevronDown className="w-5 h-5" />
         </a>
       </div>

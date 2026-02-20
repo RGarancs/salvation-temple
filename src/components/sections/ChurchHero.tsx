@@ -145,7 +145,7 @@ export const ChurchHero = () => {
           </div>
 
           {/* Welcome message */}
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-10 text-lg leading-relaxed animate-fade-in">
+          <p className="text-foreground/70 max-w-2xl mx-auto mb-10 text-lg leading-relaxed animate-fade-in">
             {t('church.heroWelcome')}
           </p>
 

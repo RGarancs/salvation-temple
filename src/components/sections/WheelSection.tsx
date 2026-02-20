@@ -21,13 +21,13 @@ export const WheelSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="py-24 bg-chocolate text-white relative overflow-hidden">
+    <section className="py-12 md:py-16 lg:py-24 bg-chocolate text-white relative overflow-hidden">
       {/* Subtle decorative background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-amber/5 blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleTrigger className="w-full">
             <div className="text-center mb-8 cursor-pointer group">

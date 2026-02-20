@@ -20,7 +20,7 @@ export const LanguageSwitcher = () => {
           className={`px-2 py-1 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 ${
             language === lang.code
               ? 'bg-primary text-primary-foreground'
-              : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+              : 'text-foreground/70 hover:text-foreground hover:bg-muted'
           }`}
           aria-label={`Switch to ${lang.label}`}
           aria-current={language === lang.code ? 'true' : 'false'}

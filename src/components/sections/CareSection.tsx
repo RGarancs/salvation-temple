@@ -5,8 +5,8 @@ export const CareSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="care" className="py-24 bg-cream-dark">
-      <div className="container mx-auto px-4">
+    <section id="care" className="py-12 md:py-16 lg:py-24 bg-cream-dark">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-coral/20 to-sunset/20 mb-6">
             <Heart className="w-7 h-7 text-coral" />
@@ -14,7 +14,7 @@ export const CareSection = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
             {t('care.title')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-subtitle max-w-2xl mx-auto">
             {t('care.subtitle')}
           </p>
         </div>
@@ -28,7 +28,7 @@ export const CareSection = () => {
             <h3 className="font-display text-2xl font-bold text-foreground mb-4">
               {t('care.prayer.title')}
             </h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-foreground/70 mb-6">
               {t('care.prayer.desc')}
             </p>
             <a
@@ -47,7 +47,7 @@ export const CareSection = () => {
             <h3 className="font-display text-2xl font-bold text-foreground mb-4">
               {t('care.counseling.title')}
             </h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-foreground/70 mb-6">
               {t('care.counseling.desc')}
             </p>
             <a

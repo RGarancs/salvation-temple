@@ -47,7 +47,7 @@ export const Header = () => {
             <span className="font-display text-sm font-bold text-foreground tracking-wide">
               Храм Спасения
             </span>
-            <span className="text-xs text-muted-foreground">
+            <span className="text-xs text-foreground/70">
               ЦЖ 2026
             </span>
           </div>

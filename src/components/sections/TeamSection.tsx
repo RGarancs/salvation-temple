@@ -23,8 +23,8 @@ export const TeamSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="team" className="py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section id="team" className="py-12 md:py-16 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-terracotta/20 to-coral/20 mb-6">
             <Users className="w-7 h-7 text-terracotta" />
@@ -46,7 +46,7 @@ export const TeamSection = () => {
                   {t(`team.${member.key}.role`)}
                 </span>
                 <h3 className="font-display text-lg font-bold mt-1 mb-3 text-foreground">{t(`team.${member.key}.name`)}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{t(`team.${member.key}.desc`)}</p>
+                <p className="text-sm text-foreground/70 leading-relaxed">{t(`team.${member.key}.desc`)}</p>
               </div>
             );
           })}

@@ -21,7 +21,7 @@ const HistoryContent = () => {
           <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
             {t('history.title')}
           </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-foreground/70 max-w-2xl mx-auto">
             {t('history.subtitle')}
           </p>
         </div>
@@ -37,7 +37,7 @@ const HistoryContent = () => {
                   loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
-                <p className="text-sm text-muted-foreground mt-3 text-center italic">
+                <p className="text-sm text-foreground/70 mt-3 text-center italic">
                   {t('history.fetler.caption')}
                 </p>
               </div>
@@ -49,10 +49,10 @@ const HistoryContent = () => {
                 <h3 className="font-display text-2xl font-bold text-foreground mb-4">
                   {t('history.fetler.name')}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
+                <p className="text-foreground/70 leading-relaxed mb-4">
                   {t('history.fetler.desc')}
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   {t('history.fetler.extended')}
                 </p>
               </div>
@@ -70,7 +70,7 @@ const HistoryContent = () => {
             <h3 className="font-display text-xl font-bold text-foreground mb-4">
               {t('history.return.title')}
             </h3>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-foreground/70 leading-relaxed">
               {t('history.return.text')}
             </p>
           </div>
@@ -86,7 +86,7 @@ const HistoryContent = () => {
             <h3 className="font-display text-xl font-bold text-foreground mb-4">
               {t('history.obds.title')}
             </h3>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-foreground/70 leading-relaxed">
               {t('history.obds.text')}
             </p>
           </div>
@@ -104,7 +104,7 @@ const HistoryContent = () => {
                 <h3 className="font-display text-xl font-bold text-foreground mb-4">
                   {t('history.evangelization.title')}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   {t('history.evangelization.text')}
                 </p>
               </div>
@@ -115,7 +115,7 @@ const HistoryContent = () => {
                   loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
-                <p className="text-sm text-muted-foreground mt-3 text-center italic">
+                <p className="text-sm text-foreground/70 mt-3 text-center italic">
                   {t('history.tent.caption')}
                 </p>
               </div>
@@ -134,7 +134,7 @@ const HistoryContent = () => {
                   loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
-                <p className="text-sm text-muted-foreground mt-3 text-center italic">
+                <p className="text-sm text-foreground/70 mt-3 text-center italic">
                   {t('history.building.caption')}
                 </p>
               </div>
@@ -146,10 +146,10 @@ const HistoryContent = () => {
                 <h3 className="font-display text-xl font-bold text-foreground mb-4">
                   {t('history.temple.title')}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">
+                <p className="text-foreground/70 leading-relaxed mb-4">
                   {t('history.temple.text')}
                 </p>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   {t('history.temple.details')}
                 </p>
               </div>
@@ -165,7 +165,7 @@ const HistoryContent = () => {
                 <h3 className="font-display text-xl font-bold text-foreground mb-4">
                   {t('history.interior.title')}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-foreground/70 leading-relaxed">
                   {t('history.interior.text')}
                 </p>
               </div>
@@ -176,7 +176,7 @@ const HistoryContent = () => {
                   loading="lazy"
                   className="rounded-xl shadow-lg w-full"
                 />
-                <p className="text-sm text-muted-foreground mt-3 text-center italic">
+                <p className="text-sm text-foreground/70 mt-3 text-center italic">
                   {t('history.interior.caption')}
                 </p>
               </div>
@@ -190,7 +190,7 @@ const HistoryContent = () => {
             <h3 className="font-display text-xl font-bold text-foreground mb-4">
               {t('history.legacy.title')}
             </h3>
-            <p className="text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            <p className="text-foreground/70 leading-relaxed max-w-3xl mx-auto">
               {t('history.legacy.text')}
             </p>
           </div>

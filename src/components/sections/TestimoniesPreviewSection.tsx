@@ -21,7 +21,7 @@ export const TestimoniesPreviewSection = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
             {t('testimonies.title')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-subtitle max-w-2xl mx-auto">
             {t('testimonies.subtitle')}
           </p>
         </div>
@@ -33,7 +33,7 @@ export const TestimoniesPreviewSection = () => {
               <h3 className="font-display text-lg font-bold text-foreground mb-2">
                 {t(`testimonies.${testimony.key}.name`)}
               </h3>
-              <p className="text-muted-foreground text-sm line-clamp-4">
+              <p className="text-foreground/70 text-sm line-clamp-4">
                 {t(`testimonies.${testimony.key}.summary`)}
               </p>
             </div>

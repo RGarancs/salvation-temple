@@ -50,7 +50,7 @@ export const ChurchHeader = () => {
             <span className="font-display text-sm font-bold text-foreground tracking-wide">
               {t('church.name')}
             </span>
-            <span className="text-xs text-muted-foreground">
+            <span className="text-xs text-foreground/70">
               {t('church.shortName')}
             </span>
           </div>

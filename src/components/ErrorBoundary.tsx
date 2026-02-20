@@ -27,7 +27,7 @@ export class ErrorBoundary extends Component<Props, State> {
             <h1 className="font-display text-3xl font-bold text-foreground mb-4">
               Something went wrong
             </h1>
-            <p className="text-muted-foreground mb-8">
+            <p className="text-foreground/70 mb-8">
               An unexpected error occurred. Please try refreshing the page.
             </p>
             <button

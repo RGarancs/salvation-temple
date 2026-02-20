@@ -81,7 +81,7 @@ export const MinistriesSection = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
             {t('ministries.title')}
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-subtitle max-w-2xl mx-auto">
             {t('ministries.subtitle')}
           </p>
         </div>

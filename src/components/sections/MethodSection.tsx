@@ -22,8 +22,8 @@ export const MethodSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="py-24 bg-cream-dark relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-12 md:py-16 lg:py-24 bg-cream-dark relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleTrigger className="w-full">
             <div className="text-center mb-8 cursor-pointer group">
@@ -34,9 +34,9 @@ export const MethodSection = () => {
                 <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth">
                   {t('method.title')}
                 </h2>
-                <ChevronDown className={`w-6 h-6 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-6 h-6 text-foreground/70 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
               </div>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed mt-4">
+              <p className="text-lg text-subtitle max-w-3xl mx-auto leading-relaxed mt-4">
                 {t('method.subtitle')}
               </p>
             </div>
@@ -64,7 +64,7 @@ export const MethodSection = () => {
                       {t(`method.${method.key}.title`)}
                     </h3>
 
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-foreground/70 text-sm leading-relaxed">
                       {t(`method.${method.key}.text`)}
                     </p>
                   </div>

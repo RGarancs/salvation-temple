@@ -30,8 +30,8 @@ export const SessionsSection = () => {
   const [openSession, setOpenSession] = useState<number | null>(1);
 
   return (
-    <section id="program" className="py-24 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section id="program" className="py-12 md:py-16 lg:py-24 bg-background relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-sunset/20 to-coral/20 mb-6">
             <CalendarDays className="w-7 h-7 text-sunset" />
@@ -88,7 +88,7 @@ export const SessionsSection = () => {
                         {isOpen ? (
                           <ChevronUp className="w-4 h-4 text-white" />
                         ) : (
-                          <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                          <ChevronDown className="w-4 h-4 text-foreground/70" />
                         )}
                       </div>
                     </div>
@@ -101,7 +101,7 @@ export const SessionsSection = () => {
                         <h4 className={`text-sm font-bold ${colors.text} mb-2`}>
                           {t('sessions.about')}
                         </h4>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
+                        <p className="text-foreground/70 text-sm leading-relaxed">
                           {t(`session.${session.num}.about`)}
                         </p>
                       </div>
@@ -114,7 +114,7 @@ export const SessionsSection = () => {
                         </h4>
                         <ul className="space-y-1">
                           {t(`session.${session.num}.tools`).split('\n').map((tool, i) => (
-                            <li key={i} className="text-muted-foreground text-sm flex items-start gap-2">
+                            <li key={i} className="text-foreground/70 text-sm flex items-start gap-2">
                               <span className={`w-1.5 h-1.5 rounded-full ${colors.bg} mt-1.5 flex-shrink-0`} />
                               {tool}
                             </li>

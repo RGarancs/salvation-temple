@@ -22,14 +22,14 @@ export const BenefitsSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-12 md:py-16 lg:py-24 bg-background relative overflow-hidden">
       {/* Subtle decorative */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 right-20 w-64 h-64 bg-amber/5 rounded-full blur-3xl" />
         <div className="absolute bottom-20 left-20 w-48 h-48 bg-sunset/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleTrigger className="w-full">
             <div className="text-center mb-8 cursor-pointer group">
@@ -40,7 +40,7 @@ export const BenefitsSection = () => {
                 <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth">
                   {t('benefits.title')}
                 </h2>
-                <ChevronDown className={`w-6 h-6 text-muted-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-6 h-6 text-foreground/70 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
               </div>
             </div>
           </CollapsibleTrigger>
@@ -62,7 +62,7 @@ export const BenefitsSection = () => {
                       {t(`benefits.${benefit.key}.title`)}
                     </h3>
                     
-                    <p className="text-muted-foreground leading-relaxed text-sm">
+                    <p className="text-foreground/70 leading-relaxed text-sm">
                       {t(`benefits.${benefit.key}.text`)}
                     </p>
                   </div>

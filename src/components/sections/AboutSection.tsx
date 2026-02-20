@@ -47,7 +47,7 @@ export const AboutSection = () => {
             {t('about.title')}
           </h2>
           {/* Always visible intro text */}
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg mb-8">
+          <p className="text-subtitle max-w-2xl mx-auto text-lg mb-8">
             {t('about.intro')}
           </p>
           

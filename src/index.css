@@ -347,6 +347,13 @@
     background: hsl(var(--cream-dark));
   }
 
+  /* Subtitle text on cream/light-background sections.
+     hsl(20 25% 30%) is dark enough on cream in BOTH themes (contrast ≥ 5:1).
+     Use text-muted-foreground instead for sections with dark backgrounds. */
+  .text-subtitle {
+    color: hsl(20 25% 30%);
+  }
+
   /* Shine hover overlay for bordeaux cards */
   .bg-shine {
     background: linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%);

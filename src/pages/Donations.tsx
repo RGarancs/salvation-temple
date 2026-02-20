@@ -42,7 +42,7 @@ const DonationsContent = () => {
           <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
             {t('donations.title')}
           </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-foreground/70 max-w-2xl mx-auto">
             {t('donations.subtitle')}
           </p>
         </div>

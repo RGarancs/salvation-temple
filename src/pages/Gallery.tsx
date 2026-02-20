@@ -30,7 +30,7 @@ const GalleryContent = () => {
           <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
             {t('gallery.title')}
           </h1>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-foreground/70 max-w-2xl mx-auto">
             {t('gallery.subtitle')}
           </p>
         </div>
@@ -53,7 +53,7 @@ const GalleryContent = () => {
 
         {/* Social Media Links */}
         <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">{t('gallery.followUs')}</p>
+          <p className="text-foreground/70 mb-4">{t('gallery.followUs')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href="https://www.facebook.com/SalvationTempleLV/photos"
