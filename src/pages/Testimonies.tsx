@@ -6,9 +6,16 @@ import { Quote, Heart } from 'lucide-react';
 import galleryCommunity from '@/assets/gallery-community.jpg';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 const TestimoniesContent = () => {
   const { t } = useLanguage();
+  usePageMeta({
+    titleKey: 'meta.testimonies.title',
+    descriptionKey: 'meta.testimonies.description',
+    canonicalPath: '/testimonies',
+  });
 
   const testimonies = [
     {
@@ -35,6 +42,7 @@ const TestimoniesContent = () => {
 
   return (
     <section className="page-py min-h-screen relative overflow-hidden bg-gradient-to-b from-chocolate-dark via-chocolate to-chocolate-dark">
+      <BreadcrumbJsonLd pageName={t('testimonies.title')} pagePath="/testimonies" />
       {/* Background image with opacity */}
       <div className="absolute inset-0">
         <img

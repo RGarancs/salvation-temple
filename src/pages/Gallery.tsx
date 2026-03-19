@@ -3,6 +3,8 @@ import { ChurchHeader } from '@/components/ChurchHeader';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Images, Facebook, Instagram, Youtube } from 'lucide-react';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 const galleryModules = import.meta.glob<{ default: string }>(
   '@/assets/gallery-*.jpg',
@@ -19,9 +21,15 @@ const images = Object.entries(galleryModules).map(([path, mod]) => ({
 
 const GalleryContent = () => {
   const { t } = useLanguage();
+  usePageMeta({
+    titleKey: 'meta.gallery.title',
+    descriptionKey: 'meta.gallery.description',
+    canonicalPath: '/gallery',
+  });
 
   return (
     <section className="page-py bg-background min-h-screen">
+      <BreadcrumbJsonLd pageName={t('gallery.title')} pagePath="/gallery" />
       <div className="section-container">
         <div className="section-header">
           <div className="section-icon bg-gradient-to-br from-coral/20 to-sunset/20">

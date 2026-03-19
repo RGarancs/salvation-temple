@@ -8,21 +8,37 @@ import { MinistriesSection } from '@/components/sections/MinistriesSection';
 import { GalleryPreviewSection } from '@/components/sections/GalleryPreviewSection';
 import { ContactsSection } from '@/components/sections/ContactsSection';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { WebSiteJsonLd, EventJsonLd } from '@/components/seo/JsonLd';
+
+const IndexContent = () => {
+  usePageMeta({
+    titleKey: 'meta.home.title',
+    descriptionKey: 'meta.home.description',
+    canonicalPath: '/',
+  });
+
+  return (
+    <div className="min-h-screen bg-background font-body">
+      <WebSiteJsonLd />
+      <EventJsonLd />
+      <ChurchHeader />
+      <ChurchHero />
+      <EventsSection />
+      <AboutSection />
+      <StatisticsSection />
+      <MinistriesSection />
+      <GalleryPreviewSection />
+      <ContactsSection />
+      <ChurchFooter />
+    </div>
+  );
+};
 
 const Index = () => {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-background font-body">
-        <ChurchHeader />
-        <ChurchHero />
-        <EventsSection />
-        <AboutSection />
-        <StatisticsSection />
-        <MinistriesSection />
-        <GalleryPreviewSection />
-        <ContactsSection />
-        <ChurchFooter />
-      </div>
+      <IndexContent />
     </LanguageProvider>
   );
 };

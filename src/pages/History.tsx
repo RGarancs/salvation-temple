@@ -7,12 +7,20 @@ import historyTent from '@/assets/history-tent.png';
 import historyBuilding from '@/assets/history-building.png';
 import historyFetler from '@/assets/history-fetler.png';
 import historyTemple from '@/assets/history-temple-1927.png';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 const HistoryContent = () => {
   const { t } = useLanguage();
+  usePageMeta({
+    titleKey: 'meta.history.title',
+    descriptionKey: 'meta.history.description',
+    canonicalPath: '/history',
+  });
 
   return (
     <section className="page-py bg-background min-h-screen">
+      <BreadcrumbJsonLd pageName={t('history.title')} pagePath="/history" />
       <div className="section-container">
         <div className="section-header">
           <div className="section-icon bg-gradient-to-br from-terracotta/20 to-burnt/20">

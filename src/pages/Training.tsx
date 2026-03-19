@@ -12,25 +12,42 @@ import { CalendarSection } from '@/components/sections/CalendarSection';
 import { TeamSection } from '@/components/sections/TeamSection';
 import { OrganizationSection } from '@/components/sections/OrganizationSection';
 import { Footer } from '@/components/sections/Footer';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+
+const TrainingContent = () => {
+  const { t } = useLanguage();
+  usePageMeta({
+    titleKey: 'meta.training.title',
+    descriptionKey: 'meta.training.description',
+    canonicalPath: '/training',
+  });
+
+  return (
+    <div className="min-h-screen bg-background font-body">
+      <BreadcrumbJsonLd pageName={t('hero.title')} pagePath="/training" />
+      <Header />
+      <HeroSection />
+      <PhilosophySection />
+      <BenefitsSection />
+      <TargetSection />
+      <MethodSection />
+      <ApproachSection />
+      <WheelSection />
+      <SessionsSection />
+      <CalendarSection />
+      <TeamSection />
+      <OrganizationSection />
+      <Footer />
+    </div>
+  );
+};
 
 const Training = () => {
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-background font-body">
-        <Header />
-        <HeroSection />
-        <PhilosophySection />
-        <BenefitsSection />
-        <TargetSection />
-        <MethodSection />
-        <ApproachSection />
-        <WheelSection />
-        <SessionsSection />
-        <CalendarSection />
-        <TeamSection />
-        <OrganizationSection />
-        <Footer />
-      </div>
+      <TrainingContent />
     </LanguageProvider>
   );
 };

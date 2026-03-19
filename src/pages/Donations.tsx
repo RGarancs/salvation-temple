@@ -6,9 +6,16 @@ import { Heart, Copy, Check, Building2, Church, Users, BookOpen, Sun, Home } fro
 import { useState } from 'react';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 
 const DonationsContent = () => {
   const { t } = useLanguage();
+  usePageMeta({
+    titleKey: 'meta.donations.title',
+    descriptionKey: 'meta.donations.description',
+    canonicalPath: '/donations',
+  });
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
   const bankDetails = {
@@ -34,6 +41,7 @@ const DonationsContent = () => {
 
   return (
     <section className="page-py bg-cream-dark min-h-screen">
+      <BreadcrumbJsonLd pageName={t('donations.title')} pagePath="/donations" />
       <div className="section-container">
         <div className="section-header">
           <div className="section-icon bg-gradient-to-br from-amber/20 to-sunset/20">

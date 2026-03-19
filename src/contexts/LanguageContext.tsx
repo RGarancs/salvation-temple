@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from 'react';
 import { translations, type Language } from '@/i18n';
 
 export type { Language };
@@ -34,9 +34,14 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('language', lang);
   };
 
-  const t = (key: string): string => {
-    return translations[language][key] || key;
-  };
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
+  const t = useCallback(
+    (key: string): string => translations[language][key] || key,
+    [language],
+  );
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
