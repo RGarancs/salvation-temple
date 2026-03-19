@@ -33,13 +33,13 @@ const DonationsContent = () => {
   };
 
   return (
-    <section className="py-24 bg-cream-dark min-h-screen pt-32">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-amber/20 to-sunset/20 mb-6">
+    <section className="page-py bg-cream-dark min-h-screen">
+      <div className="section-container">
+        <div className="section-header">
+          <div className="section-icon bg-gradient-to-br from-amber/20 to-sunset/20">
             <Heart className="w-7 h-7 text-amber" />
           </div>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
+          <h1 className="section-title text-gradient-earth mb-4">
             {t('donations.title')}
           </h1>
           <p className="text-foreground/70 max-w-2xl mx-auto">

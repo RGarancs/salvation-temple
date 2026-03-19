@@ -17,7 +17,11 @@
       "Bash(npm uninstall:*)",
       "Bash(npx eslint:*)",
       "Bash(grep:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(while read:*)",
+      "Bash(do wc:*)",
+      "Bash(done)",
+      "Bash(sed 's/\\\\.tsx$//')"
     ]
   }
 }

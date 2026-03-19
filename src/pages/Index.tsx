@@ -6,7 +6,6 @@ import { StatisticsSection } from '@/components/sections/StatisticsSection';
 import { EventsSection } from '@/components/sections/EventsSection';
 import { MinistriesSection } from '@/components/sections/MinistriesSection';
 import { GalleryPreviewSection } from '@/components/sections/GalleryPreviewSection';
-import { TestimoniesPreviewSection } from '@/components/sections/TestimoniesPreviewSection';
 import { ContactsSection } from '@/components/sections/ContactsSection';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
 
@@ -21,7 +20,6 @@ const Index = () => {
         <StatisticsSection />
         <MinistriesSection />
         <GalleryPreviewSection />
-        <TestimoniesPreviewSection />
         <ContactsSection />
         <ChurchFooter />
       </div>

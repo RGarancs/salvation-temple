@@ -22,16 +22,16 @@ export const MethodSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="py-12 md:py-16 lg:py-24 bg-cream-dark relative overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+    <section className="section-py bg-cream-dark relative overflow-hidden">
+      <div className="section-container">
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleTrigger className="w-full">
             <div className="text-center mb-8 cursor-pointer group">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-amber/20 to-coral/20 mb-6">
+              <div className="section-icon bg-gradient-to-br from-amber/20 to-coral/20">
                 <Brain className="w-7 h-7 text-amber" />
               </div>
               <div className="flex items-center justify-center gap-3">
-                <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth">
+                <h2 className="section-title text-gradient-earth">
                   {t('method.title')}
                 </h2>
                 <ChevronDown className={`w-6 h-6 text-foreground/70 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />

@@ -1,86 +1,133 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock, Facebook, Instagram, Youtube, LucideIcon } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Link } from 'react-router-dom';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
+interface EventCategory {
+  key: string;
+  icon: LucideIcon;
+  content?: string;
+  hasSocial?: boolean;
+  hasLink?: boolean;
+  linkText?: string;
+}
+
+const eventCategories: EventCategory[] = [
+  { key: 'news', icon: Newspaper, content: 'events.news.content', hasSocial: true },
+  { key: 'training', icon: GraduationCap, hasLink: true, linkText: 'events.training.link' },
+  { key: 'baptism', icon: Droplets, content: 'events.baptism.content' },
+];
+
+const socialLinks = [
+  { href: 'https://www.facebook.com/SalvationTempleLV/', icon: Facebook, label: 'Facebook' },
+  { href: 'https://www.instagram.com/salvationtemplelv/', icon: Instagram, label: 'Instagram' },
+  { href: 'https://www.youtube.com/@SalvationTemple', icon: Youtube, label: 'YouTube' },
+];
+
+const getUpcomingSundays = (): Date[] => {
+  const sundays: Date[] = [];
+  const today = new Date();
+  const nextSunday = new Date(today);
+  nextSunday.setDate(today.getDate() + (7 - today.getDay()) % 7);
+  if (today.getDay() === 0) nextSunday.setTime(today.getTime());
+  for (let i = 0; i < 4; i++) {
+    const sunday = new Date(nextSunday);
+    sunday.setDate(nextSunday.getDate() + (i * 7));
+    sundays.push(sunday);
+  }
+  return sundays;
+};
+
+const getThisFriday = (): Date => {
+  const today = new Date();
+  const daysUntilFriday = (5 - today.getDay() + 7) % 7;
+  const friday = new Date(today);
+  friday.setDate(today.getDate() + (daysUntilFriday === 0 ? 7 : daysUntilFriday));
+  return friday;
+};
+
+const formatDate = (date: Date): string =>
+  date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+
+const isMarch1st = (date: Date): boolean =>
+  date.getDate() === 1 && date.getMonth() === 2;
+
+const EventContentBlock = ({ category, t }: { category: EventCategory; t: (key: string) => string }) => {
+  if (category.hasLink) {
+    return (
+      <div className="mt-4 p-4 bg-muted/50 rounded-xl">
+        <p className="text-foreground/70 mb-4">{t('events.training.content')}</p>
+        <Link
+          to="/training"
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white btn-md rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+        >
+          {t('events.training.link')}
+          <ChevronRight className="w-4 h-4" />
+        </Link>
+      </div>
+    );
+  }
+
+  if (category.hasSocial) {
+    return (
+      <div className="mt-4 p-4 bg-muted/50 rounded-xl">
+        <p className="text-foreground/70 mb-4">{t(category.content!)}</p>
+        <div className="flex flex-wrap gap-3">
+          {socialLinks.map((link) => {
+            const SocialIcon = link.icon;
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white btn-sm rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+              >
+                <SocialIcon className="w-4 h-4" />
+                {link.label}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  if (category.key === 'baptism') {
+    return (
+      <div className="mt-4 p-4 bg-muted/50 rounded-xl">
+        <p className="text-foreground/70 mb-2">{t('events.baptism.content')}</p>
+        <p className="text-foreground font-semibold mb-2">{t('events.baptism.nextDate')}</p>
+        <p className="text-foreground/70 text-sm">{t('events.baptism.contactPastor')}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-4 p-4 bg-muted/50 rounded-xl">
+      <p className="text-foreground/70">{t(category.content!)}</p>
+    </div>
+  );
+};
+
 export const EventsSection = () => {
   const { t } = useLanguage();
   const [openSection, setOpenSection] = useState<string | null>('training');
 
-  // Get upcoming Sundays including March 1st
-  const getUpcomingSundays = () => {
-    const sundays = [];
-    const today = new Date();
-    
-    let nextSunday = new Date(today);
-    nextSunday.setDate(today.getDate() + (7 - today.getDay()) % 7);
-    if (today.getDay() === 0) nextSunday = today;
-    
-    for (let i = 0; i < 4; i++) {
-      const sunday = new Date(nextSunday);
-      sunday.setDate(nextSunday.getDate() + (i * 7));
-      sundays.push(sunday);
-    }
-    
-    return sundays;
-  };
-
   const upcomingSundays = getUpcomingSundays();
-  
-  // Get this Friday
-  const getThisFriday = () => {
-    const today = new Date();
-    const daysUntilFriday = (5 - today.getDay() + 7) % 7;
-    const friday = new Date(today);
-    friday.setDate(today.getDate() + (daysUntilFriday === 0 ? 7 : daysUntilFriday));
-    return friday;
-  };
-
   const thisFriday = getThisFriday();
 
-  const formatDate = (date: Date) => {
-    return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
-  };
-
-  // Check if date is March 1st
-  const isMarch1st = (date: Date) => {
-    return date.getDate() === 1 && date.getMonth() === 2;
-  };
-
-  // Check if first Sunday (communion)
-  const isFirstSunday = (index: number) => index === 0;
-
-  const eventCategories = [
-    { 
-      key: 'news', 
-      icon: Newspaper, 
-      content: 'events.news.content',
-      hasSocial: true
-    },
-    { 
-      key: 'training', 
-      icon: GraduationCap, 
-      hasLink: true,
-      linkText: 'events.training.link'
-    },
-    { 
-      key: 'baptism', 
-      icon: Droplets, 
-      content: 'events.baptism.content'
-    },
-  ];
-
   return (
-    <section id="events" className="py-12 md:py-16 lg:py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-amber/20 to-sunset/20 mb-6">
+    <section id="events" className="section-py bg-background">
+      <div className="section-container">
+        <div className="section-header">
+          <div className="section-icon bg-gradient-to-br from-amber/20 to-sunset/20">
             <Calendar className="w-7 h-7 text-amber" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
+          <h2 className="section-title text-gradient-earth mb-4">
             {t('events.title')}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -88,15 +135,15 @@ export const EventsSection = () => {
           </p>
         </div>
 
-        {/* Event Categories - moved before calendar */}
+        {/* Event Categories */}
         <div className="max-w-4xl mx-auto space-y-4 mb-12">
           {eventCategories.map((category) => {
             const Icon = category.icon;
             const isOpen = openSection === category.key;
 
             return (
-              <Collapsible 
-                key={category.key} 
+              <Collapsible
+                key={category.key}
                 open={isOpen}
                 onOpenChange={(open) => setOpenSection(open ? category.key : null)}
               >
@@ -129,62 +176,8 @@ export const EventsSection = () => {
                 </CollapsibleTrigger>
 
                 <CollapsibleContent className="overflow-hidden data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up">
-                  <div className="p-5 pt-0 ml-16">
-                    {category.hasLink ? (
-                      <div className="mt-4 p-4 bg-muted/50 rounded-xl">
-                        <p className="text-foreground/70 mb-4">{t('events.training.content')}</p>
-                        <Link
-                          to="/training"
-                          className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                        >
-                          {t('events.training.link')}
-                          <ChevronRight className="w-4 h-4" />
-                        </Link>
-                      </div>
-                    ) : category.hasSocial ? (
-                      <div className="mt-4 p-4 bg-muted/50 rounded-xl">
-                        <p className="text-foreground/70 mb-4">{t(category.content!)}</p>
-                        <div className="flex flex-wrap gap-3">
-                          <a
-                            href="https://www.facebook.com/SalvationTempleLV/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                          >
-                            <Facebook className="w-4 h-4" />
-                            Facebook
-                          </a>
-                          <a
-                            href="https://www.instagram.com/salvationtemplelv/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                          >
-                            <Instagram className="w-4 h-4" />
-                            Instagram
-                          </a>
-                          <a
-                            href="https://www.youtube.com/@SalvationTemple"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                          >
-                            <Youtube className="w-4 h-4" />
-                            YouTube
-                          </a>
-                        </div>
-                      </div>
-                    ) : category.key === 'baptism' ? (
-                      <div className="mt-4 p-4 bg-muted/50 rounded-xl">
-                        <p className="text-foreground/70 mb-2">{t('events.baptism.content')}</p>
-                        <p className="text-foreground font-semibold mb-2">{t('events.baptism.nextDate')}</p>
-                        <p className="text-foreground/70 text-sm">{t('events.baptism.contactPastor')}</p>
-                      </div>
-                    ) : (
-                      <div className="mt-4 p-4 bg-muted/50 rounded-xl">
-                        <p className="text-foreground/70">{t(category.content!)}</p>
-                      </div>
-                    )}
+                  <div className="px-4 pb-4 md:px-5 md:pb-5">
+                    <EventContentBlock category={category} t={t} />
                   </div>
                 </CollapsibleContent>
               </Collapsible>
@@ -192,7 +185,7 @@ export const EventsSection = () => {
           })}
         </div>
 
-        {/* Upcoming Services Calendar - now below event categories */}
+        {/* Upcoming Services Calendar */}
         <div className="max-w-4xl mx-auto">
           <div
             className="relative overflow-hidden rounded-2xl p-6 md:p-8"
@@ -206,7 +199,7 @@ export const EventsSection = () => {
                   {t('events.upcoming')}
                 </h3>
               </div>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {/* This Friday Prayer */}
                 <div className="p-4 bg-white/5 rounded-xl text-center border border-white/10">
@@ -216,16 +209,16 @@ export const EventsSection = () => {
                     <Clock className="w-3 h-3" /> 18:00
                   </p>
                 </div>
-                
-                {/* Upcoming Sundays - all labeled as Sunday Service */}
+
+                {/* Upcoming Sundays */}
                 {upcomingSundays.map((sunday, index) => {
-                  const hasCommunion = isFirstSunday(index) || isMarch1st(sunday);
+                  const hasCommunion = index === 0 || isMarch1st(sunday);
                   return (
-                    <div 
-                      key={index} 
+                    <div
+                      key={index}
                       className={`p-4 rounded-xl text-center border ${
-                        hasCommunion 
-                          ? 'bg-sunset/20 border-sunset/30' 
+                        hasCommunion
+                          ? 'bg-sunset/20 border-sunset/30'
                           : 'bg-white/5 border-white/10'
                       }`}
                     >

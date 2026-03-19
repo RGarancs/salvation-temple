@@ -32,13 +32,13 @@ export const OrganizationSection = () => {
   ];
 
   return (
-    <section className="py-12 md:py-16 lg:py-24 bg-cream-dark">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+    <section className="section-py bg-cream-dark">
+      <div className="section-container">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-sunset/20 to-amber/20 mb-6">
+          <div className="section-icon bg-gradient-to-br from-sunset/20 to-amber/20">
             <Settings className="w-7 h-7 text-sunset" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth">
+          <h2 className="section-title text-gradient-earth">
             {t('org.title')}
           </h2>
         </div>

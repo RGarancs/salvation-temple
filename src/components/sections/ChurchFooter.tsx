@@ -7,8 +7,8 @@ export const ChurchFooter = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-[hsl(350_30%_4%)] text-white py-16">
-      <div className="container mx-auto px-4">
+    <footer className="bg-footer text-white py-16">
+      <div className="section-container">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           {/* About Column */}
           <div className="md:col-span-1">
@@ -103,7 +103,7 @@ export const ChurchFooter = () => {
             </div>
             <Link
               to="/donations"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all hover:shadow-lg"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white btn-md rounded-full font-semibold transition-all hover:shadow-lg"
             >
               {t('donations.cta')}
             </Link>

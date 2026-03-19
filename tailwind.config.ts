@@ -101,6 +101,14 @@ export default {
           DEFAULT: "hsl(var(--burnt))",
           light: "hsl(var(--burnt-light))",
         },
+        footer: {
+          DEFAULT: "hsl(var(--footer-bg))",
+        },
+        "section-dark": {
+          DEFAULT: "hsl(var(--section-dark))",
+          mid: "hsl(var(--section-dark-mid))",
+          deep: "hsl(var(--section-dark-deep))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

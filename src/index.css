@@ -78,6 +78,12 @@
     --burnt: 15 65% 40%;
     --burnt-light: 15 50% 55%;
 
+    /* Dark section backgrounds (used in contacts/footer even in light mode) */
+    --footer-bg: 350 30% 4%;
+    --section-dark: 350 30% 8%;
+    --section-dark-mid: 350 35% 6%;
+    --section-dark-deep: 350 30% 5%;
+
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(30 25% 97%) 0%, hsl(28 22% 92%) 50%, hsl(25 20% 90%) 100%);
     --gradient-sunset: linear-gradient(135deg, hsl(18 75% 50%) 0%, hsl(8 80% 50%) 100%);
@@ -167,6 +173,12 @@
     --burnt: 12 60% 45%;
     --burnt-light: 12 45% 58%;
 
+    /* Dark section backgrounds */
+    --footer-bg: 350 30% 4%;
+    --section-dark: 350 30% 8%;
+    --section-dark-mid: 350 35% 6%;
+    --section-dark-deep: 350 30% 5%;
+
     /* Dark gradients - Bordeaux */
     --gradient-hero: linear-gradient(135deg, hsl(350 35% 8%) 0%, hsl(350 30% 12%) 50%, hsl(350 25% 14%) 100%);
     --gradient-warm: linear-gradient(180deg, hsl(350 35% 8%) 0%, hsl(350 40% 6%) 100%);
@@ -199,11 +211,19 @@
 }
 
 @layer components {
+  /* Section spacing constants — single source of truth */
+  .section-py         { @apply py-8 md:py-12 lg:py-16; }
+  .page-py            { @apply pt-28 pb-16; }
+  .section-container  { @apply container mx-auto px-4 md:px-6 lg:px-8; }
+  .section-header     { @apply text-center mb-10; }
+  .section-icon       { @apply inline-flex items-center justify-center w-12 h-12 rounded-full mb-4; }
+  .section-title      { @apply font-display text-3xl md:text-4xl font-bold; }
+
   .font-display {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
   }
-  
+
   .font-body {
     font-family: 'Montserrat', sans-serif;
   }
@@ -354,10 +374,49 @@
     color: hsl(20 25% 30%);
   }
 
+  /* Button size utilities */
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .btn-md {
+    @apply px-6 py-3 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-base;
+  }
+
   /* Shine hover overlay for bordeaux cards */
   .bg-shine {
     background: linear-gradient(135deg, transparent 0%, hsl(30 80% 70%) 50%, transparent 100%);
   }
+
+  /* Ken Burns slideshow animations (ChurchHero) */
+  @keyframes ken-burns-0 {
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.1) translate(-2%, -1%); }
+    100% { transform: scale(1) translate(0, 0); }
+  }
+  @keyframes ken-burns-1 {
+    0% { transform: scale(1.1) translate(-1%, 1%); }
+    50% { transform: scale(1) translate(1%, -1%); }
+    100% { transform: scale(1.1) translate(-1%, 1%); }
+  }
+  @keyframes ken-burns-2 {
+    0% { transform: scale(1) translate(1%, 0); }
+    50% { transform: scale(1.15) translate(-1%, 2%); }
+    100% { transform: scale(1) translate(1%, 0); }
+  }
+  @keyframes ken-burns-3 {
+    0% { transform: scale(1.05) translate(0, -1%); }
+    50% { transform: scale(1) translate(2%, 1%); }
+    100% { transform: scale(1.05) translate(0, -1%); }
+  }
+  .animate-ken-burns-0 { animation: ken-burns-0 20s ease-in-out infinite; }
+  .animate-ken-burns-1 { animation: ken-burns-1 20s ease-in-out infinite; }
+  .animate-ken-burns-2 { animation: ken-burns-2 20s ease-in-out infinite; }
+  .animate-ken-burns-3 { animation: ken-burns-3 20s ease-in-out infinite; }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {

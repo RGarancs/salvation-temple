@@ -34,7 +34,7 @@ const TestimoniesContent = () => {
   ];
 
   return (
-    <section className="py-24 min-h-screen pt-32 relative overflow-hidden bg-gradient-to-b from-chocolate-dark via-chocolate to-chocolate-dark">
+    <section className="page-py min-h-screen relative overflow-hidden bg-gradient-to-b from-chocolate-dark via-chocolate to-chocolate-dark">
       {/* Background image with opacity */}
       <div className="absolute inset-0">
         <img
@@ -53,12 +53,12 @@ const TestimoniesContent = () => {
         <div className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-terracotta/10 blur-3xl animate-float" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-coral/20 to-sunset/20 mb-6">
+      <div className="section-container relative z-10">
+        <div className="section-header">
+          <div className="section-icon bg-gradient-to-br from-coral/20 to-sunset/20">
             <Heart className="w-7 h-7 text-coral" />
           </div>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
+          <h1 className="section-title text-gradient-earth mb-4">
             {t('testimonies.title')}
           </h1>
           <p className="text-foreground/70 max-w-2xl mx-auto">

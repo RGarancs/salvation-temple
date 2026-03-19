@@ -12,13 +12,13 @@ export const TestimoniesPreviewSection = () => {
   ];
 
   return (
-    <section id="testimonies" className="py-12 md:py-16 lg:py-24 bg-cream-dark">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-coral/20 to-sunset/20 mb-6">
+    <section id="testimonies" className="section-py bg-cream-dark">
+      <div className="section-container">
+        <div className="section-header">
+          <div className="section-icon bg-gradient-to-br from-coral/20 to-sunset/20">
             <Heart className="w-7 h-7 text-coral" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
+          <h2 className="section-title text-gradient-earth mb-4">
             {t('testimonies.title')}
           </h2>
           <p className="text-subtitle max-w-2xl mx-auto">

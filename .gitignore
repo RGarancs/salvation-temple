@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# ForgeKit claude docs
+.claude/docs/
+.claude/commands/
+.claude/.forgekit-manifest.json

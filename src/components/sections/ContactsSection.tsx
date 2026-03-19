@@ -1,33 +1,55 @@
+import { ReactNode } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MapPin, Phone, Mail, Clock, Car, Facebook, Instagram, Youtube, CreditCard } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Car, Facebook, Instagram, Youtube, CreditCard, LucideIcon } from 'lucide-react';
 import leaderPastor from '@/assets/leader-pastor.jpg';
 import leaderStanislav from '@/assets/leader-stanislav.jpg';
 import galleryCommunity from '@/assets/gallery-community.jpg';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
+const contacts = [
+  {
+    role: 'pastor',
+    name: { ru: 'Александр Звиридс', en: 'Aleksandrs Zvirids', lv: 'Aleksandrs Zvirids' },
+    phone: '+371 26025329',
+    email: 'zvirid@gmail.com',
+    image: leaderPastor,
+  },
+  {
+    role: 'manager',
+    name: { ru: 'Станислав Исаков', en: 'Stanislav Isakov', lv: 'Staņislavs Isakovs' },
+    phone: '+371 26025329',
+    email: 'ctacbanan@gmail.com',
+    image: leaderStanislav,
+  },
+];
+
+const socialLinks = [
+  { href: 'https://www.facebook.com/SalvationTempleLV/', icon: Facebook, label: 'Facebook' },
+  { href: 'https://www.instagram.com/salvationtemplelv/', icon: Instagram, label: 'Instagram' },
+  { href: 'https://www.youtube.com/@SalvationTemple', icon: Youtube, label: 'YouTube' },
+];
+
+const InfoCard = ({ icon: Icon, iconColor, children }: { icon: LucideIcon; iconColor: string; children: ReactNode }) => (
+  <div
+    className="relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:shadow-xl group"
+    style={bordeauxCardStyle}
+  >
+    <BordeauxOverlay />
+    <div className="relative z-10 flex items-start gap-3">
+      <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
+        <Icon className={`w-5 h-5 ${iconColor}`} />
+      </div>
+      <div>{children}</div>
+    </div>
+  </div>
+);
+
 export const ContactsSection = () => {
   const { t, language } = useLanguage();
 
-  const contacts = [
-    {
-      role: 'pastor',
-      name: { ru: 'Александр Звиридс', en: 'Aleksandrs Zvirids', lv: 'Aleksandrs Zvirids' },
-      phone: '+371 26025329',
-      email: 'zvirid@gmail.com',
-      image: leaderPastor,
-    },
-    {
-      role: 'manager',
-      name: { ru: 'Станислав Исаков', en: 'Stanislav Isakov', lv: 'Staņislavs Isakovs' },
-      phone: '+371 26025329',
-      email: 'ctacbanan@gmail.com',
-      image: leaderStanislav,
-    },
-  ];
-
   return (
-    <section id="contacts" className="py-12 md:py-16 lg:py-24 relative overflow-hidden bg-gradient-to-b from-[hsl(350_30%_8%)] via-[hsl(350_35%_6%)] to-[hsl(350_30%_5%)]">
+    <section id="contacts" className="section-py relative overflow-hidden bg-gradient-to-b from-section-dark via-section-dark-mid to-section-dark-deep">
       {/* Background image with opacity */}
       <div className="absolute inset-0">
         <img
@@ -36,7 +58,7 @@ export const ContactsSection = () => {
           loading="lazy"
           className="w-full h-full object-cover opacity-[0.08]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[hsl(350_30%_8%)/90] via-[hsl(350_35%_6%)/95] to-[hsl(350_30%_5%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-section-dark/90 via-section-dark-mid/95 to-section-dark-deep" />
       </div>
 
       {/* Soft glowing overlay */}
@@ -45,24 +67,24 @@ export const ContactsSection = () => {
         <div className="absolute bottom-20 left-10 w-72 h-72 rounded-full bg-sunset/10 blur-3xl animate-float" />
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-terracotta/20 to-sunset/20 mb-6">
+      <div className="section-container relative z-10">
+        <div className="section-header">
+          <div className="section-icon bg-gradient-to-br from-terracotta/20 to-sunset/20">
             <MapPin className="w-7 h-7 text-terracotta" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
+          <h2 className="section-title text-gradient-earth mb-4">
             {t('contacts.title')}
           </h2>
         </div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
           {/* Left Side - Contact Info */}
-          <div className="space-y-6">
-            {/* Staff Cards with photos - Dark Bordeaux */}
+          <div className="space-y-4">
+            {/* Staff Cards */}
             {contacts.map((contact) => (
-              <div 
-                key={contact.role} 
-                className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
+              <div
+                key={contact.role}
+                className="relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:shadow-xl group"
                 style={bordeauxCardStyle}
               >
                 <BordeauxOverlay />
@@ -98,64 +120,26 @@ export const ContactsSection = () => {
               </div>
             ))}
 
-            {/* Address - Dark Bordeaux */}
-            <div 
-              className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
-              style={bordeauxCardStyle}
-            >
-              <BordeauxOverlay />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
-                  <MapPin className="w-6 h-6 text-sunset-light" />
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-white/95 mb-1">{t('contacts.address')}</h3>
-                  <p className="text-white/70">Lāčplēša iela 117</p>
-                  <p className="text-white/70">Rīga, LV-1003, Latvia</p>
-                </div>
-              </div>
-            </div>
+            <InfoCard icon={MapPin} iconColor="text-sunset-light">
+              <h3 className="font-display text-sm font-bold text-white/95 mb-1">{t('contacts.address')}</h3>
+              <p className="text-white/70 text-sm">Lāčplēša iela 117, Rīga, LV-1003</p>
+            </InfoCard>
 
-            {/* Service Times - Dark Bordeaux */}
-            <div 
-              className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
-              style={bordeauxCardStyle}
-            >
-              <BordeauxOverlay />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
-                  <Clock className="w-6 h-6 text-coral" />
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-white/95 mb-1">{t('contacts.serviceTimes')}</h3>
-                  <p className="text-white/70">{t('church.serviceSunday')}</p>
-                  <p className="text-white/70">{t('contacts.prayerFriday')}</p>
-                </div>
-              </div>
-            </div>
+            <InfoCard icon={Clock} iconColor="text-coral">
+              <h3 className="font-display text-sm font-bold text-white/95 mb-1">{t('contacts.serviceTimes')}</h3>
+              <p className="text-white/70 text-sm">{t('church.serviceSunday')} · {t('contacts.prayerFriday')}</p>
+            </InfoCard>
 
-            {/* Parking - Dark Bordeaux */}
-            <div 
-              className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
-              style={bordeauxCardStyle}
-            >
-              <BordeauxOverlay />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
-                  <Car className="w-6 h-6 text-amber" />
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-white/95 mb-1">{t('contacts.parking')}</h3>
-                  <p className="text-white/70">{t('contacts.parkingAvailable')}</p>
-                </div>
-              </div>
-            </div>
+            <InfoCard icon={Car} iconColor="text-amber">
+              <h3 className="font-display text-sm font-bold text-white/95 mb-1">{t('contacts.parking')}</h3>
+              <p className="text-white/70 text-sm">{t('contacts.parkingAvailable')}</p>
+            </InfoCard>
           </div>
 
           {/* Right Side - Map, Socials, Donation */}
-          <div className="space-y-6">
-            {/* Map - with correct address */}
-            <div className="relative overflow-hidden rounded-2xl h-[350px]" style={bordeauxCardStyle}>
+          <div className="space-y-4">
+            {/* Map */}
+            <div className="relative overflow-hidden rounded-2xl h-[250px]" style={bordeauxCardStyle}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2175.7!2d24.1247!3d56.9496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2sL%C4%81%C4%8Dpl%C4%93%C5%A1a%20iela%20117%2C%20Centra%20rajons%2C%20R%C4%ABga%2C%20LV-1003!5e0!3m2!1sen!2slv!4v1640000000000!5m2!1sen!2slv"
                 width="100%"
@@ -168,18 +152,18 @@ export const ContactsSection = () => {
               />
             </div>
 
-            {/* Donation Info - Dark Bordeaux */}
-            <div 
-              className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group"
+            {/* Donation Info */}
+            <div
+              className="relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:shadow-xl group"
               style={bordeauxCardStyle}
             >
               <BordeauxOverlay />
               <div className="relative z-10 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
-                  <CreditCard className="w-6 h-6 text-terracotta" />
+                <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
+                  <CreditCard className="w-5 h-5 text-terracotta" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-display font-bold text-white/95 mb-3">{t('donations.title')}</h3>
+                  <h3 className="font-display text-sm font-bold text-white/95 mb-3">{t('donations.title')}</h3>
                   <div className="space-y-2 text-sm">
                     <p className="text-white/70">
                       <span className="font-semibold text-white/90">{t('donations.recipient')}:</span><br />
@@ -200,43 +184,31 @@ export const ContactsSection = () => {
               </div>
             </div>
 
-            {/* Social Media - Dark Bordeaux - expanded to match parking height */}
-            <div 
-              className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:shadow-xl group flex flex-col"
+            {/* Social Media */}
+            <div
+              className="relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:shadow-xl group flex flex-col"
               style={bordeauxCardStyle}
             >
               <BordeauxOverlay />
               <div className="relative z-10 flex-1 flex flex-col">
-                <h3 className="font-display font-bold text-white/95 mb-4">{t('contacts.socialMedia')}</h3>
-                <p className="text-white/60 text-sm mb-6">{t('contacts.followUs')}</p>
+                <h3 className="font-display text-sm font-bold text-white/95 mb-3">{t('contacts.socialMedia')}</h3>
+                <p className="text-white/60 text-sm mb-4">{t('contacts.followUs')}</p>
                 <div className="flex flex-wrap gap-3 mt-auto">
-                  <a
-                    href="https://www.facebook.com/SalvationTempleLV/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sunset to-coral text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                  >
-                    <Facebook className="w-5 h-5" />
-                    <span className="text-sm font-medium">Facebook</span>
-                  </a>
-                  <a
-                    href="https://www.instagram.com/salvationtemplelv/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sunset to-coral text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                  >
-                    <Instagram className="w-5 h-5" />
-                    <span className="text-sm font-medium">Instagram</span>
-                  </a>
-                  <a
-                    href="https://www.youtube.com/@SalvationTemple"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sunset to-coral text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                  >
-                    <Youtube className="w-5 h-5" />
-                    <span className="text-sm font-medium">YouTube</span>
-                  </a>
+                  {socialLinks.map((link) => {
+                    const SocialIcon = link.icon;
+                    return (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 btn-sm rounded-full bg-gradient-to-r from-sunset to-coral text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                      >
+                        <SocialIcon className="w-5 h-5" />
+                        <span className="text-sm font-medium">{link.label}</span>
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>

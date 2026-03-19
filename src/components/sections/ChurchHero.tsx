@@ -91,11 +91,6 @@ export const ChurchHero = () => {
             src={image}
             alt=""
             className={`w-full h-full object-cover animate-ken-burns-${index % 4}`}
-            style={{
-              animationDuration: '20s',
-              animationTimingFunction: 'ease-in-out',
-              animationIterationCount: 'infinite',
-            }}
           />
         </div>
       ))}
@@ -153,7 +148,7 @@ export const ChurchHero = () => {
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up">
             <a
               href="#contacts"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-sunset via-coral to-amber text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-sunset via-coral to-amber text-white btn-lg rounded-full font-bold transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               {t('church.planVisit')}
             </a>
@@ -161,7 +156,7 @@ export const ChurchHero = () => {
               href="https://www.youtube.com/@SalvationTemple"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 glass-sunset px-8 py-4 rounded-full font-bold text-lg text-foreground transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              className="inline-flex items-center gap-3 glass-sunset btn-lg rounded-full font-bold text-foreground transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
             >
               <Play className="w-5 h-5 text-sunset" />
               {t('church.watchLive')}
@@ -180,32 +175,6 @@ export const ChurchHero = () => {
         </svg>
       </div>
 
-      <style>{`
-        @keyframes ken-burns-0 {
-          0% { transform: scale(1) translate(0, 0); }
-          50% { transform: scale(1.1) translate(-2%, -1%); }
-          100% { transform: scale(1) translate(0, 0); }
-        }
-        @keyframes ken-burns-1 {
-          0% { transform: scale(1.1) translate(-1%, 1%); }
-          50% { transform: scale(1) translate(1%, -1%); }
-          100% { transform: scale(1.1) translate(-1%, 1%); }
-        }
-        @keyframes ken-burns-2 {
-          0% { transform: scale(1) translate(1%, 0); }
-          50% { transform: scale(1.15) translate(-1%, 2%); }
-          100% { transform: scale(1) translate(1%, 0); }
-        }
-        @keyframes ken-burns-3 {
-          0% { transform: scale(1.05) translate(0, -1%); }
-          50% { transform: scale(1) translate(2%, 1%); }
-          100% { transform: scale(1.05) translate(0, -1%); }
-        }
-        .animate-ken-burns-0 { animation: ken-burns-0 20s ease-in-out infinite; }
-        .animate-ken-burns-1 { animation: ken-burns-1 20s ease-in-out infinite; }
-        .animate-ken-burns-2 { animation: ken-burns-2 20s ease-in-out infinite; }
-        .animate-ken-burns-3 { animation: ken-burns-3 20s ease-in-out infinite; }
-      `}</style>
     </section>
   );
 };

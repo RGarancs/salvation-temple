@@ -1,84 +1,96 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Hand, Stethoscope, Info } from 'lucide-react';
+import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Hand, Stethoscope } from 'lucide-react';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
+const ministries = [
+  {
+    key: 'worship',
+    icon: Music,
+    leader: { ru: 'Давид Самойлич', en: 'David Samoylich', lv: 'Dāvids Samoiličs' }
+  },
+  {
+    key: 'sundaySchool',
+    icon: BookOpen,
+    leader: { ru: 'Кристина Полтарак', en: 'Kristina Poltarak', lv: 'Kristīna Poltaraka' }
+  },
+  {
+    key: 'ribaClub',
+    icon: Fish,
+    leader: { ru: 'Рамона и Артём Дударевы', en: 'Ramona & Artem Dudarevi', lv: 'Ramona un Artjoms Dudarevi' }
+  },
+  {
+    key: 'youth',
+    icon: Users,
+    leader: { ru: 'Пётр Вознарски', en: 'Peter Voznarsky', lv: 'Pēteris Vozniarskis' }
+  },
+  {
+    key: 'youngLife',
+    icon: Tent,
+    leader: { ru: 'Алёна Мюллер', en: 'Aljona Muller', lv: 'Aļona Millere' }
+  },
+  {
+    key: 'loveAndCare',
+    icon: Heart,
+    leader: { ru: 'Кристиана Вятере', en: 'Kristiāna Vjatere', lv: 'Kristiāna Vjātere' }
+  },
+  {
+    key: 'choir',
+    icon: Mic2,
+    leader: { ru: 'Алёна Исаков', en: 'Alena Isakov', lv: 'Aļena Isakova' }
+  },
+  {
+    key: 'smallGroups',
+    icon: Home,
+    leader: { ru: 'Даниил Полтарак', en: 'Daniel Poltarak', lv: 'Daniēls Poltaraks' }
+  },
+  {
+    key: 'mensMinistry',
+    icon: Dumbbell,
+    leader: { ru: 'Илья Ничипуенко', en: 'Ilya Nichipuenko', lv: 'Iļja Ničipuenko' }
+  },
+  {
+    key: 'womensMinistry',
+    icon: HeartHandshake,
+    leader: { ru: 'Йоланта', en: 'Jolanta', lv: 'Jolanta' }
+  },
+  {
+    key: 'media',
+    icon: Camera,
+    leader: { ru: 'Станислав Исаков', en: 'Stanislav Isakov', lv: 'Staņislavs Isakovs' }
+  },
+  {
+    key: 'counselling',
+    icon: Stethoscope,
+    leader: { ru: 'Эля Файзулина', en: 'Elya Fayzulina', lv: 'Eļa Faizuļina' }
+  },
+];
+
 export const MinistriesSection = () => {
   const { t, language } = useLanguage();
-  const [hoveredMinistry, setHoveredMinistry] = useState<string | null>(null);
+  const [expandedMinistry, setExpandedMinistry] = useState<string | null>(null);
 
-  const ministries = [
-    { 
-      key: 'worship', 
-      icon: Music, 
-      leader: { ru: 'Давид Самойлич', en: 'David Samoylich', lv: 'Dāvids Samoiličs' }
-    },
-    { 
-      key: 'sundaySchool', 
-      icon: BookOpen, 
-      leader: { ru: 'Кристина Полтарак', en: 'Kristina Poltarak', lv: 'Kristīna Poltaraka' }
-    },
-    { 
-      key: 'ribaClub', 
-      icon: Fish, 
-      leader: { ru: 'Рамона и Артём Дударевы', en: 'Ramona & Artem Dudarevi', lv: 'Ramona un Artjoms Dudarevi' }
-    },
-    { 
-      key: 'youth', 
-      icon: Users, 
-      leader: { ru: 'Пётр Вознарски', en: 'Peter Voznarsky', lv: 'Pēteris Vozniarskis' }
-    },
-    { 
-      key: 'youngLife', 
-      icon: Tent, 
-      leader: { ru: 'Алёна Мюллер', en: 'Aljona Muller', lv: 'Aļona Millere' }
-    },
-    { 
-      key: 'loveAndCare', 
-      icon: Heart, 
-      leader: { ru: 'Кристиана Вятере', en: 'Kristiāna Vjatere', lv: 'Kristiāna Vjātere' }
-    },
-    { 
-      key: 'choir', 
-      icon: Mic2, 
-      leader: { ru: 'Алёна Исаков', en: 'Alena Isakov', lv: 'Aļena Isakova' }
-    },
-    { 
-      key: 'smallGroups', 
-      icon: Home, 
-      leader: { ru: 'Даниил Полтарак', en: 'Daniel Poltarak', lv: 'Daniēls Poltaraks' }
-    },
-    { 
-      key: 'mensMinistry', 
-      icon: Dumbbell, 
-      leader: { ru: 'Илья Ничипуенко', en: 'Ilya Nichipuenko', lv: 'Iļja Ničipuenko' }
-    },
-    { 
-      key: 'womensMinistry', 
-      icon: HeartHandshake, 
-      leader: { ru: 'Йоланта', en: 'Jolanta', lv: 'Jolanta' }
-    },
-    { 
-      key: 'media', 
-      icon: Camera, 
-      leader: { ru: 'Станислав Исаков', en: 'Stanislav Isakov', lv: 'Staņislavs Isakovs' }
-    },
-    { 
-      key: 'counselling', 
-      icon: Stethoscope, 
-      leader: { ru: 'Эля Файзулина', en: 'Elya Fayzulina', lv: 'Eļa Faizuļina' }
-    },
-  ];
+  const toggleExpand = useCallback((key: string) => {
+    setExpandedMinistry((prev) => (prev === key ? null : key));
+  }, []);
+
+  const handleMouseEnter = useCallback((key: string) => {
+    setExpandedMinistry(key);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setExpandedMinistry(null);
+  }, []);
 
   return (
-    <section id="ministries" className="py-12 md:py-16 lg:py-24 bg-cream-dark">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-coral/20 to-amber/20 mb-6">
+    <section id="ministries" className="section-py bg-cream-dark">
+      <div className="section-container">
+        <div className="section-header">
+          <div className="section-icon bg-gradient-to-br from-coral/20 to-amber/20">
             <Users className="w-7 h-7 text-coral" />
           </div>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-gradient-earth mb-4">
+          <h2 className="section-title text-gradient-earth mb-4">
             {t('ministries.title')}
           </h2>
           <p className="text-subtitle max-w-2xl mx-auto">
@@ -86,24 +98,40 @@ export const MinistriesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
+        <div className="relative grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
           {ministries.map((ministry) => {
             const Icon = ministry.icon;
-            const isHovered = hoveredMinistry === ministry.key;
+            const isExpanded = expandedMinistry === ministry.key;
             return (
-              <div 
-                key={ministry.key} 
-                className="relative overflow-hidden rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer min-h-[220px]"
+              <div
+                key={ministry.key}
+                className={`relative overflow-hidden rounded-2xl p-6 text-center transition-all duration-300 group cursor-pointer min-h-[220px] ${
+                  isExpanded
+                    ? 'scale-110 z-10 shadow-2xl'
+                    : 'scale-100 z-0 hover:shadow-xl'
+                }`}
                 style={bordeauxCardStyle}
-                onMouseEnter={() => setHoveredMinistry(ministry.key)}
-                onMouseLeave={() => setHoveredMinistry(null)}
+                onMouseEnter={() => handleMouseEnter(ministry.key)}
+                onMouseLeave={handleMouseLeave}
+                onClick={() => toggleExpand(ministry.key)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleExpand(ministry.key);
+                  }
+                }}
+                tabIndex={0}
+                onFocus={() => handleMouseEnter(ministry.key)}
+                onBlur={handleMouseLeave}
+                role="button"
+                aria-expanded={isExpanded}
+                aria-label={t(`ministries.${ministry.key}.title`)}
               >
                 <BordeauxOverlay />
-                {/* Subtle shine effect on hover */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-shine" />
-                
+
                 {/* Normal content */}
-                <div className={`relative z-10 transition-all duration-300 ${isHovered ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+                <div className={`relative z-10 transition-all duration-300 ${isExpanded ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
                   <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 border border-white/10">
                     <Icon className="w-6 h-6 text-sunset-light" />
                   </div>
@@ -120,18 +148,17 @@ export const MinistriesSection = () => {
                       </p>
                     </div>
                   )}
-                  <Info className="w-4 h-4 text-white/30 mx-auto mt-3" />
                 </div>
 
-                {/* Hover content - extended info */}
-                <div className={`absolute inset-0 flex flex-col items-center justify-center p-4 transition-all duration-300 ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+                {/* Expanded content — no scroll constraint */}
+                <div className={`absolute inset-0 flex flex-col items-center justify-center p-5 transition-all duration-300 ${isExpanded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
                   <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-3 border border-white/10">
                     <Icon className="w-5 h-5 text-sunset-light" />
                   </div>
                   <h3 className="font-display text-base font-bold text-white/95 mb-2">
                     {t(`ministries.${ministry.key}.title`)}
                   </h3>
-                  <p className="text-white/80 text-xs leading-relaxed text-center mb-2 max-h-[80px] overflow-y-auto">
+                  <p className="text-white/80 text-xs leading-relaxed text-center mb-2">
                     {t(`ministries.${ministry.key}.hoverInfo`)}
                   </p>
                   <p className="text-xs text-sunset-light font-semibold">
@@ -146,10 +173,8 @@ export const MinistriesSection = () => {
         {/* Want to Serve CTA */}
         <div className="text-center mt-12">
           <a
-            href="https://forms.gle/example"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+            href="/#contacts"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white btn-md rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
             <Hand className="w-5 h-5" />
             {t('ministries.wantToServe')}

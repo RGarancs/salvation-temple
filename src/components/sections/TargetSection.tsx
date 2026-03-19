@@ -28,23 +28,23 @@ export const TargetSection = () => {
   };
 
   return (
-    <section className="py-20 bg-sunset relative overflow-hidden">
+    <section className="section-py bg-sunset relative overflow-hidden">
       {/* Subtle decorative elements */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <div className="absolute top-10 left-10 w-32 h-32 border-2 border-white/20 rounded-full" />
         <div className="absolute bottom-10 right-10 w-48 h-48 border-2 border-white/20 rounded-full" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="section-container relative z-10">
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
           <CollapsibleTrigger className="w-full">
             <div className="max-w-3xl mx-auto text-center cursor-pointer group">
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/10 mb-6">
+              <div className="section-icon bg-white/10">
                 <Target className="w-7 h-7 text-white" />
               </div>
-              
+
               <div className="flex items-center justify-center gap-3">
-                <h2 className="font-display text-3xl md:text-4xl font-bold text-white">
+                <h2 className="section-title text-white">
                   {t('target.title')}
                 </h2>
                 <ChevronDown className={`w-6 h-6 text-white/70 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
