@@ -21,7 +21,10 @@
       "Bash(while read:*)",
       "Bash(do wc:*)",
       "Bash(done)",
-      "Bash(sed 's/\\\\.tsx$//')"
+      "Bash(sed 's/\\\\.tsx$//')",
+      "Bash(npx tsc:*)",
+      "Bash(curl:*)",
+      "Bash(npm list:*)"
     ]
   }
 }

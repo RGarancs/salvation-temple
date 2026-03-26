@@ -32,7 +32,7 @@ const socialLinks = [
 
 const InfoCard = ({ icon: Icon, iconColor, children }: { icon: LucideIcon; iconColor: string; children: ReactNode }) => (
   <div
-    className="relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:shadow-xl group"
+    className="relative overflow-hidden rounded-2xl p-3 transition-all duration-300 hover:shadow-xl group"
     style={bordeauxCardStyle}
   >
     <BordeauxOverlay />
@@ -77,14 +77,14 @@ export const ContactsSection = () => {
           </h2>
         </div>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 md:gap-6">
           {/* Left Side - Contact Info */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {/* Staff Cards */}
             {contacts.map((contact) => (
               <div
                 key={contact.role}
-                className="relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:shadow-xl group"
+                className="relative overflow-hidden rounded-2xl p-3 transition-all duration-300 hover:shadow-xl group"
                 style={bordeauxCardStyle}
               >
                 <BordeauxOverlay />
@@ -102,7 +102,7 @@ export const ContactsSection = () => {
                     <p className="text-sm text-white/50 uppercase tracking-wider mb-1">
                       {t(`contacts.${contact.role}`)}
                     </p>
-                    <h3 className="font-display text-xl font-bold text-white/95 mb-3">
+                    <h3 className="font-display text-lg md:text-xl font-bold text-white/95 mb-2">
                       {contact.name[language]}
                     </h3>
                     <div className="space-y-2 text-sm">
@@ -137,9 +137,9 @@ export const ContactsSection = () => {
           </div>
 
           {/* Right Side - Map, Socials, Donation */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {/* Map */}
-            <div className="relative overflow-hidden rounded-2xl h-[250px]" style={bordeauxCardStyle}>
+            <div className="relative overflow-hidden rounded-2xl h-[180px] md:h-[220px]" style={bordeauxCardStyle}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2175.7!2d24.1247!3d56.9496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2sL%C4%81%C4%8Dpl%C4%93%C5%A1a%20iela%20117%2C%20Centra%20rajons%2C%20R%C4%ABga%2C%20LV-1003!5e0!3m2!1sen!2slv!4v1640000000000!5m2!1sen!2slv"
                 width="100%"
@@ -154,7 +154,7 @@ export const ContactsSection = () => {
 
             {/* Donation Info */}
             <div
-              className="relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:shadow-xl group"
+              className="relative overflow-hidden rounded-2xl p-3 transition-all duration-300 hover:shadow-xl group"
               style={bordeauxCardStyle}
             >
               <BordeauxOverlay />
@@ -186,7 +186,7 @@ export const ContactsSection = () => {
 
             {/* Social Media */}
             <div
-              className="relative overflow-hidden rounded-2xl p-4 transition-all duration-300 hover:shadow-xl group flex flex-col"
+              className="relative overflow-hidden rounded-2xl p-3 transition-all duration-300 hover:shadow-xl group flex flex-col"
               style={bordeauxCardStyle}
             >
               <BordeauxOverlay />

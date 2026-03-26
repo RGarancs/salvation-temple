@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Hand, Stethoscope } from 'lucide-react';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
@@ -70,6 +70,7 @@ const ministries = [
 export const MinistriesSection = () => {
   const { t, language } = useLanguage();
   const [expandedMinistry, setExpandedMinistry] = useState<string | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   const toggleExpand = useCallback((key: string) => {
     setExpandedMinistry((prev) => (prev === key ? null : key));
@@ -82,6 +83,8 @@ export const MinistriesSection = () => {
   const handleMouseLeave = useCallback(() => {
     setExpandedMinistry(null);
   }, []);
+
+  const carouselCards = useMemo(() => [...ministries, ...ministries], []);
 
   return (
     <section id="ministries" className="section-py bg-cream-dark">
@@ -98,76 +101,95 @@ export const MinistriesSection = () => {
           </p>
         </div>
 
-        <div className="relative grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
-          {ministries.map((ministry) => {
-            const Icon = ministry.icon;
-            const isExpanded = expandedMinistry === ministry.key;
-            return (
-              <div
-                key={ministry.key}
-                className={`relative overflow-hidden rounded-2xl p-6 text-center transition-all duration-300 group cursor-pointer min-h-[220px] ${
-                  isExpanded
-                    ? 'scale-110 z-10 shadow-2xl'
-                    : 'scale-100 z-0 hover:shadow-xl'
-                }`}
-                style={bordeauxCardStyle}
-                onMouseEnter={() => handleMouseEnter(ministry.key)}
-                onMouseLeave={handleMouseLeave}
-                onClick={() => toggleExpand(ministry.key)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleExpand(ministry.key);
-                  }
-                }}
-                tabIndex={0}
-                onFocus={() => handleMouseEnter(ministry.key)}
-                onBlur={handleMouseLeave}
-                role="button"
-                aria-expanded={isExpanded}
-                aria-label={t(`ministries.${ministry.key}.title`)}
-              >
-                <BordeauxOverlay />
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-shine" />
+        {/* Carousel viewport */}
+        <div
+          className="carousel-viewport overflow-y-visible py-4"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label={t('ministries.title')}
+        >
+          <div
+            className="flex gap-4 w-max carousel-track will-change-transform animate-scroll-left hover:[animation-play-state:paused]"
+            style={{ animationPlayState: isPaused ? 'paused' : undefined }}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
+          >
+            {carouselCards.map((ministry, i) => {
+              const Icon = ministry.icon;
+              const isExpanded = expandedMinistry === ministry.key;
+              return (
+                <div
+                  key={`${ministry.key}-${i}`}
+                  className={`relative overflow-hidden rounded-2xl p-6 text-center transition-all duration-300 group cursor-pointer min-h-[180px] min-w-[260px] md:min-w-[280px] flex-shrink-0 ${
+                    isExpanded
+                      ? 'scale-105 z-10 shadow-2xl'
+                      : 'scale-100 z-0 hover:shadow-xl'
+                  }`}
+                  style={bordeauxCardStyle}
+                  onMouseEnter={() => handleMouseEnter(ministry.key)}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => toggleExpand(ministry.key)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggleExpand(ministry.key);
+                    }
+                  }}
+                  tabIndex={0}
+                  onFocus={() => {
+                    handleMouseEnter(ministry.key);
+                    setIsPaused(true);
+                  }}
+                  onBlur={() => {
+                    handleMouseLeave();
+                    setIsPaused(false);
+                  }}
+                  role="button"
+                  aria-expanded={isExpanded}
+                  aria-label={t(`ministries.${ministry.key}.title`)}
+                >
+                  <BordeauxOverlay />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-shine" />
 
-                {/* Normal content */}
-                <div className={`relative z-10 transition-all duration-300 ${isExpanded ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-                  <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 border border-white/10">
-                    <Icon className="w-6 h-6 text-sunset-light" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-white/95 mb-2">
-                    {t(`ministries.${ministry.key}.title`)}
-                  </h3>
-                  <p className="text-white/60 text-sm mb-3">
-                    {t(`ministries.${ministry.key}.desc`)}
-                  </p>
-                  {ministry.leader && (
-                    <div className="pt-3 border-t border-white/10">
-                      <p className="text-xs text-white/50">
-                        {t('ministries.leader')}: <span className="font-semibold text-white/80">{ministry.leader[language]}</span>
-                      </p>
+                  {/* Normal content */}
+                  <div className={`relative z-10 transition-all duration-300 ${isExpanded ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
+                    <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 border border-white/10">
+                      <Icon className="w-6 h-6 text-sunset-light" />
                     </div>
-                  )}
-                </div>
-
-                {/* Expanded content — no scroll constraint */}
-                <div className={`absolute inset-0 flex flex-col items-center justify-center p-5 transition-all duration-300 ${isExpanded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-3 border border-white/10">
-                    <Icon className="w-5 h-5 text-sunset-light" />
+                    <h3 className="font-display text-lg font-bold text-white/95 mb-2">
+                      {t(`ministries.${ministry.key}.title`)}
+                    </h3>
+                    <p className="text-white/60 text-sm mb-3">
+                      {t(`ministries.${ministry.key}.desc`)}
+                    </p>
+                    {ministry.leader && (
+                      <div className="pt-3 border-t border-white/10">
+                        <p className="text-xs text-white/50">
+                          {t('ministries.leader')}: <span className="font-semibold text-white/80">{ministry.leader[language]}</span>
+                        </p>
+                      </div>
+                    )}
                   </div>
-                  <h3 className="font-display text-base font-bold text-white/95 mb-2">
-                    {t(`ministries.${ministry.key}.title`)}
-                  </h3>
-                  <p className="text-white/80 text-xs leading-relaxed text-center mb-2">
-                    {t(`ministries.${ministry.key}.hoverInfo`)}
-                  </p>
-                  <p className="text-xs text-sunset-light font-semibold">
-                    {ministry.leader[language]}
-                  </p>
+
+                  {/* Expanded content */}
+                  <div className={`absolute inset-0 flex flex-col items-center justify-center p-5 transition-all duration-300 ${isExpanded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}>
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-3 border border-white/10">
+                      <Icon className="w-5 h-5 text-sunset-light" />
+                    </div>
+                    <h3 className="font-display text-base font-bold text-white/95 mb-2">
+                      {t(`ministries.${ministry.key}.title`)}
+                    </h3>
+                    <p className="text-white/80 text-xs leading-relaxed text-center mb-2">
+                      {t(`ministries.${ministry.key}.hoverInfo`)}
+                    </p>
+                    <p className="text-xs text-sunset-light font-semibold">
+                      {ministry.leader[language]}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
 
         {/* Want to Serve CTA */}

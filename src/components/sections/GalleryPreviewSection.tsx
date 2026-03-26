@@ -43,26 +43,20 @@ export const GalleryPreviewSection = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              className={`overflow-hidden rounded-xl shadow-lg group cursor-pointer ${
-                index === 0 ? 'md:col-span-2 md:row-span-2' : ''
-              }`}
+              className="overflow-hidden rounded-xl shadow-lg group cursor-pointer"
             >
               <img
                 src={image.src}
                 alt={image.alt}
                 loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                style={{ 
-                  aspectRatio: index === 0 ? '1/1' : '4/3',
-                  minHeight: index === 0 ? '400px' : '180px'
-                }}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 aspect-[4/3] min-h-[120px] md:min-h-[160px]"
               />
             </div>
           ))}
         </div>
 
         {/* View Full Gallery Button */}
-        <div className="text-center mt-10">
+        <div className="text-center mt-8">
           <Link
             to="/gallery"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"

@@ -438,3 +438,23 @@
   }
 }
 
+/* Ministries carousel — viewport clips horizontal overflow */
+.carousel-viewport {
+  overflow-x: clip;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ministries carousel — reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-viewport {
+    overflow-x: auto;
+  }
+  .carousel-track {
+    animation: none !important;
+  }
+}
+

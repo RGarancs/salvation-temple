@@ -45,14 +45,14 @@ export const StatisticsSection = () => {
         </div>
 
         {/* Compact stats grid — single row on desktop */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-5xl mx-auto">
+        <div className="grid grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-5xl mx-auto">
           {communityStats.map((stat) => {
             const Icon = stat.icon;
             const isHovered = hoveredStat === stat.key;
             return (
               <div
                 key={stat.key}
-                className="relative overflow-hidden rounded-2xl p-4 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer"
+                className="relative overflow-hidden rounded-2xl p-3 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group cursor-pointer"
                 style={bordeauxCardStyle}
                 onMouseEnter={() => setHoveredStat(stat.key)}
                 onMouseLeave={() => setHoveredStat(null)}
@@ -67,10 +67,10 @@ export const StatisticsSection = () => {
 
                 {/* Normal content */}
                 <div className={`relative z-10 transition-opacity duration-300 ${isHovered && stat.hoverInfo ? 'opacity-0' : 'opacity-100'}`}>
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-2 border border-white/10">
-                    <Icon className="w-5 h-5 text-sunset-light" />
+                  <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-1 border border-white/10">
+                    <Icon className="w-4 h-4 text-sunset-light" />
                   </div>
-                  <div className="font-display text-2xl font-bold text-sunset-light mb-1">
+                  <div className="font-display text-xl md:text-2xl font-bold text-sunset-light mb-1">
                     {stat.value}
                   </div>
                   <p className="text-white/60 text-xs leading-tight">

@@ -116,7 +116,7 @@ export const ChurchHero = () => {
           <div className="flex items-center justify-center mb-8">
             <p className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-gradient-warm whitespace-nowrap">
               <span>{t('hero.changed')}</span>{' '}
-              <span className="inline-block min-w-[200px] md:min-w-[280px] lg:min-w-[350px] text-left pb-2">
+              <span className="inline-block min-w-0 md:min-w-[280px] lg:min-w-[350px] text-left pb-2">
                 {displayedText}
                 <span className={`inline-block w-[3px] h-[0.9em] bg-sunset ml-1 ${isTyping ? 'animate-pulse' : 'opacity-0'}`} />
               </span>

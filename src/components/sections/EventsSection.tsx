@@ -115,7 +115,7 @@ const EventContentBlock = ({ category, t }: { category: EventCategory; t: (key: 
 
 export const EventsSection = () => {
   const { t } = useLanguage();
-  const [openSection, setOpenSection] = useState<string | null>('training');
+  const [openSection, setOpenSection] = useState<string | null>(null);
 
   const upcomingSundays = getUpcomingSundays();
   const thisFriday = getThisFriday();
@@ -136,7 +136,7 @@ export const EventsSection = () => {
         </div>
 
         {/* Event Categories */}
-        <div className="max-w-4xl mx-auto space-y-4 mb-12">
+        <div className="max-w-4xl mx-auto space-y-4 mb-8">
           {eventCategories.map((category) => {
             const Icon = category.icon;
             const isOpen = openSection === category.key;
@@ -188,21 +188,21 @@ export const EventsSection = () => {
         {/* Upcoming Services Calendar */}
         <div className="max-w-4xl mx-auto">
           <div
-            className="relative overflow-hidden rounded-2xl p-6 md:p-8"
+            className="relative overflow-hidden rounded-2xl p-5 md:p-6"
             style={bordeauxCardStyle}
           >
             <BordeauxOverlay />
             <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4">
                 <CalendarCheck className="w-6 h-6 text-sunset-light" />
                 <h3 className="font-display text-xl font-bold text-white/95">
                   {t('events.upcoming')}
                 </h3>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
                 {/* This Friday Prayer */}
-                <div className="p-4 bg-white/5 rounded-xl text-center border border-white/10">
+                <div className="p-3 bg-white/5 rounded-xl text-center border border-white/10">
                   <p className="text-xs text-sunset-light font-semibold mb-1">{t('events.prayerMeeting')}</p>
                   <p className="font-display text-lg font-bold text-white/95">{formatDate(thisFriday)}</p>
                   <p className="text-sm text-white/60 flex items-center justify-center gap-1">
@@ -216,7 +216,7 @@ export const EventsSection = () => {
                   return (
                     <div
                       key={index}
-                      className={`p-4 rounded-xl text-center border ${
+                      className={`p-3 rounded-xl text-center border ${
                         hasCommunion
                           ? 'bg-sunset/20 border-sunset/30'
                           : 'bg-white/5 border-white/10'
