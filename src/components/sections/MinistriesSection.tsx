@@ -201,13 +201,13 @@ export const MinistriesSection = () => {
 
         {/* Want to Serve CTA */}
         <div className="text-center mt-12">
-          <a
-            href="/#contacts"
+          <Link
+            to="/serve"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white btn-md rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
             <Hand className="w-5 h-5" />
             {t('ministries.wantToServe')}
-          </a>
+          </Link>
         </div>
       </div>
     </section>
