@@ -73,9 +73,15 @@ export const MinistriesSection = () => {
   const [expandedMinistry, setExpandedMinistry] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState(false);
 
+  const navigate = useNavigate();
+
   const toggleExpand = useCallback((key: string) => {
     setExpandedMinistry((prev) => (prev === key ? null : key));
   }, []);
+
+  const handleCardClick = useCallback((key: string) => {
+    navigate(`/ministry/${key}`);
+  }, [navigate]);
 
   const handleMouseEnter = useCallback((key: string) => {
     setExpandedMinistry(key);
