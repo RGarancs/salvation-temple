@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Hand, Stethoscope } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 
@@ -72,9 +73,15 @@ export const MinistriesSection = () => {
   const [expandedMinistry, setExpandedMinistry] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState(false);
 
+  const navigate = useNavigate();
+
   const toggleExpand = useCallback((key: string) => {
     setExpandedMinistry((prev) => (prev === key ? null : key));
   }, []);
+
+  const handleCardClick = useCallback((key: string) => {
+    navigate(`/ministry/${key}`);
+  }, [navigate]);
 
   const handleMouseEnter = useCallback((key: string) => {
     setExpandedMinistry(key);
@@ -128,11 +135,11 @@ export const MinistriesSection = () => {
                   style={bordeauxCardStyle}
                   onMouseEnter={() => handleMouseEnter(ministry.key)}
                   onMouseLeave={handleMouseLeave}
-                  onClick={() => toggleExpand(ministry.key)}
+                  onClick={() => handleCardClick(ministry.key)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      toggleExpand(ministry.key);
+                      handleCardClick(ministry.key);
                     }
                   }}
                   tabIndex={0}
@@ -194,13 +201,13 @@ export const MinistriesSection = () => {
 
         {/* Want to Serve CTA */}
         <div className="text-center mt-12">
-          <a
-            href="/#contacts"
+          <Link
+            to="/serve"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white btn-md rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
           >
             <Hand className="w-5 h-5" />
             {t('ministries.wantToServe')}
-          </a>
+          </Link>
         </div>
       </div>
     </section>

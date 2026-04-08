@@ -445,5 +445,27 @@
   "meta.testimonies.title": "Testimonies | Salvation Temple",
   "meta.testimonies.description": "Stories of transformed lives — testimonies from Salvation Temple church members about encountering God.",
   "meta.donations.title": "Donations | Salvation Temple",
-  "meta.donations.description": "Support the ministry of Salvation Temple church in Riga. Bank details and project information."
+  "meta.donations.description": "Support the ministry of Salvation Temple church in Riga. Bank details and project information.",
+
+  "serve.title": "I Want to Serve",
+  "serve.subtitle": "Fill out the form below and we will contact you about serving opportunities",
+  "serve.name": "Your Name",
+  "serve.namePlaceholder": "Enter your full name",
+  "serve.where": "Where do you want to serve?",
+  "serve.wherePlaceholder": "e.g. Sunday School, Worship, Youth Ministry...",
+  "serve.why": "Why do you want to serve?",
+  "serve.whyPlaceholder": "Tell us about your motivation and any relevant experience...",
+  "serve.submit": "Send Request",
+  "serve.sending": "Sending...",
+  "serve.thankYou": "Thank You!",
+  "serve.thankYouDesc": "Your email client should open with your request. If not, please email salvtemp117@gmail.com directly.",
+  "serve.meta.title": "I Want to Serve | Salvation Temple",
+  "serve.meta.description": "Sign up to serve at Salvation Temple church in Riga.",
+
+  "ministry.detail.whatWeDo": "What We Do",
+  "ministry.detail.joinUs": "Join Us",
+  "ministry.detail.joinDesc": "We are always looking for people who want to serve. If you feel called to this ministry, sign up and we will help you get started.",
+
+  "history.resources.fetlerMuseum": "Viljams Fetlers Museum",
+  "history.resources.atmodasNams": "Atmodas Nams — Viljams Fetlers"
 }

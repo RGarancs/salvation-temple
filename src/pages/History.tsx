@@ -239,6 +239,24 @@ const HistoryContent = () => {
                 <span className="text-sm font-medium text-foreground">{t('history.resources.encyclopedia')}</span>
               </a>
               <a
+                href="https://bible.lv/viljama-fetlera-muzejs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-xl bg-muted/50 hover:bg-sunset/10 transition-colors group"
+              >
+                <ExternalLink className="w-5 h-5 text-burnt group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium text-foreground">{t('history.resources.fetlerMuseum')}</span>
+              </a>
+              <a
+                href="https://atmodasnams.lv/Viljams-Fetlers.php"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-xl bg-muted/50 hover:bg-sunset/10 transition-colors group"
+              >
+                <ExternalLink className="w-5 h-5 text-cashmere-dark group-hover:scale-110 transition-transform" />
+                <span className="text-sm font-medium text-foreground">{t('history.resources.atmodasNams')}</span>
+              </a>
+              <a
                 href="https://zudusilatvija.lv/objects/object/31132/"
                 target="_blank"
                 rel="noopener noreferrer"
