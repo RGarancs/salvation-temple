@@ -444,5 +444,27 @@
   "meta.testimonies.title": "Liecības | Pestīšanas Templis",
   "meta.testimonies.description": "Stāsti par pārvērstām dzīvēm — Pestīšanas Tempļa draudzes locekļu liecības par tikšanos ar Dievu.",
   "meta.donations.title": "Ziedojumi | Pestīšanas Templis",
-  "meta.donations.description": "Atbalstiet Pestīšanas Tempļa draudzes kalpošanu Rīgā. Bankas rekvizīti un informācija par projektiem."
+  "meta.donations.description": "Atbalstiet Pestīšanas Tempļa draudzes kalpošanu Rīgā. Bankas rekvizīti un informācija par projektiem.",
+
+  "serve.title": "Vēlos kalpot",
+  "serve.subtitle": "Aizpildiet formu, un mēs sazināsimies ar jums par kalpošanas iespējām",
+  "serve.name": "Jūsu vārds",
+  "serve.namePlaceholder": "Ievadiet savu pilno vārdu",
+  "serve.where": "Kur vēlaties kalpot?",
+  "serve.wherePlaceholder": "piem. Svētdienas skola, Slavēšana, Jauniešu kalpošana...",
+  "serve.why": "Kāpēc vēlaties kalpot?",
+  "serve.whyPlaceholder": "Pastāstiet par savu motivāciju un pieredzi...",
+  "serve.submit": "Nosūtīt pieteikumu",
+  "serve.sending": "Sūta...",
+  "serve.thankYou": "Paldies!",
+  "serve.thankYouDesc": "Jūsu e-pasta klientam jāatveras ar pieteikumu. Ja nē, rakstiet tieši uz salvtemp117@gmail.com.",
+  "serve.meta.title": "Vēlos kalpot | Pestīšanas Templis",
+  "serve.meta.description": "Pieteikties kalpošanai Pestīšanas Tempļa draudzē Rīgā.",
+
+  "ministry.detail.whatWeDo": "Ko mēs darām",
+  "ministry.detail.joinUs": "Pievienojies mums",
+  "ministry.detail.joinDesc": "Mēs vienmēr meklējam cilvēkus, kuri vēlas kalpot. Ja jūtat aicinājumu šai kalpošanai, piesakieties, un mēs palīdzēsim jums sākt.",
+
+  "history.resources.fetlerMuseum": "Viljama Fetlera muzejs",
+  "history.resources.atmodasNams": "Atmodas Nams — Viljams Fetlers"
 }
