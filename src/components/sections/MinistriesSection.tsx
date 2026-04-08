@@ -135,11 +135,11 @@ export const MinistriesSection = () => {
                   style={bordeauxCardStyle}
                   onMouseEnter={() => handleMouseEnter(ministry.key)}
                   onMouseLeave={handleMouseLeave}
-                  onClick={() => toggleExpand(ministry.key)}
+                  onClick={() => handleCardClick(ministry.key)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      toggleExpand(ministry.key);
+                      handleCardClick(ministry.key);
                     }
                   }}
                   tabIndex={0}
