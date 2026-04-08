@@ -52,8 +52,9 @@ const getThisFriday = (): Date => {
 const formatDate = (date: Date): string =>
   date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
 
-const isMarch1st = (date: Date): boolean =>
-  date.getDate() === 1 && date.getMonth() === 2;
+const isFirstSundayOfMonth = (date: Date): boolean => {
+  return date.getDate() <= 7;
+};
 
 const EventContentBlock = ({ category, t }: { category: EventCategory; t: (key: string) => string }) => {
   if (category.hasLink) {
