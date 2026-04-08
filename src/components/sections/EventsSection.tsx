@@ -215,7 +215,7 @@ export const EventsSection = () => {
 
                 {/* Upcoming Sundays */}
                 {upcomingSundays.map((sunday, index) => {
-                  const hasCommunion = index === 0 || isMarch1st(sunday);
+                  const hasCommunion = isFirstSundayOfMonth(sunday);
                   return (
                     <div
                       key={index}
