@@ -61,13 +61,15 @@ const EventContentBlock = ({ category, t }: { category: EventCategory; t: (key: 
     return (
       <div className="mt-4 p-4 bg-muted/50 rounded-xl">
         <p className="text-foreground/70 mb-4">{t('events.training.content')}</p>
-        <Link
-          to="/training"
+        <a
+          href="https://balance-wheel-church.lovable.app"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-gradient-to-r from-sunset to-coral text-white btn-md rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
         >
           {t('events.training.link')}
           <ChevronRight className="w-4 h-4" />
-        </Link>
+        </a>
       </div>
     );
   }
