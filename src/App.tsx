@@ -12,6 +12,8 @@ const Testimonies = lazy(() => import("./pages/Testimonies"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Serve = lazy(() => import("./pages/Serve"));
 const Ministry = lazy(() => import("./pages/Ministry"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const Admin = lazy(() => import("./pages/Admin"));
 
 const PageSpinner = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -33,6 +35,8 @@ const App = () => (
             <Route path="/testimonies" element={<Testimonies />} />
             <Route path="/serve" element={<Serve />} />
             <Route path="/ministry/:key" element={<Ministry />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
