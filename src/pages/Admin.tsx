@@ -74,7 +74,7 @@ const Admin = () => {
     }
   };
 
-  const handleDelete = async (table: string, id: string) => {
+  const handleDelete = async (table: 'calendar_events' | 'ministries' | 'site_statistics' | 'gallery_images', id: string) => {
     await supabase.from(table).delete().eq('id', id);
     loadData();
   };
