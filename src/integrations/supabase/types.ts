@@ -14,16 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      calendar_events: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: Json | null
+          event_date: string
+          event_time: string | null
+          event_type: string | null
+          id: string
+          is_recurring: boolean | null
+          title: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: Json | null
+          event_date: string
+          event_time?: string | null
+          event_type?: string | null
+          id?: string
+          is_recurring?: boolean | null
+          title?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: Json | null
+          event_date?: string
+          event_time?: string | null
+          event_type?: string | null
+          id?: string
+          is_recurring?: boolean | null
+          title?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      gallery_images: {
+        Row: {
+          caption: Json | null
+          category: string | null
+          created_at: string
+          id: string
+          image_url: string
+          sort_order: number | null
+          uploaded_by: string | null
+        }
+        Insert: {
+          caption?: Json | null
+          category?: string | null
+          created_at?: string
+          id?: string
+          image_url: string
+          sort_order?: number | null
+          uploaded_by?: string | null
+        }
+        Update: {
+          caption?: Json | null
+          category?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string
+          sort_order?: number | null
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
+      ministries: {
+        Row: {
+          created_at: string
+          description: Json | null
+          icon: string | null
+          id: string
+          key: string
+          leader_image_url: string | null
+          leader_name: string | null
+          sort_order: number | null
+          title: Json
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: Json | null
+          icon?: string | null
+          id?: string
+          key: string
+          leader_image_url?: string | null
+          leader_name?: string | null
+          sort_order?: number | null
+          title?: Json
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: Json | null
+          icon?: string | null
+          id?: string
+          key?: string
+          leader_image_url?: string | null
+          leader_name?: string | null
+          sort_order?: number | null
+          title?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_statistics: {
+        Row: {
+          category: string | null
+          id: string
+          key: string
+          label: Json | null
+          updated_at: string
+          value: number
+        }
+        Insert: {
+          category?: string | null
+          id?: string
+          key: string
+          label?: Json | null
+          updated_at?: string
+          value?: number
+        }
+        Update: {
+          category?: string | null
+          id?: string
+          key?: string
+          label?: Json | null
+          updated_at?: string
+          value?: number
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "editor"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +338,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "editor"],
+    },
   },
 } as const
