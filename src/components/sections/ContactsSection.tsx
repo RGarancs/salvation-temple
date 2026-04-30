@@ -11,7 +11,7 @@ const contacts = [
   {
     role: 'pastor',
     name: { ru: 'Александр Звиридс', en: 'Aleksandrs Zvirids', lv: 'Aleksandrs Zvirids' },
-    phone: '+371 26025329',
+    phone: '+371 26754497',
     email: 'zvirid@gmail.com',
     image: leaderPastor,
   },
@@ -141,14 +141,14 @@ export const ContactsSection = () => {
             {/* Map */}
             <div className="relative overflow-hidden rounded-2xl h-[180px] md:h-[220px]" style={bordeauxCardStyle}>
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2175.7!2d24.1247!3d56.9496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2sL%C4%81%C4%8Dpl%C4%93%C5%A1a%20iela%20117%2C%20Centra%20rajons%2C%20R%C4%ABga%2C%20LV-1003!5e0!3m2!1sen!2slv!4v1640000000000!5m2!1sen!2slv"
+                src="https://www.google.com/maps?q=Kr%C4%81slavas+iela+27,+R%C4%ABga,+Latvia&output=embed"
                 width="100%"
                 height="100%"
                 className="border-0"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Church Location - Lāčplēša 117, Rīga"
+                title="Church Parking Entrance - Krāslavas 27, Rīga"
               />
             </div>
 
