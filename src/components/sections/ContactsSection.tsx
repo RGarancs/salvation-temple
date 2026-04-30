@@ -148,7 +148,7 @@ export const ContactsSection = () => {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Church Location - Lāčplēša 117, Rīga"
+                title="Church Parking Entrance - Krāslavas 27, Rīga"
               />
             </div>
 
