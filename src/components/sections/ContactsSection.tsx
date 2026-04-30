@@ -141,7 +141,7 @@ export const ContactsSection = () => {
             {/* Map */}
             <div className="relative overflow-hidden rounded-2xl h-[180px] md:h-[220px]" style={bordeauxCardStyle}>
               <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Krāslavas+iela+27,+Rīga,+Latvia&zoom=16"
+                src="https://www.google.com/maps?q=Kr%C4%81slavas+iela+27,+R%C4%ABga,+Latvia&output=embed"
                 width="100%"
                 height="100%"
                 className="border-0"
