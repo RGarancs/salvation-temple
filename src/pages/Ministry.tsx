@@ -1,105 +1,144 @@
+import { useEffect, useState } from 'react';
 import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ChurchHeader } from '@/components/ChurchHeader';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
 import { useParams, Link } from 'react-router-dom';
-import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Stethoscope, ArrowLeft, type LucideIcon } from 'lucide-react';
+import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Stethoscope, ArrowLeft, HandHeart, Sparkles, type LucideIcon } from 'lucide-react';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
+import { supabase } from '@/integrations/supabase/client';
 
-interface MinistryMeta {
-  icon: LucideIcon;
-  leader: Record<string, string>;
+const iconMap: Record<string, LucideIcon> = {
+  worship: Music, sundaySchool: BookOpen, ribaClub: Fish, youth: Users,
+  youngLife: Tent, loveAndCare: Heart, choir: Mic2, smallGroups: Home,
+  mensMinistry: Dumbbell, womensMinistry: HeartHandshake, media: Camera, counselling: Stethoscope,
+};
+
+const fallbackLeader: Record<string, Record<string, string>> = {
+  worship: { ru: 'Давид Самойлич', en: 'David Samoylich', lv: 'Dāvids Samoiličs' },
+  sundaySchool: { ru: 'Кристина Полтарак', en: 'Kristina Poltarak', lv: 'Kristīna Poltaraka' },
+  ribaClub: { ru: 'Рамона и Артём Дударевы', en: 'Ramona & Artem Dudarevi', lv: 'Ramona un Artjoms Dudarevi' },
+  youth: { ru: 'Пётр Вознарски', en: 'Peter Voznarsky', lv: 'Pēteris Vozniarskis' },
+  youngLife: { ru: 'Алёна Мюллер', en: 'Aljona Muller', lv: 'Aļona Millere' },
+  loveAndCare: { ru: 'Кристиана Вятере', en: 'Kristiāna Vjatere', lv: 'Kristiāna Vjātere' },
+  choir: { ru: 'Алёна Исаков', en: 'Alena Isakov', lv: 'Aļena Isakova' },
+  smallGroups: { ru: 'Даниил Полтарак', en: 'Daniel Poltarak', lv: 'Daniēls Poltaraks' },
+  mensMinistry: { ru: 'Илья Ничипуенко', en: 'Ilya Nichipuenko', lv: 'Iļja Ničipuenko' },
+  womensMinistry: { ru: 'Йоланта', en: 'Jolanta', lv: 'Jolanta' },
+  media: { ru: 'Станислав Исаков', en: 'Stanislav Isakov', lv: 'Staņislavs Isakovs' },
+  counselling: { ru: 'Эля Файзулина', en: 'Elya Fayzulina', lv: 'Eļa Faizuļina' },
+};
+
+interface MinistryRow {
+  mission: Record<string, string> | null;
+  prayer_needs: Record<string, string> | null;
+  how_to_help: Record<string, string> | null;
+  description: Record<string, string> | null;
+  leader_name: string | null;
+  leader_image_url: string | null;
 }
 
-const ministryMeta: Record<string, MinistryMeta> = {
-  worship: { icon: Music, leader: { ru: 'Давид Самойлич', en: 'David Samoylich', lv: 'Dāvids Samoiličs' } },
-  sundaySchool: { icon: BookOpen, leader: { ru: 'Кристина Полтарак', en: 'Kristina Poltarak', lv: 'Kristīna Poltaraka' } },
-  ribaClub: { icon: Fish, leader: { ru: 'Рамона и Артём Дударевы', en: 'Ramona & Artem Dudarevi', lv: 'Ramona un Artjoms Dudarevi' } },
-  youth: { icon: Users, leader: { ru: 'Пётр Вознарски', en: 'Peter Voznarsky', lv: 'Pēteris Vozniarskis' } },
-  youngLife: { icon: Tent, leader: { ru: 'Алёна Мюллер', en: 'Aljona Muller', lv: 'Aļona Millere' } },
-  loveAndCare: { icon: Heart, leader: { ru: 'Кристиана Вятере', en: 'Kristiāna Vjatere', lv: 'Kristiāna Vjātere' } },
-  choir: { icon: Mic2, leader: { ru: 'Алёна Исаков', en: 'Alena Isakov', lv: 'Aļena Isakova' } },
-  smallGroups: { icon: Home, leader: { ru: 'Даниил Полтарак', en: 'Daniel Poltarak', lv: 'Daniēls Poltaraks' } },
-  mensMinistry: { icon: Dumbbell, leader: { ru: 'Илья Ничипуенко', en: 'Ilya Nichipuenko', lv: 'Iļja Ničipuenko' } },
-  womensMinistry: { icon: HeartHandshake, leader: { ru: 'Йоланта', en: 'Jolanta', lv: 'Jolanta' } },
-  media: { icon: Camera, leader: { ru: 'Станислав Исаков', en: 'Stanislav Isakov', lv: 'Staņislavs Isakovs' } },
-  counselling: { icon: Stethoscope, leader: { ru: 'Эля Файзулина', en: 'Elya Fayzulina', lv: 'Eļa Faizuļina' } },
+const pickLang = (obj: Record<string, string> | null | undefined, lang: string, fallback = ''): string => {
+  if (!obj) return fallback;
+  return obj[lang] || obj.en || obj.ru || fallback;
 };
 
 const MinistryContent = () => {
   const { key } = useParams<{ key: string }>();
   const { t, language } = useLanguage();
+  const [row, setRow] = useState<MinistryRow | null>(null);
+  const [gallery, setGallery] = useState<{ id: string; image_url: string }[]>([]);
 
-  const ministry = key ? ministryMeta[key] : null;
+  useEffect(() => {
+    if (!key) return;
+    supabase.from('ministries').select('mission,prayer_needs,how_to_help,description,leader_name,leader_image_url').eq('key', key).maybeSingle()
+      .then(({ data }) => setRow(data as any));
+    supabase.from('ministry_gallery').select('id,image_url').eq('ministry_key', key).order('sort_order')
+      .then(({ data }) => data && setGallery(data));
+  }, [key]);
 
-  if (!ministry || !key) {
+  const Icon = key && iconMap[key] ? iconMap[key] : Heart;
+
+  if (!key || !iconMap[key]) {
     return (
       <section className="page-py bg-background min-h-screen">
         <div className="section-container text-center">
           <h1 className="section-title text-gradient-earth mb-4">Ministry not found</h1>
-          <Link to="/#ministries" className="text-sunset hover:underline">
-            ← Back to ministries
-          </Link>
+          <Link to="/#ministries" className="text-sunset hover:underline">← Back to ministries</Link>
         </div>
       </section>
     );
   }
 
-  const Icon = ministry.icon;
+  const leaderName = row?.leader_name || fallbackLeader[key]?.[language] || '';
+  const mission = pickLang(row?.mission, language);
+  const prayer = pickLang(row?.prayer_needs, language);
+  const help = pickLang(row?.how_to_help, language);
+  const description = pickLang(row?.description, language) || t(`ministries.${key}.hoverInfo`);
 
   return (
     <section className="page-py bg-background min-h-screen">
       <div className="section-container">
-        <Link
-          to="/#ministries"
-          className="inline-flex items-center gap-2 text-sunset hover:text-sunset/80 transition-colors mb-8"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {t('ministries.title')}
+        <Link to="/#ministries" className="inline-flex items-center gap-2 text-sunset hover:text-sunset/80 transition-colors mb-8">
+          <ArrowLeft className="w-4 h-4" />{t('ministries.title')}
         </Link>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Hero card */}
-          <div
-            className="relative overflow-hidden rounded-2xl p-8 md:p-12 mb-8"
-            style={bordeauxCardStyle}
-          >
+        <div className="max-w-5xl mx-auto space-y-6">
+          {/* Hero */}
+          <div className="relative overflow-hidden rounded-2xl p-8 md:p-12" style={bordeauxCardStyle}>
             <BordeauxOverlay />
-            <div className="relative z-10">
-              <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6 border border-white/10">
-                <Icon className="w-8 h-8 text-sunset-light" />
-              </div>
-              <h1 className="font-display text-3xl md:text-4xl font-bold text-white/95 mb-4">
-                {t(`ministries.${key}.title`)}
-              </h1>
-              <p className="text-white/70 text-lg leading-relaxed mb-6">
-                {t(`ministries.${key}.hoverInfo`)}
-              </p>
-              <div className="pt-4 border-t border-white/10">
-                <p className="text-white/50 text-sm">
-                  {t('ministries.leader')}: <span className="font-semibold text-white/80">{ministry.leader[language]}</span>
-                </p>
+            <div className="relative z-10 flex flex-col md:flex-row gap-6 items-start">
+              <div className="flex-1">
+                <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-6 border border-white/10">
+                  <Icon className="w-8 h-8 text-sunset-light" />
+                </div>
+                <h1 className="font-display text-3xl md:text-4xl font-bold text-white/95 mb-4">
+                  {t(`ministries.${key}.title`)}
+                </h1>
+                <p className="text-white/70 text-lg leading-relaxed mb-6">{description}</p>
+                <div className="pt-4 border-t border-white/10 flex items-center gap-4">
+                  {row?.leader_image_url && (
+                    <img src={row.leader_image_url} alt={leaderName} className="w-16 h-16 rounded-full object-cover border-2 border-white/20" />
+                  )}
+                  <div>
+                    <p className="text-xs text-white/50 uppercase tracking-wide">{t('ministries.leader')}</p>
+                    <p className="font-semibold text-white/90">{leaderName}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Details */}
+          {/* Mission */}
+          {mission && (
+            <div className="card-warm p-6">
+              <h3 className="font-display text-xl font-bold text-foreground mb-3 flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-sunset" />
+                {t('ministry.detail.mission') || 'Our Mission'}
+              </h3>
+              <p className="text-foreground/70 leading-relaxed whitespace-pre-line">{mission}</p>
+            </div>
+          )}
+
+          {/* Prayer + Help grid */}
           <div className="grid md:grid-cols-2 gap-6">
             <div className="card-warm p-6">
-              <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                {t(`ministry.detail.whatWeDo`)}
+              <h3 className="font-display text-xl font-bold text-foreground mb-3 flex items-center gap-2">
+                <Heart className="w-5 h-5 text-coral" />
+                {t('ministry.detail.prayerNeeds') || 'Pray For This Ministry'}
               </h3>
-              <p className="text-foreground/70 leading-relaxed">
-                {t(`ministries.${key}.hoverInfo`)}
+              <p className="text-foreground/70 leading-relaxed whitespace-pre-line">
+                {prayer || (t('ministry.detail.prayerNeedsEmpty') || 'Please pray for this ministry, its leaders and the people we serve.')}
               </p>
             </div>
 
             <div className="card-warm p-6">
-              <h3 className="font-display text-xl font-bold text-foreground mb-3">
-                {t(`ministry.detail.joinUs`)}
+              <h3 className="font-display text-xl font-bold text-foreground mb-3 flex items-center gap-2">
+                <HandHeart className="w-5 h-5 text-amber" />
+                {t('ministry.detail.joinUs')}
               </h3>
-              <p className="text-foreground/70 leading-relaxed mb-4">
-                {t('ministry.detail.joinDesc')}
+              <p className="text-foreground/70 leading-relaxed whitespace-pre-line mb-4">
+                {help || t('ministry.detail.joinDesc')}
               </p>
               <Link
                 to="/serve"
@@ -109,6 +148,21 @@ const MinistryContent = () => {
               </Link>
             </div>
           </div>
+
+          {/* Gallery */}
+          {gallery.length > 0 && (
+            <div className="card-warm p-6">
+              <h3 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                <Camera className="w-5 h-5 text-sunset" />
+                {t('ministry.detail.gallery') || 'Gallery'}
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {gallery.map(g => (
+                  <img key={g.id} src={g.image_url} alt="" loading="lazy" className="w-full h-40 object-cover rounded-lg" />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
