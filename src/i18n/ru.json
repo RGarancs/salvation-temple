@@ -431,7 +431,6 @@
   "team.victoria.name": "Виктория Гаранча",
   "team.victoria.role": "РАЗУМ И КАРЬЕРА",
   "team.victoria.desc": "Научит преодолевать страхи и ограничивающие убеждения.",
-
   "meta.home.title": "Храм Спасения | Salvation Temple — Церковь в Риге",
   "meta.home.description": "Храм Спасения — евангельская церковь в Риге. Богослужения по воскресеньям в 11:00 и по средам в 18:00. Приходите — мы рады каждому!",
   "meta.training.title": "Полноценная жизнь — курс личностного роста | Храм Спасения",
@@ -444,7 +443,6 @@
   "meta.testimonies.description": "Истории изменённых жизней — свидетельства членов церкви Храм Спасения о встрече с Богом.",
   "meta.donations.title": "Пожертвования | Храм Спасения",
   "meta.donations.description": "Поддержите служение церкви Храм Спасения в Риге. Банковские реквизиты и информация о проектах.",
-
   "serve.title": "Хочу служить",
   "serve.subtitle": "Заполните форму, и мы свяжемся с вами по поводу возможностей служения",
   "serve.name": "Ваше имя",
@@ -459,11 +457,17 @@
   "serve.thankYouDesc": "Ваш почтовый клиент должен открыться с заявкой. Если нет, напишите напрямую на salvtemp117@gmail.com.",
   "serve.meta.title": "Хочу служить | Храм Спасения",
   "serve.meta.description": "Подайте заявку на служение в церкви Храм Спасения в Риге.",
-
   "ministry.detail.whatWeDo": "Что мы делаем",
   "ministry.detail.joinUs": "Присоединяйтесь",
   "ministry.detail.joinDesc": "Мы всегда ищем людей, которые хотят служить. Если вы чувствуете призвание к этому служению, зарегистрируйтесь, и мы поможем вам начать.",
-
   "history.resources.fetlerMuseum": "Музей Вильямса Фетлера",
-  "history.resources.atmodasNams": "Атмодас Намс — Вильямс Фетлер"
+  "history.resources.atmodasNams": "Атмодас Намс — Вильямс Фетлер",
+  "news.title": "Новости",
+  "news.subtitle": "Последние события нашей общины",
+  "googleCalendar.title": "Календарь церкви",
+  "googleCalendar.subtitle": "Следите за всеми событиями и служениями",
+  "ministry.detail.mission": "Наша миссия",
+  "ministry.detail.prayerNeeds": "Молитесь за это служение",
+  "ministry.detail.prayerNeedsEmpty": "Пожалуйста, молитесь за это служение, его лидеров и людей, которым мы служим.",
+  "ministry.detail.gallery": "Галерея"
 }
