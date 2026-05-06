@@ -73,54 +73,69 @@ const TestimoniesContent = () => {
         </div>
 
         <div className="max-w-4xl mx-auto space-y-8">
-          {testimonies.map((testimony, index) => (
-            <div 
-              key={testimony.key} 
-              className="relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 group border border-white/5"
-              style={bordeauxCardStyle}
-            >
-              <BordeauxOverlay />
-              {/* Animated shine effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
-                  <Quote className="w-6 h-6 text-sunset-light" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-display text-xl font-bold text-white/95 mb-2">
-                    {t(`testimonies.${testimony.key}.name`)}
-                  </h3>
-                  
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-sunset-light uppercase tracking-wide mb-2">
-                      {t('testimonies.before')}
-                    </h4>
-                    <p className="text-white/70">
-                      {t(`testimonies.${testimony.key}.before`)}
-                    </p>
+          {dbItems.length > 0 ? (
+            dbItems.map((item) => (
+              <div
+                key={item.id}
+                className="relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 group border border-white/5"
+                style={bordeauxCardStyle}
+              >
+                <BordeauxOverlay />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
+                <div className="relative z-10 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
+                    <Quote className="w-6 h-6 text-sunset-light" />
                   </div>
-
-                  <div className="mb-4">
-                    <h4 className="text-sm font-semibold text-coral uppercase tracking-wide mb-2">
-                      {t('testimonies.encounter')}
-                    </h4>
-                    <p className="text-white/70">
-                      {t(`testimonies.${testimony.key}.encounter`)}
-                    </p>
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-semibold text-amber uppercase tracking-wide mb-2">
-                      {t('testimonies.after')}
-                    </h4>
-                    <p className="text-white/70">
-                      {t(`testimonies.${testimony.key}.after`)}
-                    </p>
+                  <div className="flex-1">
+                    <h3 className="font-display text-xl font-bold text-white/95 mb-2">{pick(item.name)}</h3>
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold text-sunset-light uppercase tracking-wide mb-2">{t('testimonies.before')}</h4>
+                      <p className="text-white/70 whitespace-pre-line">{pick(item.before_text)}</p>
+                    </div>
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold text-coral uppercase tracking-wide mb-2">{t('testimonies.encounter')}</h4>
+                      <p className="text-white/70 whitespace-pre-line">{pick(item.encounter_text)}</p>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-amber uppercase tracking-wide mb-2">{t('testimonies.after')}</h4>
+                      <p className="text-white/70 whitespace-pre-line">{pick(item.after_text)}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            fallbackKeys.map((key) => (
+              <div
+                key={key}
+                className="relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 group border border-white/5"
+                style={bordeauxCardStyle}
+              >
+                <BordeauxOverlay />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
+                <div className="relative z-10 flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10">
+                    <Quote className="w-6 h-6 text-sunset-light" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-display text-xl font-bold text-white/95 mb-2">{t(`testimonies.${key}.name`)}</h3>
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold text-sunset-light uppercase tracking-wide mb-2">{t('testimonies.before')}</h4>
+                      <p className="text-white/70">{t(`testimonies.${key}.before`)}</p>
+                    </div>
+                    <div className="mb-4">
+                      <h4 className="text-sm font-semibold text-coral uppercase tracking-wide mb-2">{t('testimonies.encounter')}</h4>
+                      <p className="text-white/70">{t(`testimonies.${key}.encounter`)}</p>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-semibold text-amber uppercase tracking-wide mb-2">{t('testimonies.after')}</h4>
+                      <p className="text-white/70">{t(`testimonies.${key}.after`)}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
 
         <div className="text-center mt-12">
