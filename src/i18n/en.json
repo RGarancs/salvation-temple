@@ -433,7 +433,6 @@
   "team.victoria.name": "Victoria Garancha",
   "team.victoria.role": "MIND & CAREER",
   "team.victoria.desc": "Will teach you to overcome fears and limiting beliefs.",
-
   "meta.home.title": "Salvation Temple — Evangelical Church in Riga, Latvia",
   "meta.home.description": "Salvation Temple — an evangelical church in Riga. Sunday services at 11:00, Wednesday at 18:00. Services in Russian, Latvian, and English. Everyone is welcome!",
   "meta.training.title": "Wholesome Life — Personal Growth Course | Salvation Temple",
@@ -446,7 +445,6 @@
   "meta.testimonies.description": "Stories of transformed lives — testimonies from Salvation Temple church members about encountering God.",
   "meta.donations.title": "Donations | Salvation Temple",
   "meta.donations.description": "Support the ministry of Salvation Temple church in Riga. Bank details and project information.",
-
   "serve.title": "I Want to Serve",
   "serve.subtitle": "Fill out the form below and we will contact you about serving opportunities",
   "serve.name": "Your Name",
@@ -461,11 +459,17 @@
   "serve.thankYouDesc": "Your email client should open with your request. If not, please email salvtemp117@gmail.com directly.",
   "serve.meta.title": "I Want to Serve | Salvation Temple",
   "serve.meta.description": "Sign up to serve at Salvation Temple church in Riga.",
-
   "ministry.detail.whatWeDo": "What We Do",
   "ministry.detail.joinUs": "Join Us",
   "ministry.detail.joinDesc": "We are always looking for people who want to serve. If you feel called to this ministry, sign up and we will help you get started.",
-
   "history.resources.fetlerMuseum": "Viljams Fetlers Museum",
-  "history.resources.atmodasNams": "Atmodas Nams — Viljams Fetlers"
+  "history.resources.atmodasNams": "Atmodas Nams — Viljams Fetlers",
+  "news.title": "News",
+  "news.subtitle": "Latest from our community",
+  "googleCalendar.title": "Church Calendar",
+  "googleCalendar.subtitle": "Stay up to date with all church events and services",
+  "ministry.detail.mission": "Our Mission",
+  "ministry.detail.prayerNeeds": "Pray For This Ministry",
+  "ministry.detail.prayerNeedsEmpty": "Please pray for this ministry, its leaders and the people we serve.",
+  "ministry.detail.gallery": "Gallery"
 }

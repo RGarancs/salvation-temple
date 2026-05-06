@@ -432,7 +432,6 @@
   "team.victoria.name": "Viktorija Garanča",
   "team.victoria.role": "PRĀTS UN KARJERA",
   "team.victoria.desc": "Iemācīs pārvarēt bailes un ierobežojošus uzskatus.",
-
   "meta.home.title": "Pestīšanas Templis — Evaņģēliskā draudze Rīgā",
   "meta.home.description": "Pestīšanas Templis — evaņģēliskā draudze Rīgā. Dievkalpojumi svētdienās 11:00 un trešdienās 18:00. Krievu un latviešu valodā. Laipni aicināti!",
   "meta.training.title": "Pilnvērtīga dzīve — personīgās izaugsmes kurss | Pestīšanas Templis",
@@ -445,7 +444,6 @@
   "meta.testimonies.description": "Stāsti par pārvērstām dzīvēm — Pestīšanas Tempļa draudzes locekļu liecības par tikšanos ar Dievu.",
   "meta.donations.title": "Ziedojumi | Pestīšanas Templis",
   "meta.donations.description": "Atbalstiet Pestīšanas Tempļa draudzes kalpošanu Rīgā. Bankas rekvizīti un informācija par projektiem.",
-
   "serve.title": "Vēlos kalpot",
   "serve.subtitle": "Aizpildiet formu, un mēs sazināsimies ar jums par kalpošanas iespējām",
   "serve.name": "Jūsu vārds",
@@ -460,11 +458,17 @@
   "serve.thankYouDesc": "Jūsu e-pasta klientam jāatveras ar pieteikumu. Ja nē, rakstiet tieši uz salvtemp117@gmail.com.",
   "serve.meta.title": "Vēlos kalpot | Pestīšanas Templis",
   "serve.meta.description": "Pieteikties kalpošanai Pestīšanas Tempļa draudzē Rīgā.",
-
   "ministry.detail.whatWeDo": "Ko mēs darām",
   "ministry.detail.joinUs": "Pievienojies mums",
   "ministry.detail.joinDesc": "Mēs vienmēr meklējam cilvēkus, kuri vēlas kalpot. Ja jūtat aicinājumu šai kalpošanai, piesakieties, un mēs palīdzēsim jums sākt.",
-
   "history.resources.fetlerMuseum": "Viljama Fetlera muzejs",
-  "history.resources.atmodasNams": "Atmodas Nams — Viljams Fetlers"
+  "history.resources.atmodasNams": "Atmodas Nams — Viljams Fetlers",
+  "news.title": "Jaunumi",
+  "news.subtitle": "Jaunākais no mūsu kopienas",
+  "googleCalendar.title": "Draudzes kalendārs",
+  "googleCalendar.subtitle": "Sekojiet līdzi visiem pasākumiem un dievkalpojumiem",
+  "ministry.detail.mission": "Mūsu misija",
+  "ministry.detail.prayerNeeds": "Lūdziet par šo kalpošanu",
+  "ministry.detail.prayerNeedsEmpty": "Lūdzu, lūdziet par šo kalpošanu, tās vadītājiem un cilvēkiem, kuriem kalpojam.",
+  "ministry.detail.gallery": "Galerija"
 }

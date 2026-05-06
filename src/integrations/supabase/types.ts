@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_invitations: {
+        Row: {
+          accepted_at: string | null
+          created_at: string
+          email: string
+          id: string
+          invited_by: string | null
+          role: Database["public"]["Enums"]["app_role"]
+          status: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          invited_by?: string | null
+          role?: Database["public"]["Enums"]["app_role"]
+          status?: string
+        }
+        Update: {
+          accepted_at?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          invited_by?: string | null
+          role?: Database["public"]["Enums"]["app_role"]
+          status?: string
+        }
+        Relationships: []
+      }
       calendar_events: {
         Row: {
           created_at: string
@@ -87,11 +117,14 @@ export type Database = {
         Row: {
           created_at: string
           description: Json | null
+          how_to_help: Json | null
           icon: string | null
           id: string
           key: string
           leader_image_url: string | null
           leader_name: string | null
+          mission: Json | null
+          prayer_needs: Json | null
           sort_order: number | null
           title: Json
           updated_at: string
@@ -99,11 +132,14 @@ export type Database = {
         Insert: {
           created_at?: string
           description?: Json | null
+          how_to_help?: Json | null
           icon?: string | null
           id?: string
           key: string
           leader_image_url?: string | null
           leader_name?: string | null
+          mission?: Json | null
+          prayer_needs?: Json | null
           sort_order?: number | null
           title?: Json
           updated_at?: string
@@ -111,12 +147,78 @@ export type Database = {
         Update: {
           created_at?: string
           description?: Json | null
+          how_to_help?: Json | null
           icon?: string | null
           id?: string
           key?: string
           leader_image_url?: string | null
           leader_name?: string | null
+          mission?: Json | null
+          prayer_needs?: Json | null
           sort_order?: number | null
+          title?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ministry_gallery: {
+        Row: {
+          caption: Json | null
+          created_at: string
+          id: string
+          image_url: string
+          ministry_key: string
+          sort_order: number | null
+        }
+        Insert: {
+          caption?: Json | null
+          created_at?: string
+          id?: string
+          image_url: string
+          ministry_key: string
+          sort_order?: number | null
+        }
+        Update: {
+          caption?: Json | null
+          created_at?: string
+          id?: string
+          image_url?: string
+          ministry_key?: string
+          sort_order?: number | null
+        }
+        Relationships: []
+      }
+      news: {
+        Row: {
+          content: Json
+          created_at: string
+          created_by: string | null
+          id: string
+          image_url: string | null
+          published: boolean
+          published_at: string
+          title: Json
+          updated_at: string
+        }
+        Insert: {
+          content?: Json
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          image_url?: string | null
+          published?: boolean
+          published_at?: string
+          title?: Json
+          updated_at?: string
+        }
+        Update: {
+          content?: Json
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          image_url?: string | null
+          published?: boolean
+          published_at?: string
           title?: Json
           updated_at?: string
         }
@@ -149,6 +251,24 @@ export type Database = {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
       site_statistics: {
         Row: {
           category: string | null
@@ -173,6 +293,42 @@ export type Database = {
           label?: Json | null
           updated_at?: string
           value?: number
+        }
+        Relationships: []
+      }
+      testimonials: {
+        Row: {
+          after_text: Json
+          before_text: Json
+          created_at: string
+          encounter_text: Json
+          id: string
+          name: Json
+          published: boolean
+          sort_order: number | null
+          updated_at: string
+        }
+        Insert: {
+          after_text?: Json
+          before_text?: Json
+          created_at?: string
+          encounter_text?: Json
+          id?: string
+          name?: Json
+          published?: boolean
+          sort_order?: number | null
+          updated_at?: string
+        }
+        Update: {
+          after_text?: Json
+          before_text?: Json
+          created_at?: string
+          encounter_text?: Json
+          id?: string
+          name?: Json
+          published?: boolean
+          sort_order?: number | null
+          updated_at?: string
         }
         Relationships: []
       }
