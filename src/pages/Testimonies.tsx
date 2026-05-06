@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ChurchHeader } from '@/components/ChurchHeader';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
@@ -8,37 +9,34 @@ import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { supabase } from '@/integrations/supabase/client';
+
+interface DbTestimonial {
+  id: string;
+  name: Record<string, string>;
+  before_text: Record<string, string>;
+  encounter_text: Record<string, string>;
+  after_text: Record<string, string>;
+}
+
+const fallbackKeys = ['testimony1', 'testimony2', 'testimony3', 'testimony4', 'testimony5'];
 
 const TestimoniesContent = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [dbItems, setDbItems] = useState<DbTestimonial[]>([]);
   usePageMeta({
     titleKey: 'meta.testimonies.title',
     descriptionKey: 'meta.testimonies.description',
     canonicalPath: '/testimonies',
   });
 
-  const testimonies = [
-    {
-      key: 'testimony1',
-      name: { ru: 'Мария К.', en: 'Maria K.', lv: 'Marija K.' },
-    },
-    {
-      key: 'testimony2',
-      name: { ru: 'Алексей П.', en: 'Alexey P.', lv: 'Aleksejs P.' },
-    },
-    {
-      key: 'testimony3',
-      name: { ru: 'Елена С.', en: 'Elena S.', lv: 'Jeļena S.' },
-    },
-    {
-      key: 'testimony4',
-      name: { ru: 'Дмитрий В.', en: 'Dmitry V.', lv: 'Dmitrijs V.' },
-    },
-    {
-      key: 'testimony5',
-      name: { ru: 'Анна Л.', en: 'Anna L.', lv: 'Anna L.' },
-    },
-  ];
+  useEffect(() => {
+    supabase.from('testimonials').select('*').eq('published', true).order('sort_order').then(({ data }) => {
+      if (data) setDbItems(data as any);
+    });
+  }, []);
+
+  const pick = (obj: Record<string, string>) => obj?.[language] || obj?.en || obj?.ru || '';
 
   return (
     <section className="page-py min-h-screen relative overflow-hidden bg-gradient-to-b from-chocolate-dark via-chocolate to-chocolate-dark">
