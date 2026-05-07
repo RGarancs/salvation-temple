@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { supabase } from '@/integrations/supabase/client';
 
 const SITE_URL = 'https://salvation-temple.lovable.app';
 
@@ -29,11 +30,30 @@ const setLinkHref = (rel: string, href: string): void => {
 };
 
 export const usePageMeta = ({ titleKey, descriptionKey, canonicalPath }: PageMetaOptions): void => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [override, setOverride] = useState<{ title?: string; description?: string; keywords?: string } | null>(null);
+
+  // Fetch admin-managed SEO override for this route
+  useEffect(() => {
+    let cancelled = false;
+    (supabase.from('seo_meta' as any) as any)
+      .select('title,description,keywords')
+      .eq('route', canonicalPath)
+      .maybeSingle()
+      .then(({ data }: any) => {
+        if (cancelled || !data) return;
+        setOverride({
+          title: data.title?.[language] || data.title?.en || '',
+          description: data.description?.[language] || data.description?.en || '',
+          keywords: data.keywords || '',
+        });
+      });
+    return () => { cancelled = true; };
+  }, [canonicalPath, language]);
 
   useEffect(() => {
-    const title = t(titleKey);
-    const description = t(descriptionKey);
+    const title = override?.title || t(titleKey);
+    const description = override?.description || t(descriptionKey);
     const canonicalUrl = `${SITE_URL}${canonicalPath}`;
 
     document.title = title;
@@ -44,6 +64,7 @@ export const usePageMeta = ({ titleKey, descriptionKey, canonicalPath }: PageMet
     setMetaContent('meta[name="twitter:title"]', title);
     setMetaContent('meta[name="twitter:description"]', description);
     setLinkHref('canonical', canonicalUrl);
+    if (override?.keywords) setMetaContent('meta[name="keywords"]', override.keywords);
 
     return () => {
       document.title = DEFAULT_TITLE;
@@ -55,5 +76,5 @@ export const usePageMeta = ({ titleKey, descriptionKey, canonicalPath }: PageMet
       setMetaContent('meta[name="twitter:description"]', DEFAULT_DESCRIPTION);
       setLinkHref('canonical', `${SITE_URL}/`);
     };
-  }, [t, titleKey, descriptionKey, canonicalPath]);
+  }, [t, titleKey, descriptionKey, canonicalPath, override]);
 };
