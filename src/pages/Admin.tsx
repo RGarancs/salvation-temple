@@ -6,10 +6,10 @@ import { ImageUpload } from '@/components/admin/ImageUpload';
 import {
   CalendarDays, Users, Image as ImageIcon, BarChart3, Church, LogOut,
   Plus, Trash2, Edit, Save, X, Home, MessageSquareQuote, Newspaper,
-  UserPlus, Settings, ArrowUp, ArrowDown,
+  UserPlus, Settings, ArrowUp, ArrowDown, Sparkles, Search, Loader2,
 } from 'lucide-react';
 
-type Tab = 'dashboard' | 'calendar' | 'ministries' | 'gallery' | 'statistics' | 'testimonials' | 'news' | 'users' | 'settings';
+type Tab = 'dashboard' | 'calendar' | 'ministries' | 'gallery' | 'statistics' | 'testimonials' | 'news' | 'users' | 'seo' | 'settings';
 
 const LANGS = ['ru', 'en', 'lv'] as const;
 const emptyI18n = () => ({ ru: '', en: '', lv: '' });
@@ -40,6 +40,7 @@ const Admin = () => {
     { key: 'testimonials', icon: MessageSquareQuote, label: 'Testimonials' },
     { key: 'statistics', icon: BarChart3, label: 'Statistics' },
     { key: 'users', icon: Users, label: 'Users' },
+    { key: 'seo', icon: Search, label: 'AI SEO' },
     { key: 'settings', icon: Settings, label: 'Settings' },
   ];
 
@@ -82,6 +83,7 @@ const Admin = () => {
         {tab === 'testimonials' && <TestimonialsManager />}
         {tab === 'statistics' && <StatisticsManager />}
         {tab === 'users' && <UsersManager />}
+        {tab === 'seo' && <SeoManager />}
         {tab === 'settings' && <SettingsManager />}
       </main>
     </div>
