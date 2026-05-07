@@ -128,16 +128,49 @@ const Field = ({ label, value, onChange, type = 'text', placeholder, rows }: any
   </div>
 );
 
-const I18nField = ({ label, value, onChange, rows }: { label: string; value: any; onChange: (v: any) => void; rows?: number }) => (
-  <div>
-    <label className="block text-xs font-semibold text-white/70 mb-2">{label}</label>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
-      {LANGS.map(l => (
-        <Field key={l} label={l.toUpperCase()} value={value?.[l]} onChange={(v: string) => onChange({ ...(value || emptyI18n()), [l]: v })} rows={rows} />
-      ))}
+const aiTranslate = async (source: string, sourceLang: string, targets: string[]) => {
+  const { data, error } = await supabase.functions.invoke('ai-assist', {
+    body: { mode: 'translate', source, sourceLang, targets },
+  });
+  if (error) throw error;
+  return data.result as Record<string, string>;
+};
+
+const I18nField = ({ label, value, onChange, rows }: { label: string; value: any; onChange: (v: any) => void; rows?: number }) => {
+  const [busy, setBusy] = useState<string | null>(null);
+  const handleAi = async (sourceLang: string) => {
+    const src = value?.[sourceLang];
+    if (!src) { alert(`Fill ${sourceLang.toUpperCase()} first`); return; }
+    const targets = LANGS.filter(l => l !== sourceLang);
+    setBusy(sourceLang);
+    try {
+      const result = await aiTranslate(src, sourceLang, targets);
+      onChange({ ...(value || emptyI18n()), ...result });
+    } catch (e) { alert('Translate failed: ' + (e as Error).message); }
+    finally { setBusy(null); }
+  };
+  return (
+    <div>
+      <label className="block text-xs font-semibold text-white/70 mb-2">{label}</label>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        {LANGS.map(l => (
+          <div key={l} className="relative">
+            <Field label={l.toUpperCase()} value={value?.[l]} onChange={(v: string) => onChange({ ...(value || emptyI18n()), [l]: v })} rows={rows} />
+            <button
+              type="button"
+              title={`Translate from ${l.toUpperCase()} → others`}
+              onClick={() => handleAi(l)}
+              disabled={busy !== null}
+              className="absolute top-0 right-0 p-1 rounded text-sunset hover:bg-sunset/10 disabled:opacity-40"
+            >
+              {busy === l ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // =============== Dashboard ===============
 const Dashboard = () => {
