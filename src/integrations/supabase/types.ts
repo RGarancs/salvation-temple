@@ -251,6 +251,33 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_meta: {
+        Row: {
+          description: Json
+          id: string
+          keywords: string | null
+          route: string
+          title: Json
+          updated_at: string
+        }
+        Insert: {
+          description?: Json
+          id?: string
+          keywords?: string | null
+          route: string
+          title?: Json
+          updated_at?: string
+        }
+        Update: {
+          description?: Json
+          id?: string
+          keywords?: string | null
+          route?: string
+          title?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       site_settings: {
         Row: {
           key: string
