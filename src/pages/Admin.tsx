@@ -719,4 +719,119 @@ const SettingsManager = () => {
   );
 };
 
+// =============== AI SEO ===============
+const DEFAULT_ROUTES = [
+  { route: '/', label: 'Home' },
+  { route: '/history', label: 'History' },
+  { route: '/training', label: 'Training' },
+  { route: '/donations', label: 'Donations' },
+  { route: '/gallery', label: 'Gallery' },
+  { route: '/testimonies', label: 'Testimonies' },
+  { route: '/serve', label: 'Serve' },
+];
+
+const SeoManager = () => {
+  const [items, setItems] = useState<any[]>([]);
+  const [editing, setEditing] = useState<any>(null);
+  const [generating, setGenerating] = useState(false);
+  const [topic, setTopic] = useState('');
+
+  const load = useCallback(async () => {
+    const { data } = await supabase.from('seo_meta' as any).select('*').order('route');
+    if (data) setItems(data);
+  }, []);
+  useEffect(() => { load(); }, [load]);
+
+  const generate = async () => {
+    if (!editing?.route) return;
+    setGenerating(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('ai-assist', {
+        body: { mode: 'seo', route: editing.route, topic: topic || editing.route },
+      });
+      if (error) throw error;
+      const r = data.result as any;
+      setEditing({
+        ...editing,
+        title: { ru: r.ru?.title || '', en: r.en?.title || '', lv: r.lv?.title || '' },
+        description: { ru: r.ru?.description || '', en: r.en?.description || '', lv: r.lv?.description || '' },
+      });
+    } catch (e) { alert('Generation failed: ' + (e as Error).message); }
+    finally { setGenerating(false); }
+  };
+
+  const save = async () => {
+    const p = { ...editing }; delete p.id; delete p.updated_at;
+    if (editing.id) await (supabase.from('seo_meta' as any) as any).update(p).eq('id', editing.id);
+    else await (supabase.from('seo_meta' as any) as any).insert(p);
+    setEditing(null); setTopic(''); load();
+  };
+  const del = async (id: string) => { if (confirm('Delete?')) { await (supabase.from('seo_meta' as any) as any).delete().eq('id', id); load(); } };
+
+  const existingRoutes = new Set(items.map(i => i.route));
+
+  return (
+    <div>
+      <PageHeader title="AI SEO Manager" action={
+        <Btn onClick={() => setEditing({ route: '', title: emptyI18n(), description: emptyI18n(), keywords: '' })}>
+          <Plus className="w-4 h-4" /> Add
+        </Btn>
+      } />
+
+      <Card className="mb-4">
+        <p className="text-xs text-white/60 mb-2">Quick add (missing routes):</p>
+        <div className="flex flex-wrap gap-2">
+          {DEFAULT_ROUTES.filter(r => !existingRoutes.has(r.route)).map(r => (
+            <button key={r.route} onClick={() => setEditing({ route: r.route, title: emptyI18n(), description: emptyI18n(), keywords: '' })}
+              className="px-3 py-1 text-xs rounded-full bg-sunset/10 text-sunset hover:bg-sunset/20">
+              + {r.label} ({r.route})
+            </button>
+          ))}
+        </div>
+      </Card>
+
+      {editing && (
+        <Card className="mb-4 border-sunset/30">
+          <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2">
+              <Field label="Route (e.g. /, /history)" value={editing.route} onChange={(v: string) => setEditing({ ...editing, route: v })} />
+              <Field label="Keywords (comma separated)" value={editing.keywords} onChange={(v: string) => setEditing({ ...editing, keywords: v })} />
+            </div>
+            <Card className="bg-sunset/5 border-sunset/20">
+              <div className="flex items-end gap-2">
+                <Field label="AI: describe this page in a sentence" value={topic} onChange={setTopic} placeholder="e.g. Church history page covering 1907 founding by William Fetler..." />
+                <Btn onClick={generate} disabled={generating}>
+                  {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />} Generate trilingual SEO
+                </Btn>
+              </div>
+            </Card>
+            <I18nField label="Title (<60 chars)" value={editing.title} onChange={v => setEditing({ ...editing, title: v })} />
+            <I18nField label="Description (<160 chars)" value={editing.description} onChange={v => setEditing({ ...editing, description: v })} rows={2} />
+            <div className="flex justify-end gap-2">
+              <Btn variant="ghost" onClick={() => { setEditing(null); setTopic(''); }}><X className="w-4 h-4" /> Cancel</Btn>
+              <Btn onClick={save}><Save className="w-4 h-4" /> Save</Btn>
+            </div>
+          </div>
+        </Card>
+      )}
+
+      <div className="space-y-2">
+        {items.map(it => (
+          <Card key={it.id} className="flex items-center justify-between">
+            <div className="flex-1 min-w-0">
+              <p className="font-medium"><span className="text-sunset">{it.route}</span> · {it.title?.en || it.title?.ru || '(no title)'}</p>
+              <p className="text-xs text-white/50 truncate">{it.description?.en || it.description?.ru}</p>
+            </div>
+            <div className="flex gap-1">
+              <Btn variant="ghost" onClick={() => setEditing(it)}><Edit className="w-4 h-4" /></Btn>
+              <Btn variant="danger" onClick={() => del(it.id)}><Trash2 className="w-4 h-4" /></Btn>
+            </div>
+          </Card>
+        ))}
+        {items.length === 0 && <p className="text-center text-white/40 py-8">No SEO entries yet. Click a route chip above to start.</p>}
+      </div>
+    </div>
+  );
+};
+
 export default Admin;
