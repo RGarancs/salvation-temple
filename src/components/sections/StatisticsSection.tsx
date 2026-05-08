@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Users, Droplets, BookOpen, Sun, Home, Gift, Heart } from 'lucide-react';
+import { Users, Droplets, BookOpen, Sun, Home, Gift, Heart, LucideIcon } from 'lucide-react';
 import galleryCongregation from '@/assets/gallery-congregation.jpg';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
+import { supabase } from '@/integrations/supabase/client';
 
-const communityStats = [
+const STAT_ICONS: Record<string, LucideIcon> = {
+  members: Users, baptisms: Droplets, sundaySchool: BookOpen, summerCamp: Sun, childrenGifts: Gift, familiesHelped: Home,
+};
+
+const fallbackStats = [
   { key: 'members', value: '150', icon: Users, label: 'statistics.total' },
   { key: 'baptisms', value: '12', icon: Droplets, label: 'statistics.baptisms', hoverInfo: 'statistics.baptisms.hover' },
   { key: 'sundaySchool', value: '80', icon: BookOpen, label: 'statistics.sundaySchoolPeople', hoverInfo: 'statistics.sundaySchool.hover' },
@@ -15,8 +20,33 @@ const communityStats = [
 ];
 
 export const StatisticsSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [hoveredStat, setHoveredStat] = useState<string | null>(null);
+  const [dbRows, setDbRows] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    supabase.from('site_statistics').select('*').then(({ data }) => {
+      if (data) setDbRows(data);
+    });
+  }, []);
+
+  const communityStats = useMemo(() => {
+    if (dbRows && dbRows.length > 0) {
+      return dbRows.map((r: any) => {
+        const fb = fallbackStats.find((s) => s.key === r.key);
+        return {
+          key: r.key,
+          value: String(r.value),
+          icon: STAT_ICONS[r.key] || fb?.icon || Heart,
+          label: r.label?.[language] || r.label?.en || (fb ? t(fb.label) : r.key),
+          isLabelText: true,
+          hoverInfo: fb?.hoverInfo,
+        };
+      });
+    }
+    return fallbackStats.map((s) => ({ ...s, isLabelText: false }));
+  }, [dbRows, language, t]);
+
 
   return (
     <section id="statistics" className="section-py relative overflow-hidden">
