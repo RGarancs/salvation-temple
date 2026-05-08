@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock, Facebook, Instagram, Youtube, LucideIcon } from 'lucide-react';
+import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock, Facebook, Instagram, Youtube, LucideIcon, Sparkles } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
+import { supabase } from '@/integrations/supabase/client';
 
 interface EventCategory {
   key: string;
