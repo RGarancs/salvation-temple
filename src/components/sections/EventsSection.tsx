@@ -117,8 +117,20 @@ const EventContentBlock = ({ category, t }: { category: EventCategory; t: (key: 
 };
 
 export const EventsSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [customEvents, setCustomEvents] = useState<any[]>([]);
+
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    supabase
+      .from('calendar_events')
+      .select('*')
+      .gte('event_date', today)
+      .order('event_date')
+      .limit(8)
+      .then(({ data }) => { if (data) setCustomEvents(data); });
+  }, []);
 
   const upcomingSundays = getUpcomingSundays();
   const thisFriday = getThisFriday();
