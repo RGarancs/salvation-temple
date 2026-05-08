@@ -1,79 +1,52 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Hand, Stethoscope } from 'lucide-react';
+import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Hand, Stethoscope, Church } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
+import { supabase } from '@/integrations/supabase/client';
 
-const ministries = [
-  {
-    key: 'worship',
-    icon: Music,
-    leader: { ru: 'Давид Самойлич', en: 'David Samoylich', lv: 'Dāvids Samoiličs' }
-  },
-  {
-    key: 'sundaySchool',
-    icon: BookOpen,
-    leader: { ru: 'Кристина Полтарак', en: 'Kristina Poltarak', lv: 'Kristīna Poltaraka' }
-  },
-  {
-    key: 'ribaClub',
-    icon: Fish,
-    leader: { ru: 'Рамона и Артём Дударевы', en: 'Ramona & Artem Dudarevi', lv: 'Ramona un Artjoms Dudarevi' }
-  },
-  {
-    key: 'youth',
-    icon: Users,
-    leader: { ru: 'Пётр Вознарски', en: 'Peter Voznarsky', lv: 'Pēteris Vozniarskis' }
-  },
-  {
-    key: 'youngLife',
-    icon: Tent,
-    leader: { ru: 'Алёна Мюллер', en: 'Aljona Muller', lv: 'Aļona Millere' }
-  },
-  {
-    key: 'loveAndCare',
-    icon: Heart,
-    leader: { ru: 'Кристиана Вятере', en: 'Kristiāna Vjatere', lv: 'Kristiāna Vjātere' }
-  },
-  {
-    key: 'choir',
-    icon: Mic2,
-    leader: { ru: 'Алёна Исаков', en: 'Alena Isakov', lv: 'Aļena Isakova' }
-  },
-  {
-    key: 'smallGroups',
-    icon: Home,
-    leader: { ru: 'Даниил Полтарак', en: 'Daniel Poltarak', lv: 'Daniēls Poltaraks' }
-  },
-  {
-    key: 'mensMinistry',
-    icon: Dumbbell,
-    leader: { ru: 'Илья Ничипуенко', en: 'Ilya Nichipuenko', lv: 'Iļja Ničipuenko' }
-  },
-  {
-    key: 'womensMinistry',
-    icon: HeartHandshake,
-    leader: { ru: 'Йоланта', en: 'Jolanta', lv: 'Jolanta' }
-  },
-  {
-    key: 'media',
-    icon: Camera,
-    leader: { ru: 'Станислав Исаков', en: 'Stanislav Isakov', lv: 'Staņislavs Isakovs' }
-  },
-  {
-    key: 'counselling',
-    icon: Stethoscope,
-    leader: { ru: 'Эля Файзулина', en: 'Elya Fayzulina', lv: 'Eļa Faizuļina' }
-  },
+const ICONS: Record<string, any> = {
+  Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Stethoscope, Church,
+};
+
+const staticMinistries = [
+  { key: 'worship', icon: Music, leader: { ru: 'Давид Самойлич', en: 'David Samoylich', lv: 'Dāvids Samoiličs' } },
+  { key: 'sundaySchool', icon: BookOpen, leader: { ru: 'Кристина Полтарак', en: 'Kristina Poltarak', lv: 'Kristīna Poltaraka' } },
+  { key: 'ribaClub', icon: Fish, leader: { ru: 'Рамона и Артём Дударевы', en: 'Ramona & Artem Dudarevi', lv: 'Ramona un Artjoms Dudarevi' } },
+  { key: 'youth', icon: Users, leader: { ru: 'Пётр Вознарски', en: 'Peter Voznarsky', lv: 'Pēteris Vozniarskis' } },
+  { key: 'youngLife', icon: Tent, leader: { ru: 'Алёна Мюллер', en: 'Aljona Muller', lv: 'Aļona Millere' } },
+  { key: 'loveAndCare', icon: Heart, leader: { ru: 'Кристиана Вятере', en: 'Kristiāna Vjatere', lv: 'Kristiāna Vjātere' } },
+  { key: 'choir', icon: Mic2, leader: { ru: 'Алёна Исаков', en: 'Alena Isakov', lv: 'Aļena Isakova' } },
+  { key: 'smallGroups', icon: Home, leader: { ru: 'Даниил Полтарак', en: 'Daniel Poltarak', lv: 'Daniēls Poltaraks' } },
+  { key: 'mensMinistry', icon: Dumbbell, leader: { ru: 'Илья Ничипуенко', en: 'Ilya Nichipuenko', lv: 'Iļja Ničipuenko' } },
+  { key: 'womensMinistry', icon: HeartHandshake, leader: { ru: 'Йоланта', en: 'Jolanta', lv: 'Jolanta' } },
+  { key: 'media', icon: Camera, leader: { ru: 'Станислав Исаков', en: 'Stanislav Isakov', lv: 'Staņislavs Isakovs' } },
+  { key: 'counselling', icon: Stethoscope, leader: { ru: 'Эля Файзулина', en: 'Elya Fayzulina', lv: 'Eļa Faizuļina' } },
 ];
+
+interface DisplayMinistry {
+  key: string;
+  icon: any;
+  leader: Record<string, string> | null;
+  title?: string;
+  desc?: string;
+  hover?: string;
+}
 
 export const MinistriesSection = () => {
   const { t, language } = useLanguage();
   const [expandedMinistry, setExpandedMinistry] = useState<string | null>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [dbRows, setDbRows] = useState<any[] | null>(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    supabase.from('ministries').select('*').order('sort_order').then(({ data }) => {
+      if (data) setDbRows(data);
+    });
+  }, []);
 
   const toggleExpand = useCallback((key: string) => {
     setExpandedMinistry((prev) => (prev === key ? null : key));
@@ -91,7 +64,24 @@ export const MinistriesSection = () => {
     setExpandedMinistry(null);
   }, []);
 
-  const carouselCards = useMemo(() => [...ministries, ...ministries], []);
+  const ministries: DisplayMinistry[] = useMemo(() => {
+    if (dbRows && dbRows.length > 0) {
+      return dbRows.map((r) => {
+        const staticMatch = staticMinistries.find((s) => s.key === r.key);
+        return {
+          key: r.key,
+          icon: ICONS[r.icon] || staticMatch?.icon || Church,
+          leader: r.leader_name ? { ru: r.leader_name, en: r.leader_name, lv: r.leader_name } : (staticMatch?.leader ?? null),
+          title: r.title?.[language] || r.title?.en || '',
+          desc: r.description?.[language] || r.description?.en || '',
+          hover: r.mission?.[language] || r.mission?.en || '',
+        };
+      });
+    }
+    return staticMinistries.map((s) => ({ ...s, leader: s.leader }));
+  }, [dbRows, language]);
+
+  const carouselCards = useMemo(() => [...ministries, ...ministries], [ministries]);
 
   return (
     <section id="ministries" className="section-py bg-cream-dark">
@@ -164,10 +154,10 @@ export const MinistriesSection = () => {
                       <Icon className="w-6 h-6 text-sunset-light" />
                     </div>
                     <h3 className="font-display text-lg font-bold text-white/95 mb-2">
-                      {t(`ministries.${ministry.key}.title`)}
+                      {(ministry as DisplayMinistry).title || t(`ministries.${ministry.key}.title`)}
                     </h3>
                     <p className="text-white/60 text-sm mb-3">
-                      {t(`ministries.${ministry.key}.desc`)}
+                      {(ministry as DisplayMinistry).desc || t(`ministries.${ministry.key}.desc`)}
                     </p>
                     {ministry.leader && (
                       <div className="pt-3 border-t border-white/10">
@@ -184,14 +174,16 @@ export const MinistriesSection = () => {
                       <Icon className="w-5 h-5 text-sunset-light" />
                     </div>
                     <h3 className="font-display text-base font-bold text-white/95 mb-2">
-                      {t(`ministries.${ministry.key}.title`)}
+                      {(ministry as DisplayMinistry).title || t(`ministries.${ministry.key}.title`)}
                     </h3>
                     <p className="text-white/80 text-xs leading-relaxed text-center mb-2">
-                      {t(`ministries.${ministry.key}.hoverInfo`)}
+                      {(ministry as DisplayMinistry).hover || t(`ministries.${ministry.key}.hoverInfo`)}
                     </p>
-                    <p className="text-xs text-sunset-light font-semibold">
-                      {ministry.leader[language]}
-                    </p>
+                    {ministry.leader && (
+                      <p className="text-xs text-sunset-light font-semibold">
+                        {ministry.leader[language]}
+                      </p>
+                    )}
                   </div>
                 </div>
               );

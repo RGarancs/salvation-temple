@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ChurchHeader } from '@/components/ChurchHeader';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
@@ -5,13 +6,14 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Images, Facebook, Instagram, Youtube } from 'lucide-react';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { supabase } from '@/integrations/supabase/client';
 
 const galleryModules = import.meta.glob<{ default: string }>(
   '@/assets/gallery-*.jpg',
   { eager: true }
 );
 
-const images = Object.entries(galleryModules).map(([path, mod]) => ({
+const bundledImages = Object.entries(galleryModules).map(([path, mod]) => ({
   src: mod.default,
   alt: (path.split('/').pop()?.replace(/^gallery-/, '').replace(/\.jpg$/, '') ?? '')
     .split('-')
@@ -20,7 +22,29 @@ const images = Object.entries(galleryModules).map(([path, mod]) => ({
 }));
 
 const GalleryContent = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [dbImages, setDbImages] = useState<{ src: string; alt: string }[] | null>(null);
+
+  useEffect(() => {
+    supabase
+      .from('gallery_images')
+      .select('image_url, caption')
+      .order('sort_order')
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setDbImages(
+            data.map((d: any) => ({
+              src: d.image_url,
+              alt: d.caption?.[language] || d.caption?.en || '',
+            })),
+          );
+        } else {
+          setDbImages([]);
+        }
+      });
+  }, [language]);
+
+  const images = dbImages && dbImages.length > 0 ? dbImages : bundledImages;
   usePageMeta({
     titleKey: 'meta.gallery.title',
     descriptionKey: 'meta.gallery.description',

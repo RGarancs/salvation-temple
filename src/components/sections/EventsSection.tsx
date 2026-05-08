@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock, Facebook, Instagram, Youtube, LucideIcon } from 'lucide-react';
+import { Calendar, Newspaper, GraduationCap, Droplets, ChevronDown, ChevronRight, CalendarCheck, Clock, Facebook, Instagram, Youtube, LucideIcon, Sparkles } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
+import { supabase } from '@/integrations/supabase/client';
 
 interface EventCategory {
   key: string;
@@ -116,8 +117,20 @@ const EventContentBlock = ({ category, t }: { category: EventCategory; t: (key: 
 };
 
 export const EventsSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [openSection, setOpenSection] = useState<string | null>(null);
+  const [customEvents, setCustomEvents] = useState<any[]>([]);
+
+  useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    supabase
+      .from('calendar_events')
+      .select('*')
+      .gte('event_date', today)
+      .order('event_date')
+      .limit(8)
+      .then(({ data }) => { if (data) setCustomEvents(data); });
+  }, []);
 
   const upcomingSundays = getUpcomingSundays();
   const thisFriday = getThisFriday();
@@ -240,6 +253,46 @@ export const EventsSection = () => {
                   );
                 })}
               </div>
+
+              {customEvents.length > 0 && (
+                <div className="mt-6 pt-6 border-t border-white/10">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sparkles className="w-4 h-4 text-sunset-light" />
+                    <h4 className="font-display text-sm font-bold text-white/90 uppercase tracking-wide">
+                      {t('events.specialEvents') || 'Special Events'}
+                    </h4>
+                  </div>
+                  <div className="space-y-2">
+                    {customEvents.map((ev) => (
+                      <div key={ev.id} className="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/10">
+                        <div className="text-center min-w-[3rem]">
+                          <p className="font-display text-lg font-bold text-sunset-light leading-none">
+                            {new Date(ev.event_date).getDate()}
+                          </p>
+                          <p className="text-[10px] uppercase text-white/50">
+                            {new Date(ev.event_date).toLocaleDateString('en', { month: 'short' })}
+                          </p>
+                        </div>
+                        <div className="flex-1">
+                          <p className="font-semibold text-white/95 text-sm">
+                            {ev.title?.[language] || ev.title?.en || ev.title?.ru}
+                          </p>
+                          {(ev.description?.[language] || ev.description?.en) && (
+                            <p className="text-xs text-white/60 line-clamp-1">
+                              {ev.description?.[language] || ev.description?.en}
+                            </p>
+                          )}
+                        </div>
+                        {ev.event_time && (
+                          <p className="text-xs text-white/60 flex items-center gap-1">
+                            <Clock className="w-3 h-3" /> {ev.event_time}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
