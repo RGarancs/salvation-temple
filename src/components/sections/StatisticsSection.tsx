@@ -90,7 +90,7 @@ export const StatisticsSection = () => {
                 onFocus={() => setHoveredStat(stat.key)}
                 onBlur={() => setHoveredStat(null)}
                 role="button"
-                aria-label={`${t(stat.label)}: ${stat.value}`}
+                aria-label={`${stat.isLabelText ? stat.label : t(stat.label)}: ${stat.value}`}
               >
                 <BordeauxOverlay />
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl bg-shine" />
@@ -104,7 +104,7 @@ export const StatisticsSection = () => {
                     {stat.value}
                   </div>
                   <p className="text-white/60 text-xs leading-tight">
-                    {t(stat.label)}
+                    {stat.isLabelText ? stat.label : t(stat.label)}
                   </p>
                 </div>
 
