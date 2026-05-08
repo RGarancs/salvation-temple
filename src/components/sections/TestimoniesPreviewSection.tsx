@@ -50,10 +50,10 @@ export const TestimoniesPreviewSection = () => {
             <div key={testimony.key} className="card-warm p-6">
               <Quote className="w-8 h-8 text-sunset/40 mb-4" />
               <h3 className="font-display text-lg font-bold text-foreground mb-2">
-                {t(`testimonies.${testimony.key}.name`)}
+                {testimony.name}
               </h3>
               <p className="text-foreground/70 text-sm line-clamp-4">
-                {t(`testimonies.${testimony.key}.summary`)}
+                {testimony.summary}
               </p>
             </div>
           ))}
