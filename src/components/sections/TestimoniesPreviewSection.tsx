@@ -1,15 +1,34 @@
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Heart, ArrowRight, Quote } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
+
+interface PreviewItem { key: string; name: string; summary: string; }
 
 export const TestimoniesPreviewSection = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const [dbRows, setDbRows] = useState<any[] | null>(null);
 
-  const testimonies = [
-    { key: 'testimony1' },
-    { key: 'testimony2' },
-    { key: 'testimony3' },
+  useEffect(() => {
+    supabase.from('testimonials').select('*').eq('published', true).order('sort_order').limit(3)
+      .then(({ data }) => { if (data) setDbRows(data); });
+  }, []);
+
+  const fallback: PreviewItem[] = [
+    { key: 'testimony1', name: t('testimonies.testimony1.name'), summary: t('testimonies.testimony1.summary') },
+    { key: 'testimony2', name: t('testimonies.testimony2.name'), summary: t('testimonies.testimony2.summary') },
+    { key: 'testimony3', name: t('testimonies.testimony3.name'), summary: t('testimonies.testimony3.summary') },
   ];
+
+  const testimonies: PreviewItem[] =
+    dbRows && dbRows.length > 0
+      ? dbRows.map((r: any) => ({
+          key: r.id,
+          name: r.name?.[language] || r.name?.en || 'Anonymous',
+          summary: r.encounter_text?.[language] || r.before_text?.[language] || r.encounter_text?.en || '',
+        }))
+      : fallback;
 
   return (
     <section id="testimonies" className="section-py bg-cream-dark">
