@@ -154,10 +154,10 @@ export const MinistriesSection = () => {
                       <Icon className="w-6 h-6 text-sunset-light" />
                     </div>
                     <h3 className="font-display text-lg font-bold text-white/95 mb-2">
-                      {t(`ministries.${ministry.key}.title`)}
+                      {(ministry as DisplayMinistry).title || t(`ministries.${ministry.key}.title`)}
                     </h3>
                     <p className="text-white/60 text-sm mb-3">
-                      {t(`ministries.${ministry.key}.desc`)}
+                      {(ministry as DisplayMinistry).desc || t(`ministries.${ministry.key}.desc`)}
                     </p>
                     {ministry.leader && (
                       <div className="pt-3 border-t border-white/10">
@@ -174,14 +174,16 @@ export const MinistriesSection = () => {
                       <Icon className="w-5 h-5 text-sunset-light" />
                     </div>
                     <h3 className="font-display text-base font-bold text-white/95 mb-2">
-                      {t(`ministries.${ministry.key}.title`)}
+                      {(ministry as DisplayMinistry).title || t(`ministries.${ministry.key}.title`)}
                     </h3>
                     <p className="text-white/80 text-xs leading-relaxed text-center mb-2">
-                      {t(`ministries.${ministry.key}.hoverInfo`)}
+                      {(ministry as DisplayMinistry).hover || t(`ministries.${ministry.key}.hoverInfo`)}
                     </p>
-                    <p className="text-xs text-sunset-light font-semibold">
-                      {ministry.leader[language]}
-                    </p>
+                    {ministry.leader && (
+                      <p className="text-xs text-sunset-light font-semibold">
+                        {ministry.leader[language]}
+                      </p>
+                    )}
                   </div>
                 </div>
               );
