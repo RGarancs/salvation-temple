@@ -7,7 +7,11 @@ import {
   CalendarDays, Users, Image as ImageIcon, BarChart3, Church, LogOut,
   Plus, Trash2, Edit, Save, X, Home, MessageSquareQuote, Newspaper,
   UserPlus, Settings, ArrowUp, ArrowDown, Sparkles, Search, Loader2,
+  Download, Droplets,
 } from 'lucide-react';
+
+const SOCIAL_KEYS = ['whatsapp', 'telegram', 'instagram', 'youtube', 'facebook', 'website'] as const;
+type SocialKey = typeof SOCIAL_KEYS[number];
 
 type Tab = 'dashboard' | 'calendar' | 'ministries' | 'gallery' | 'statistics' | 'testimonials' | 'news' | 'users' | 'seo' | 'settings';
 
