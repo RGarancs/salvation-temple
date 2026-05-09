@@ -29,23 +29,30 @@ export const useAuth = () => {
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         const user = session?.user ?? null;
-        let isAdmin = false;
+        // Synchronously update session/user, then defer admin check to avoid
+        // deadlocking the gotrue auth lock (no supabase calls inside this callback).
+        setState((prev) => ({ ...prev, user, session, loading: user ? prev.loading : false, isAdmin: user ? prev.isAdmin : false }));
         if (user) {
-          isAdmin = await checkAdmin(user.id);
+          setTimeout(async () => {
+            const isAdmin = await checkAdmin(user.id);
+            setState({ user, session, isAdmin, loading: false });
+          }, 0);
         }
-        setState({ user, session, isAdmin, loading: false });
       }
     );
 
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
       const user = session?.user ?? null;
-      let isAdmin = false;
-      if (user) {
-        isAdmin = await checkAdmin(user.id);
+      if (!user) {
+        setState({ user: null, session: null, isAdmin: false, loading: false });
+        return;
       }
-      setState({ user, session, isAdmin, loading: false });
+      setTimeout(async () => {
+        const isAdmin = await checkAdmin(user.id);
+        setState({ user, session, isAdmin, loading: false });
+      }, 0);
     });
 
     return () => subscription.unsubscribe();
