@@ -16,6 +16,7 @@ interface NewsItem {
 export const NewsSection = () => {
   const { t, language } = useLanguage();
   const [items, setItems] = useState<NewsItem[]>([]);
+  const [baptisms, setBaptisms] = useState<any[]>([]);
 
   useEffect(() => {
     supabase
@@ -27,9 +28,18 @@ export const NewsSection = () => {
       .then(({ data }) => {
         if (data) setItems(data.map((d: any) => ({ ...d, title: d.title, content: d.content })));
       });
+    const today = new Date().toISOString().slice(0, 10);
+    supabase
+      .from('calendar_events')
+      .select('*')
+      .eq('event_type', 'baptism')
+      .gte('event_date', today)
+      .order('event_date')
+      .limit(5)
+      .then(({ data }) => { if (data) setBaptisms(data); });
   }, []);
 
-  if (items.length === 0) return null;
+  if (items.length === 0 && baptisms.length === 0) return null;
 
   return (
     <section id="news" className="section-py bg-background">
