@@ -61,7 +61,7 @@ const MinistryContent = () => {
 
   useEffect(() => {
     if (!key) return;
-    supabase.from('ministries').select('mission,prayer_needs,how_to_help,description,leader_name,leader_image_url').eq('key', key).maybeSingle()
+    supabase.from('ministries').select('mission,prayer_needs,how_to_help,description,leader_name,leader_image_url,external_links').eq('key', key).maybeSingle()
       .then(({ data }) => setRow(data as any));
     supabase.from('ministry_gallery').select('id,image_url').eq('ministry_key', key).order('sort_order')
       .then(({ data }) => data && setGallery(data));
