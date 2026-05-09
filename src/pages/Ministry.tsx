@@ -3,10 +3,19 @@ import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ChurchHeader } from '@/components/ChurchHeader';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
 import { useParams, Link } from 'react-router-dom';
-import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Stethoscope, ArrowLeft, HandHeart, Sparkles, type LucideIcon } from 'lucide-react';
+import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Stethoscope, ArrowLeft, HandHeart, Sparkles, MessageCircle, Send, Instagram, Youtube, Facebook, Globe, type LucideIcon } from 'lucide-react';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 import { supabase } from '@/integrations/supabase/client';
+
+const SOCIAL_META: Record<string, { icon: LucideIcon; label: string; color: string }> = {
+  whatsapp: { icon: MessageCircle, label: 'WhatsApp', color: 'bg-green-600 hover:bg-green-700' },
+  telegram: { icon: Send, label: 'Telegram', color: 'bg-sky-600 hover:bg-sky-700' },
+  instagram: { icon: Instagram, label: 'Instagram', color: 'bg-pink-600 hover:bg-pink-700' },
+  youtube: { icon: Youtube, label: 'YouTube', color: 'bg-red-600 hover:bg-red-700' },
+  facebook: { icon: Facebook, label: 'Facebook', color: 'bg-blue-600 hover:bg-blue-700' },
+  website: { icon: Globe, label: 'Website', color: 'bg-zinc-700 hover:bg-zinc-800' },
+};
 
 const iconMap: Record<string, LucideIcon> = {
   worship: Music, sundaySchool: BookOpen, ribaClub: Fish, youth: Users,
@@ -36,6 +45,7 @@ interface MinistryRow {
   description: Record<string, string> | null;
   leader_name: string | null;
   leader_image_url: string | null;
+  external_links: Record<string, string> | null;
 }
 
 const pickLang = (obj: Record<string, string> | null | undefined, lang: string, fallback = ''): string => {
@@ -51,7 +61,7 @@ const MinistryContent = () => {
 
   useEffect(() => {
     if (!key) return;
-    supabase.from('ministries').select('mission,prayer_needs,how_to_help,description,leader_name,leader_image_url').eq('key', key).maybeSingle()
+    supabase.from('ministries').select('mission,prayer_needs,how_to_help,description,leader_name,leader_image_url,external_links').eq('key', key).maybeSingle()
       .then(({ data }) => setRow(data as any));
     supabase.from('ministry_gallery').select('id,image_url').eq('ministry_key', key).order('sort_order')
       .then(({ data }) => data && setGallery(data));
@@ -105,6 +115,30 @@ const MinistryContent = () => {
                     <p className="font-semibold text-white/90">{leaderName}</p>
                   </div>
                 </div>
+                {row?.external_links && Object.entries(row.external_links).some(([, v]) => !!v) && (
+                  <div className="mt-6 pt-4 border-t border-white/10">
+                    <p className="text-xs text-white/50 uppercase tracking-wide mb-3">{t('ministry.detail.followUs') || 'Connect with this ministry'}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {Object.entries(row.external_links).map(([k, url]) => {
+                        if (!url) return null;
+                        const meta = SOCIAL_META[k];
+                        if (!meta) return null;
+                        const Icon = meta.icon;
+                        return (
+                          <a
+                            key={k}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium transition-all ${meta.color}`}
+                          >
+                            <Icon className="w-4 h-4" /> {meta.label}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

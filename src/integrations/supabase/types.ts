@@ -117,6 +117,7 @@ export type Database = {
         Row: {
           created_at: string
           description: Json | null
+          external_links: Json
           how_to_help: Json | null
           icon: string | null
           id: string
@@ -132,6 +133,7 @@ export type Database = {
         Insert: {
           created_at?: string
           description?: Json | null
+          external_links?: Json
           how_to_help?: Json | null
           icon?: string | null
           id?: string
@@ -147,6 +149,7 @@ export type Database = {
         Update: {
           created_at?: string
           description?: Json | null
+          external_links?: Json
           how_to_help?: Json | null
           icon?: string | null
           id?: string

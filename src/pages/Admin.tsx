@@ -7,7 +7,11 @@ import {
   CalendarDays, Users, Image as ImageIcon, BarChart3, Church, LogOut,
   Plus, Trash2, Edit, Save, X, Home, MessageSquareQuote, Newspaper,
   UserPlus, Settings, ArrowUp, ArrowDown, Sparkles, Search, Loader2,
+  Download, Droplets,
 } from 'lucide-react';
+
+const SOCIAL_KEYS = ['whatsapp', 'telegram', 'instagram', 'youtube', 'facebook', 'website'] as const;
+type SocialKey = typeof SOCIAL_KEYS[number];
 
 type Tab = 'dashboard' | 'calendar' | 'ministries' | 'gallery' | 'statistics' | 'testimonials' | 'news' | 'users' | 'seo' | 'settings';
 
@@ -270,6 +274,55 @@ const CalendarManager = ({ userId }: { userId?: string }) => {
 };
 
 // =============== News ===============
+const BaptismDatesPanel = () => {
+  const [dates, setDates] = useState<any[]>([]);
+  const [newDate, setNewDate] = useState('');
+  const [newTime, setNewTime] = useState('11:00');
+  const load = useCallback(async () => {
+    const { data } = await supabase
+      .from('calendar_events')
+      .select('*')
+      .eq('event_type', 'baptism')
+      .order('event_date');
+    if (data) setDates(data);
+  }, []);
+  useEffect(() => { load(); }, [load]);
+
+  const add = async () => {
+    if (!newDate) return;
+    await supabase.from('calendar_events').insert({
+      event_type: 'baptism',
+      event_date: newDate,
+      event_time: newTime,
+      title: { ru: 'Водное крещение', en: 'Water Baptism', lv: 'Ūdens kristības' },
+      description: emptyI18n(),
+    });
+    setNewDate(''); load();
+  };
+  const del = async (id: string) => { await supabase.from('calendar_events').delete().eq('id', id); load(); };
+
+  return (
+    <Card className="mb-6 border-blue-400/30">
+      <h3 className="font-semibold mb-3 flex items-center gap-2"><Droplets className="w-4 h-4 text-blue-400" /> Water Baptism Dates</h3>
+      <p className="text-xs text-white/50 mb-3">These dates show on the public News section as upcoming baptism announcements.</p>
+      <div className="flex flex-wrap gap-2 mb-3">
+        <input type="date" value={newDate} onChange={e => setNewDate(e.target.value)} className="bg-gray-800 border border-white/10 rounded-lg px-3 py-2 text-sm" />
+        <input type="text" value={newTime} onChange={e => setNewTime(e.target.value)} placeholder="11:00" className="w-24 bg-gray-800 border border-white/10 rounded-lg px-3 py-2 text-sm" />
+        <Btn onClick={add}><Plus className="w-4 h-4" /> Add Date</Btn>
+      </div>
+      <div className="space-y-1">
+        {dates.map(d => (
+          <div key={d.id} className="flex items-center justify-between bg-gray-800/60 rounded-lg px-3 py-2 text-sm">
+            <span>{d.event_date} {d.event_time && `· ${d.event_time}`}</span>
+            <button onClick={() => del(d.id)} className="text-red-400 hover:text-red-300"><Trash2 className="w-4 h-4" /></button>
+          </div>
+        ))}
+        {dates.length === 0 && <p className="text-xs text-white/40">No baptism dates yet.</p>}
+      </div>
+    </Card>
+  );
+};
+
 const NewsManager = ({ userId }: { userId?: string }) => {
   const [items, setItems] = useState<any[]>([]);
   const [editing, setEditing] = useState<any>(null);
@@ -289,6 +342,7 @@ const NewsManager = ({ userId }: { userId?: string }) => {
 
   return (
     <div>
+      <BaptismDatesPanel />
       <PageHeader title="News" action={<Btn onClick={() => setEditing({ title: emptyI18n(), content: emptyI18n(), image_url: '', published: true, published_at: new Date().toISOString().slice(0, 10) })}><Plus className="w-4 h-4" /> Add Post</Btn>} />
       {editing && (
         <Card className="mb-4 border-sunset/30">
@@ -353,7 +407,7 @@ const MinistriesManager = () => {
 
   return (
     <div>
-      <PageHeader title="Ministries" action={<Btn onClick={() => setEditing({ key: '', title: emptyI18n(), description: emptyI18n(), mission: emptyI18n(), prayer_needs: emptyI18n(), how_to_help: emptyI18n(), leader_name: '', leader_image_url: '', icon: 'Heart', sort_order: items.length })}><Plus className="w-4 h-4" /> Add Ministry</Btn>} />
+      <PageHeader title="Ministries" action={<Btn onClick={() => setEditing({ key: '', title: emptyI18n(), description: emptyI18n(), mission: emptyI18n(), prayer_needs: emptyI18n(), how_to_help: emptyI18n(), leader_name: '', leader_image_url: '', icon: 'Heart', sort_order: items.length, external_links: {} })}><Plus className="w-4 h-4" /> Add Ministry</Btn>} />
       {editing && (
         <Card className="mb-4 border-sunset/30">
           <div className="space-y-4">
@@ -368,6 +422,20 @@ const MinistriesManager = () => {
             <I18nField label="Our Mission" value={editing.mission} onChange={v => setEditing({ ...editing, mission: v })} rows={3} />
             <I18nField label="Prayer Needs" value={editing.prayer_needs} onChange={v => setEditing({ ...editing, prayer_needs: v })} rows={3} />
             <I18nField label="How You Can Help / Join Us" value={editing.how_to_help} onChange={v => setEditing({ ...editing, how_to_help: v })} rows={3} />
+            <div>
+              <label className="block text-xs font-semibold text-white/70 mb-2">External Links (social channels & pages outside the website)</label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {SOCIAL_KEYS.map((k: SocialKey) => (
+                  <Field
+                    key={k}
+                    label={k.charAt(0).toUpperCase() + k.slice(1)}
+                    value={editing.external_links?.[k] || ''}
+                    placeholder={k === 'whatsapp' ? 'https://chat.whatsapp.com/…' : k === 'telegram' ? 'https://t.me/…' : `https://${k === 'website' ? 'example.com' : k + '.com/…'}`}
+                    onChange={(v: string) => setEditing({ ...editing, external_links: { ...(editing.external_links || {}), [k]: v } })}
+                  />
+                ))}
+              </div>
+            </div>
             <div className="flex justify-end gap-2">
               <Btn variant="ghost" onClick={() => setEditing(null)}><X className="w-4 h-4" /> Cancel</Btn>
               <Btn onClick={save}><Save className="w-4 h-4" /> Save</Btn>
@@ -444,8 +512,15 @@ const MinistryGalleryEditor = ({ ministryKey, onClose }: { ministryKey: string; 
 };
 
 // =============== Gallery (homepage gallery_images) ===============
+const bundledGalleryModules = import.meta.glob<{ default: string }>('@/assets/gallery-*.jpg', { eager: true });
+const bundledGalleryAssets = Object.entries(bundledGalleryModules).map(([path, mod]) => ({
+  url: mod.default,
+  name: path.split('/').pop() || 'image.jpg',
+}));
+
 const GalleryManager = () => {
   const [items, setItems] = useState<any[]>([]);
+  const [importing, setImporting] = useState(false);
   const load = useCallback(async () => {
     const { data } = await supabase.from('gallery_images').select('*').order('sort_order');
     if (data) setItems(data);
@@ -468,9 +543,36 @@ const GalleryManager = () => {
     load();
   };
 
+  const importBundled = async () => {
+    if (!confirm(`Import ${bundledGalleryAssets.length} bundled gallery images into the database? Existing items will be kept.`)) return;
+    setImporting(true);
+    let added = 0;
+    try {
+      const existing = new Set(items.map((it: any) => (it.image_url || '').split('/').pop()));
+      for (const asset of bundledGalleryAssets) {
+        const baseName = asset.name;
+        if (Array.from(existing).some(n => typeof n === 'string' && n.includes(baseName.replace('.jpg', '')))) continue;
+        const blob = await (await fetch(asset.url)).blob();
+        const path = `gallery/${baseName.replace('.jpg', '')}-${crypto.randomUUID().slice(0, 8)}.jpg`;
+        const { error } = await supabase.storage.from('church-media').upload(path, blob, { contentType: 'image/jpeg', upsert: false });
+        if (error) { console.warn('skip', baseName, error.message); continue; }
+        const { data } = supabase.storage.from('church-media').getPublicUrl(path);
+        await supabase.from('gallery_images').insert({ image_url: data.publicUrl, sort_order: items.length + added, category: 'general', caption: { en: baseName.replace(/^gallery-|\.jpg$/g, '').replace(/-/g, ' '), ru: '', lv: '' } });
+        added++;
+      }
+      alert(`Imported ${added} images.`);
+    } catch (e) { alert('Import failed: ' + (e as Error).message); }
+    finally { setImporting(false); load(); }
+  };
+
   return (
     <div>
-      <PageHeader title="Gallery" />
+      <PageHeader title="Gallery" action={
+        <Btn onClick={importBundled} disabled={importing}>
+          {importing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+          Import bundled images ({bundledGalleryAssets.length})
+        </Btn>
+      } />
       <Card className="mb-4">
         <ImageUpload label="Add new gallery image" folder="gallery" value="" onChange={add} />
       </Card>
@@ -485,7 +587,7 @@ const GalleryManager = () => {
             </div>
           </div>
         ))}
-        {items.length === 0 && <p className="col-span-full text-center text-white/40 py-8">No images yet. The site currently uses bundled assets — uploads here will appear once the public Gallery page is wired to the database.</p>}
+        {items.length === 0 && <p className="col-span-full text-center text-white/40 py-8">No images yet. Click "Import bundled images" above to seed the database with the existing /gallery photos.</p>}
       </div>
     </div>
   );
