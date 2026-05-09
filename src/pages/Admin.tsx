@@ -372,6 +372,20 @@ const MinistriesManager = () => {
             <I18nField label="Our Mission" value={editing.mission} onChange={v => setEditing({ ...editing, mission: v })} rows={3} />
             <I18nField label="Prayer Needs" value={editing.prayer_needs} onChange={v => setEditing({ ...editing, prayer_needs: v })} rows={3} />
             <I18nField label="How You Can Help / Join Us" value={editing.how_to_help} onChange={v => setEditing({ ...editing, how_to_help: v })} rows={3} />
+            <div>
+              <label className="block text-xs font-semibold text-white/70 mb-2">External Links (social channels & pages outside the website)</label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {SOCIAL_KEYS.map((k: SocialKey) => (
+                  <Field
+                    key={k}
+                    label={k.charAt(0).toUpperCase() + k.slice(1)}
+                    value={editing.external_links?.[k] || ''}
+                    placeholder={k === 'whatsapp' ? 'https://chat.whatsapp.com/…' : k === 'telegram' ? 'https://t.me/…' : `https://${k === 'website' ? 'example.com' : k + '.com/…'}`}
+                    onChange={(v: string) => setEditing({ ...editing, external_links: { ...(editing.external_links || {}), [k]: v } })}
+                  />
+                ))}
+              </div>
+            </div>
             <div className="flex justify-end gap-2">
               <Btn variant="ghost" onClick={() => setEditing(null)}><X className="w-4 h-4" /> Cancel</Btn>
               <Btn onClick={save}><Save className="w-4 h-4" /> Save</Btn>
