@@ -462,8 +462,15 @@ const MinistryGalleryEditor = ({ ministryKey, onClose }: { ministryKey: string; 
 };
 
 // =============== Gallery (homepage gallery_images) ===============
+const bundledGalleryModules = import.meta.glob<{ default: string }>('@/assets/gallery-*.jpg', { eager: true });
+const bundledGalleryAssets = Object.entries(bundledGalleryModules).map(([path, mod]) => ({
+  url: mod.default,
+  name: path.split('/').pop() || 'image.jpg',
+}));
+
 const GalleryManager = () => {
   const [items, setItems] = useState<any[]>([]);
+  const [importing, setImporting] = useState(false);
   const load = useCallback(async () => {
     const { data } = await supabase.from('gallery_images').select('*').order('sort_order');
     if (data) setItems(data);
@@ -486,9 +493,36 @@ const GalleryManager = () => {
     load();
   };
 
+  const importBundled = async () => {
+    if (!confirm(`Import ${bundledGalleryAssets.length} bundled gallery images into the database? Existing items will be kept.`)) return;
+    setImporting(true);
+    let added = 0;
+    try {
+      const existing = new Set(items.map((it: any) => (it.image_url || '').split('/').pop()));
+      for (const asset of bundledGalleryAssets) {
+        const baseName = asset.name;
+        if (Array.from(existing).some(n => typeof n === 'string' && n.includes(baseName.replace('.jpg', '')))) continue;
+        const blob = await (await fetch(asset.url)).blob();
+        const path = `gallery/${baseName.replace('.jpg', '')}-${crypto.randomUUID().slice(0, 8)}.jpg`;
+        const { error } = await supabase.storage.from('church-media').upload(path, blob, { contentType: 'image/jpeg', upsert: false });
+        if (error) { console.warn('skip', baseName, error.message); continue; }
+        const { data } = supabase.storage.from('church-media').getPublicUrl(path);
+        await supabase.from('gallery_images').insert({ image_url: data.publicUrl, sort_order: items.length + added, category: 'general', caption: { en: baseName.replace(/^gallery-|\.jpg$/g, '').replace(/-/g, ' '), ru: '', lv: '' } });
+        added++;
+      }
+      alert(`Imported ${added} images.`);
+    } catch (e) { alert('Import failed: ' + (e as Error).message); }
+    finally { setImporting(false); load(); }
+  };
+
   return (
     <div>
-      <PageHeader title="Gallery" />
+      <PageHeader title="Gallery" action={
+        <Btn onClick={importBundled} disabled={importing}>
+          {importing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+          Import bundled images ({bundledGalleryAssets.length})
+        </Btn>
+      } />
       <Card className="mb-4">
         <ImageUpload label="Add new gallery image" folder="gallery" value="" onChange={add} />
       </Card>
@@ -503,7 +537,7 @@ const GalleryManager = () => {
             </div>
           </div>
         ))}
-        {items.length === 0 && <p className="col-span-full text-center text-white/40 py-8">No images yet. The site currently uses bundled assets — uploads here will appear once the public Gallery page is wired to the database.</p>}
+        {items.length === 0 && <p className="col-span-full text-center text-white/40 py-8">No images yet. Click "Import bundled images" above to seed the database with the existing /gallery photos.</p>}
       </div>
     </div>
   );
