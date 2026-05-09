@@ -45,6 +45,7 @@ interface MinistryRow {
   description: Record<string, string> | null;
   leader_name: string | null;
   leader_image_url: string | null;
+  external_links: Record<string, string> | null;
 }
 
 const pickLang = (obj: Record<string, string> | null | undefined, lang: string, fallback = ''): string => {
