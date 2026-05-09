@@ -293,6 +293,7 @@ const NewsManager = ({ userId }: { userId?: string }) => {
 
   return (
     <div>
+      <BaptismDatesPanel />
       <PageHeader title="News" action={<Btn onClick={() => setEditing({ title: emptyI18n(), content: emptyI18n(), image_url: '', published: true, published_at: new Date().toISOString().slice(0, 10) })}><Plus className="w-4 h-4" /> Add Post</Btn>} />
       {editing && (
         <Card className="mb-4 border-sunset/30">
