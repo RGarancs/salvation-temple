@@ -115,6 +115,30 @@ const MinistryContent = () => {
                     <p className="font-semibold text-white/90">{leaderName}</p>
                   </div>
                 </div>
+                {row?.external_links && Object.entries(row.external_links).some(([, v]) => !!v) && (
+                  <div className="mt-6 pt-4 border-t border-white/10">
+                    <p className="text-xs text-white/50 uppercase tracking-wide mb-3">{t('ministry.detail.followUs') || 'Connect with this ministry'}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {Object.entries(row.external_links).map(([k, url]) => {
+                        if (!url) return null;
+                        const meta = SOCIAL_META[k];
+                        if (!meta) return null;
+                        const Icon = meta.icon;
+                        return (
+                          <a
+                            key={k}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-white text-sm font-medium transition-all ${meta.color}`}
+                          >
+                            <Icon className="w-4 h-4" /> {meta.label}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
