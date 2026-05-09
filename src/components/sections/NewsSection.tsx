@@ -51,6 +51,32 @@ export const NewsSection = () => {
           <h2 className="section-title text-gradient-earth mb-4">{t('news.title') || 'News'}</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">{t('news.subtitle') || 'Latest from our community'}</p>
         </div>
+        {baptisms.length > 0 && (
+          <div className="max-w-4xl mx-auto mb-8 rounded-2xl p-6 relative overflow-hidden" style={bordeauxCardStyle}>
+            <BordeauxOverlay />
+            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center border border-blue-300/20">
+                  <Droplets className="w-6 h-6 text-blue-300" />
+                </div>
+                <div>
+                  <h3 className="font-display text-lg font-bold text-white/95">{t('news.baptism.title') || 'Upcoming Water Baptism'}</h3>
+                  <p className="text-xs text-white/60">{t('news.baptism.subtitle') || 'Join us as we celebrate new life in Christ'}</p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2 sm:ml-auto">
+                {baptisms.map(b => (
+                  <div key={b.id} className="px-3 py-2 rounded-lg bg-white/10 border border-white/10">
+                    <p className="text-sm font-semibold text-white/95">
+                      {new Date(b.event_date).toLocaleDateString(language, { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </p>
+                    {b.event_time && <p className="text-xs text-white/60">{b.event_time}</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {items.map(item => (
             <article
