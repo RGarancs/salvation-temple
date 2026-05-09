@@ -274,6 +274,55 @@ const CalendarManager = ({ userId }: { userId?: string }) => {
 };
 
 // =============== News ===============
+const BaptismDatesPanel = () => {
+  const [dates, setDates] = useState<any[]>([]);
+  const [newDate, setNewDate] = useState('');
+  const [newTime, setNewTime] = useState('11:00');
+  const load = useCallback(async () => {
+    const { data } = await supabase
+      .from('calendar_events')
+      .select('*')
+      .eq('event_type', 'baptism')
+      .order('event_date');
+    if (data) setDates(data);
+  }, []);
+  useEffect(() => { load(); }, [load]);
+
+  const add = async () => {
+    if (!newDate) return;
+    await supabase.from('calendar_events').insert({
+      event_type: 'baptism',
+      event_date: newDate,
+      event_time: newTime,
+      title: { ru: 'Водное крещение', en: 'Water Baptism', lv: 'Ūdens kristības' },
+      description: emptyI18n(),
+    });
+    setNewDate(''); load();
+  };
+  const del = async (id: string) => { await supabase.from('calendar_events').delete().eq('id', id); load(); };
+
+  return (
+    <Card className="mb-6 border-blue-400/30">
+      <h3 className="font-semibold mb-3 flex items-center gap-2"><Droplets className="w-4 h-4 text-blue-400" /> Water Baptism Dates</h3>
+      <p className="text-xs text-white/50 mb-3">These dates show on the public News section as upcoming baptism announcements.</p>
+      <div className="flex flex-wrap gap-2 mb-3">
+        <input type="date" value={newDate} onChange={e => setNewDate(e.target.value)} className="bg-gray-800 border border-white/10 rounded-lg px-3 py-2 text-sm" />
+        <input type="text" value={newTime} onChange={e => setNewTime(e.target.value)} placeholder="11:00" className="w-24 bg-gray-800 border border-white/10 rounded-lg px-3 py-2 text-sm" />
+        <Btn onClick={add}><Plus className="w-4 h-4" /> Add Date</Btn>
+      </div>
+      <div className="space-y-1">
+        {dates.map(d => (
+          <div key={d.id} className="flex items-center justify-between bg-gray-800/60 rounded-lg px-3 py-2 text-sm">
+            <span>{d.event_date} {d.event_time && `· ${d.event_time}`}</span>
+            <button onClick={() => del(d.id)} className="text-red-400 hover:text-red-300"><Trash2 className="w-4 h-4" /></button>
+          </div>
+        ))}
+        {dates.length === 0 && <p className="text-xs text-white/40">No baptism dates yet.</p>}
+      </div>
+    </Card>
+  );
+};
+
 const NewsManager = ({ userId }: { userId?: string }) => {
   const [items, setItems] = useState<any[]>([]);
   const [editing, setEditing] = useState<any>(null);
