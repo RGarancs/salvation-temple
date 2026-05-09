@@ -357,7 +357,7 @@ const MinistriesManager = () => {
 
   return (
     <div>
-      <PageHeader title="Ministries" action={<Btn onClick={() => setEditing({ key: '', title: emptyI18n(), description: emptyI18n(), mission: emptyI18n(), prayer_needs: emptyI18n(), how_to_help: emptyI18n(), leader_name: '', leader_image_url: '', icon: 'Heart', sort_order: items.length })}><Plus className="w-4 h-4" /> Add Ministry</Btn>} />
+      <PageHeader title="Ministries" action={<Btn onClick={() => setEditing({ key: '', title: emptyI18n(), description: emptyI18n(), mission: emptyI18n(), prayer_needs: emptyI18n(), how_to_help: emptyI18n(), leader_name: '', leader_image_url: '', icon: 'Heart', sort_order: items.length, external_links: {} })}><Plus className="w-4 h-4" /> Add Ministry</Btn>} />
       {editing && (
         <Card className="mb-4 border-sunset/30">
           <div className="space-y-4">
