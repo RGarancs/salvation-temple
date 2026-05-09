@@ -3,10 +3,19 @@ import { LanguageProvider, useLanguage } from '@/contexts/LanguageContext';
 import { ChurchHeader } from '@/components/ChurchHeader';
 import { ChurchFooter } from '@/components/sections/ChurchFooter';
 import { useParams, Link } from 'react-router-dom';
-import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Stethoscope, ArrowLeft, HandHeart, Sparkles, type LucideIcon } from 'lucide-react';
+import { Music, BookOpen, Fish, Users, Heart, Mic2, Home, Dumbbell, HeartHandshake, Camera, Tent, Stethoscope, ArrowLeft, HandHeart, Sparkles, MessageCircle, Send, Instagram, Youtube, Facebook, Globe, type LucideIcon } from 'lucide-react';
 import { bordeauxCardStyle } from '@/styles/bordeaux';
 import { BordeauxOverlay } from '@/components/ui/bordeaux-overlay';
 import { supabase } from '@/integrations/supabase/client';
+
+const SOCIAL_META: Record<string, { icon: LucideIcon; label: string; color: string }> = {
+  whatsapp: { icon: MessageCircle, label: 'WhatsApp', color: 'bg-green-600 hover:bg-green-700' },
+  telegram: { icon: Send, label: 'Telegram', color: 'bg-sky-600 hover:bg-sky-700' },
+  instagram: { icon: Instagram, label: 'Instagram', color: 'bg-pink-600 hover:bg-pink-700' },
+  youtube: { icon: Youtube, label: 'YouTube', color: 'bg-red-600 hover:bg-red-700' },
+  facebook: { icon: Facebook, label: 'Facebook', color: 'bg-blue-600 hover:bg-blue-700' },
+  website: { icon: Globe, label: 'Website', color: 'bg-zinc-700 hover:bg-zinc-800' },
+};
 
 const iconMap: Record<string, LucideIcon> = {
   worship: Music, sundaySchool: BookOpen, ribaClub: Fish, youth: Users,
